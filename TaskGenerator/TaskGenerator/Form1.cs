@@ -15,7 +15,7 @@ namespace TaskGenerator
         public Form1()
         {
             Console.WriteLine("TaskGeneratorProbabilityTheory");
-            
+            TaskGenerator.CreateTask(1).testPrintTask();
             InitializeComponent();
         }
     }
