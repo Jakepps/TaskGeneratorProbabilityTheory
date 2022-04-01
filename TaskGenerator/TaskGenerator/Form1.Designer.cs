@@ -1,4 +1,4 @@
-﻿namespace Task_Generator
+﻿namespace TaskGenerator
 {
     partial class Form1
     {

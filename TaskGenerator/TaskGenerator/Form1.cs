@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Task_Generator
+namespace TaskGenerator
 {
     public partial class Form1 : Form
     {

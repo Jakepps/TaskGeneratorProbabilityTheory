@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Task_Generator.Properties
+namespace TaskGenerator.Properties
 {
 
 
