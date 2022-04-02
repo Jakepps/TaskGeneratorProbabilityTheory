@@ -28,10 +28,10 @@ namespace TaskGenerator
             var1.number = "1";
             var1.studentName = "Нальбий Рустамов Хахукович";
 
-            for (int i = 0; i < 10; i++)
-                var1.tasks.Add(TaskConstructor.CreateTask(1));
-
-            var1.testPrint();
+            //for (int i = 0; i < 10; i++)
+            //    var1.tasks.Add(TaskConstructor.CreateTask(1));
+            var1.GenerateVariant(new List<int> { 1, 1, 1, 1, 1 });
+            var1.TestPrint();
         }
     }
 }

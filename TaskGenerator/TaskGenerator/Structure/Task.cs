@@ -12,15 +12,26 @@ namespace TaskGenerator
         public string studentName;
         public List<Task> tasks;
 
-        public void testPrint()
+
+        public void TestPrint()
         {
-           foreach (Task task in tasks)
-                task.testPrint();
+            foreach (Task task in tasks)
+                task.TestPrint();
+        }
+        
+        //Мб лучше перенести в конструктор, пока так.
+        public void GenerateVariant(List<int> taskTypes)
+        {
+            for (int i = 0; i < taskTypes.Count; i++)
+            {
+                tasks.Add(TaskConstructor.CreateTask(taskTypes[i]));
+            }
         }
 
         public Variant()
         {
             tasks = new List<Task>();
+
         }
     }
 
@@ -31,7 +42,7 @@ namespace TaskGenerator
         public List<string> questions;
         public List<string> answers;
 
-        public void testPrint()
+        public void TestPrint()
         {
             Console.WriteLine("\nTask " + number + ". \n" + condition + "\n" + "a) " + questions[0] + "\n" + "б) " + questions[1] + "\n" +
                               "Answers: \n" + "a) " + answers[0] + "\n" + "б) " + answers[1] + "\n");
