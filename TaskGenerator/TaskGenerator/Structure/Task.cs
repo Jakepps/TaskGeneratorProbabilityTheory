@@ -6,6 +6,18 @@ using System.Threading.Tasks;
 
 namespace TaskGenerator
 {
+    public class Variant
+    {
+        public string number;
+        public string studentName;
+        public List<Task> tasks;
+
+        public Variant()
+        {
+            tasks = new List<Task>();
+        }
+    }
+
     public class Task
     {
         public string number;
