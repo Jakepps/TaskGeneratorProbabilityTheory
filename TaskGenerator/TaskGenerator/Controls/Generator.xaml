@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="TaskGenerator.Controls.Generator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TaskGenerator.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="216">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="48"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel 
+    Background="White"
+    >
+			<Label 
+      Content="Генерация"
+      FontFamily="{StaticResource Inter}"
+      FontSize="24"
+      FontWeight="Black"
+      Margin="8,8,8,0" FontStyle="Normal" FontStretch="Condensed"
+      />
+
+			<Label 
+      FontFamily="{StaticResource Inter}"
+      Content="Количество вариантов:"
+      FontSize="14"
+      FontWeight="Bold"
+      Margin="8,8,8,0"
+      />
+
+			<TextBox
+      FontFamily="{StaticResource Inter}"
+      UseLayoutRounding = "True"
+      Margin="8,0,8,0"
+      Text="4"
+      FontSize="12"
+      FontWeight="SemiBold"
+      Style="{StaticResource TextFieldStyle}" TextChanged="TextBox_TextChanged"
+      />
+
+			<Label 
+      FontFamily="{StaticResource Inter}"
+      Content="Номера задач:"
+      FontSize="14"
+      FontWeight="Bold"
+      Margin="8,8,8,0"
+      />
+
+			<TextBox
+      FontFamily="{StaticResource Inter}"
+      UseLayoutRounding = "True"
+      Margin="8,0,8,0"
+      Text="Test"
+      FontSize="12"
+      FontWeight="SemiBold"
+      Style="{StaticResource TextFieldStyle}"
+      />
+
+			<Label 
+      FontFamily="{StaticResource Inter}"
+      Content="Список студентов:"
+      FontSize="14"
+      FontWeight="Bold"
+      Margin="8,8,8,0"
+      />
+
+			<Label 
+      FontFamily="{DynamicResource Inter}"
+      Content="Отсутствует"
+      FontSize="12"
+      Foreground="Gray"
+      FontWeight="Medium"
+      Margin="8,0,8,0"
+      />
+
+			<Grid Height="24">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+
+				<Button
+        Margin="8,0,4,0"
+        Content="Удалить" Grid.Column="0">
+				</Button>
+				<Button
+        Margin="4,0,8,0"
+        Content="Выбрать" Grid.Column="1">
+				</Button>
+			</Grid>
+
+
+		</StackPanel>
+
+		<StackPanel Grid.Row="1" Background="White">
+			<Button
+        Content="Сгенерировать варианты"
+        Margin="8"
+        Height="32"
+        />
+
+		</StackPanel>
+	</Grid>
+</UserControl>

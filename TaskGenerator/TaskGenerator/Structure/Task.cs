@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TaskGenerator
 {
-    public class Task
-    {
-        public string number;
-        public string condition;
-        public List<string> questions;
-        public List<string> answers;
+	public class Task
+	{
+		public string number;
+		public string condition;
+		public List<string> questions;
+		public List<string> answers;
 
         public void TestPrint()
         {

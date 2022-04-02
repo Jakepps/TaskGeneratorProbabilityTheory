@@ -4,9 +4,44 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskGenerator"
+				xmlns:control="clr-namespace:TaskGenerator.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Генератор Задач" Height="540" Width="860">
+
+	<Grid>
+		<Grid.LayoutTransform>
+			<ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+		</Grid.LayoutTransform>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="24"/>
+			<RowDefinition Height="2"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Menu x:Name="menu" Background="{StaticResource BackgroundBrush}">
+			<MenuItem Header="Файл" Height="{Binding ActualHeight, ElementName=menu, Mode=OneWay}">
+
+			</MenuItem>
+			<MenuItem Header="Справка" Height="{Binding ActualHeight, ElementName=menu, Mode=OneWay}">
+
+			</MenuItem>
+			<MenuItem Header="О приложении" Height="{Binding ActualHeight, ElementName=menu, Mode=OneWay}">
+
+			</MenuItem>
+		</Menu>
+
+		<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Row="1"/>
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="216"/>
+				<ColumnDefinition Width="2"/>
+				<ColumnDefinition Width="216"/>
+				<ColumnDefinition Width="2"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Column="1"/>
+			<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Column="3"/>
+			<control:Generator FontFamily="{StaticResource Inter}"/>
+		</Grid>
+	</Grid>
 </Window>
