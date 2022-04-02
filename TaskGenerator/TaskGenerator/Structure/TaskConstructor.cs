@@ -23,7 +23,34 @@ namespace TaskGenerator
                     }
                     break;
                 case 2:
-
+                    return new Task(2);
+                    break;
+                case 3:
+                    return new Task(3);
+                    break;
+                case 4:
+                    return new Task(4);
+                    break;
+                case 5:
+                    return new Task(5);
+                    break;
+                case 6:
+                    return new Task(6);
+                    break;
+                case 7:
+                    return new Task(7);
+                    break;
+                case 8:
+                    return new Task(8);
+                    break;
+                case 9:
+                    return new Task(9);
+                    break;
+                case 10:
+                    return new Task(10);
+                    break;
+                case 11:
+                    return new Task(11);
                     break;
             }
             return null;
