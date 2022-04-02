@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskGenerator
 {
-    class TaskConstructor
+    public static class TaskConstructor
     {
         public static Task CreateTask(int taskType)
         {

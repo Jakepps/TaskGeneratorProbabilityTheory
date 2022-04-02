@@ -12,6 +12,12 @@ namespace TaskGenerator
         public string studentName;
         public List<Task> tasks;
 
+        public void testPrint()
+        {
+           foreach (Task task in tasks)
+                task.testPrint();
+        }
+
         public Variant()
         {
             tasks = new List<Task>();
@@ -25,9 +31,9 @@ namespace TaskGenerator
         public List<string> questions;
         public List<string> answers;
 
-        public void testPrintTask()
+        public void testPrint()
         {
-            Console.WriteLine("Task " + number + ". \n" + condition + "\n" + "a) " + questions[0] + "\n" + "б) " + questions[1] + "\n" +
+            Console.WriteLine("\nTask " + number + ". \n" + condition + "\n" + "a) " + questions[0] + "\n" + "б) " + questions[1] + "\n" +
                               "Answers: \n" + "a) " + answers[0] + "\n" + "б) " + answers[1] + "\n");
         }
         public Task()

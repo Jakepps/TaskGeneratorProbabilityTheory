@@ -23,6 +23,15 @@ namespace TaskGenerator
         public MainWindow()
         {
             InitializeComponent();
+
+            Variant var1 = new Variant();
+            var1.number = "1";
+            var1.studentName = "Нальбий Рустамов Хахукович";
+
+            for (int i = 0; i < 10; i++)
+                var1.tasks.Add(TaskConstructor.CreateTask(1));
+
+            var1.testPrint();
         }
     }
 }
