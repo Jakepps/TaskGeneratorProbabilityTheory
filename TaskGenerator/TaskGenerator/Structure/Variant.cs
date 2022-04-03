@@ -8,14 +8,8 @@ namespace TaskGenerator
 {
     public class Variant
     {
-<<<<<<< HEAD
-        public string number;
-        public List<string> studentName = new List<string>();
-       // public string studentName;
-=======
         public int number;
         public string student;
->>>>>>> b35de56d25acafb73084d5faf237e1efdf167bd0
         public List<Task> tasks;
 
         public void RegenerateTaskSubtype(int index)
