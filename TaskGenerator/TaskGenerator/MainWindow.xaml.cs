@@ -14,7 +14,7 @@ namespace TaskGenerator
             new Variant(new List<int> { 1,1 }),
             new Variant(new List<int> { 1 }),
             new Variant(new List<int> { 1 }),
-            new Variant(new List<int> { 1 })
+            new Variant(new List<int> { 2,2,2,2 })
         };
 
         public MainWindow()

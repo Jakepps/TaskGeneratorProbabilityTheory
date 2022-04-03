@@ -12,7 +12,7 @@ namespace TaskGenerator
                     return CreateTaskType1(subtype == 0 ? new Random().Next(1, 5) : subtype);
                     break;
                 case 2:
-                    return new Task(2);
+                    return CreateTaskType2Subtype3();
                     break;
                 case 3:
                     return new Task(3);
@@ -99,5 +99,18 @@ namespace TaskGenerator
 			task.answers.Add("1 - C(20,15)/C(30,15) ");
 			return task;
 		}
-	}
+
+        private static Task CreateTaskType2Subtype3()
+        {
+            Task task = new Task(2, 3);
+            Random random = new Random();
+            float a = random.NextSingle() / 2f;
+            float b = 1 - a;
+            float c = 0.5f;
+            task.condition = "Два гроссмейстера играют две партии в шахматы. Вероятность выигрыша в одной партии для первого шахматиста равна " + a + ", для второго — " + b + "; вероятность ничьей — 0,5. ";
+            task.questions.Add("Какова вероятность того, что первый гроссмейстер выиграет матч?");
+            task.answers.Add((a*a + a*c + c*a) + "");
+            return task;
+        }
+    }
 }
