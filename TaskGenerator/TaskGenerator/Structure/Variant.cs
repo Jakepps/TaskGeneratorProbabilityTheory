@@ -12,6 +12,17 @@ namespace TaskGenerator
         public string student;
         public List<Task> tasks;
 
+        public void RegenerateTaskSubtype(int index)
+        {
+            if (index < 0 || index >= tasks.Count) throw new ArgumentOutOfRangeException("index");
+            tasks[index] = TaskConstructor.CreateTask(tasks[index].type);
+        }
+
+        public void RegenerateTaskValues(int index)
+        {
+            if(index < 0 || index >= tasks.Count) throw new ArgumentOutOfRangeException("index");
+            tasks[index] = TaskConstructor.CreateTask(tasks[index].type, tasks[index].subtype);
+        }
         public static List<Variant> GetVariantsForStudents(List<String> students, List<int> taskTypes)
         {
             List<Variant> result = new List<Variant>();
