@@ -68,8 +68,9 @@ namespace TaskGenerator
         }
 
         public void updateTask(int index) {
-            Console.WriteLine("aaaaa" + index);
-            variantList[selectedVariant].tasks[index] = TaskConstructor.CreateTask(index + 1);
+            //Console.WriteLine("aaaaa" + index);
+            variantList[selectedVariant].RegenerateTaskSubtype(index);
+            //variantList[selectedVariant].tasks[index] = TaskConstructor.CreateTask(index + 1);
             tasks.updateCard(index);
 		}
     }

@@ -14,13 +14,13 @@ namespace TaskGenerator
 
         public void RegenerateTaskSubtype(int index)
         {
-            if (index < 0 || index >= tasks.Count) throw new ArgumentOutOfRangeException("index");
+            if (index < 0 || index >= tasks.Count) throw new ArgumentOutOfRangeException("RegenerateTaskSubtype");
             tasks[index] = TaskConstructor.CreateTask(tasks[index].type);
         }
 
         public void RegenerateTaskValues(int index)
         {
-            if(index < 0 || index >= tasks.Count) throw new ArgumentOutOfRangeException("index");
+            if(index < 0 || index >= tasks.Count) throw new ArgumentOutOfRangeException("RegenerateTaskValues");
             tasks[index] = TaskConstructor.CreateTask(tasks[index].type, tasks[index].subtype);
         }
 
