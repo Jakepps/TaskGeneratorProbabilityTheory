@@ -9,7 +9,7 @@
           Value="{x:Null}" />
 		<Setter Property="FontFamily" Value="{StaticResource Inter}"/>
 		<Setter Property="FontWeight" Value="Medium"/>
-		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="FontSize" Value="14"/>
 		<Setter Property="Foreground" Value="{StaticResource HighlightBrush}"/>
 
 		<Setter Property="Template">
@@ -17,7 +17,7 @@
 				<ControlTemplate TargetType="Button">
 					<Border TextBlock.Foreground="{TemplateBinding Foreground}"
                 x:Name="Border"
-                CornerRadius="12"
+                CornerRadius="8"
 								Background="{StaticResource AccentBrush}"
                 BorderThickness="0">
 

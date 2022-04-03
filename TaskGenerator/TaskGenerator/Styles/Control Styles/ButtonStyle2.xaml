@@ -17,7 +17,7 @@
 				<ControlTemplate TargetType="Button">
 					<Border TextBlock.Foreground="{TemplateBinding Foreground}"
                 x:Name="Border"
-                CornerRadius="12"
+                CornerRadius="8"
 								Background="{StaticResource CardBackgroundBrush}"
                 BorderThickness="0">
 

@@ -9,46 +9,57 @@
 	<StackPanel x:Name="stackPanel" Height="{Binding ActualHeight, ElementName=border, Mode=OneWay}" SnapsToDevicePixels="True">
 		<Border x:Name="border"
             Background="{StaticResource CardBackgroundBrush}"
-            BorderThickness="3"
+            BorderThickness="1"
             BorderBrush="{StaticResource HighlightDarkBrush}"
-            CornerRadius="20" 
-            MinWidth="{Binding ActualWidth, ElementName=stackPanel, Mode=OneWay}"
-            MinHeight="{Binding ActualHeight, ElementName=grid, Mode=OneWay}">
+            CornerRadius="12" 
+            SnapsToDevicePixels="False"
+            MaxWidth="600"
+            >
 			<Border.Effect>
-				<DropShadowEffect Color="#FF535353" Opacity="0.1" BlurRadius="24" Direction="0" ShadowDepth="0"/>
+				<DropShadowEffect Color="#FF535353" Opacity="0.05" 									RenderingBias="Quality" BlurRadius="48" Direction="0" ShadowDepth="0"/>
 			</Border.Effect>
 
 			<Grid x:Name="grid" Height="Auto">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="{Binding ActualHeight, ElementName=grid2, Mode=OneWay}"/>
 					<RowDefinition Height="{Binding ActualHeight, ElementName=textBlock1, Mode=OneWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"/>
-					<RowDefinition Height="48"/>
+					<RowDefinition Height="32"/>
 					<RowDefinition Height="{Binding ActualHeight, ElementName=textBlock3, Mode=OneWay}"/>
 				</Grid.RowDefinitions>
 
-				<Grid Grid.Row="0" x:Name="grid2" Height="68">
+				<Grid Grid.Row="0" x:Name="grid2" Height="48">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition/>
+						<ColumnDefinition Width="Auto"/>
 						<ColumnDefinition Width="Auto"/>
 					</Grid.ColumnDefinitions>
 
 					<TextBlock x:Name="textBlock" 
                     Text="Задача 1"
+                    Foreground="{StaticResource TextBrush}"
                     Grid.Column="0"
-                    Margin="20,20,0,0"
+                    TextOptions.TextFormattingMode="Ideal"
+                    Margin="12,12,0,0"
                     VerticalAlignment="Center"
                     FontFamily="{StaticResource Inter}"
                     FontWeight="Bold"
-                    FontSize="24"
+                    FontSize="16"
                     />
-
 
 					<Button
           x:Name="button" 
           Grid.Column="1"
           Style="{StaticResource CardButton}"
-          Margin="0,20,20,0" Width="{Binding ActualHeight, ElementName=button, Mode=OneWay}">
-						<Image Source="{StaticResource Refresh}" Width="32" Height="32"/>
+          Margin="0,12,0,0" Width="{Binding ActualHeight, ElementName=button, Mode=OneWay}">
+						<Image Source="{StaticResource Change}" Width="20" Height="20"/>
+					</Button>
+
+					<Button
+          x:Name="button2" 
+          Grid.Column="2"
+          Style="{StaticResource CardButton}"
+          Margin="0,12,12,0" Width="{Binding ActualHeight, ElementName=button, Mode=OneWay}">
+						<Image Source="{StaticResource Refresh}" Width="20" Height="20"/>
 					</Button>
 				</Grid>
         
@@ -58,33 +69,34 @@
                     VerticalAlignment="Top"
                     TextWrapping="Wrap"
                     TextAlignment="Justify"
-                    Padding="20,8,20,8"
+                    Padding="12,4,12,4"
                     FontFamily="{StaticResource Inter}"
-                    Foreground="#444444"
+                    Foreground="{StaticResource DisableBrush}"
                     FontWeight="Regular"
-                    FontSize="20" UseLayoutRounding="False"
+                    FontSize="14" UseLayoutRounding="False"
                     />
 
 				<TextBlock x:Name="textBlock2" 
                     Text="Ответ:"
                     Grid.Row="2" 
+                    Foreground="{StaticResource TextBrush}"
                     FontFamily="{StaticResource Inter}"
                     VerticalAlignment="Center"
-                    Padding="20,0,0,0"
+                    Padding="12,0,0,0"
                     FontWeight="Bold"
-                    FontSize="24"
+                    FontSize="16"
                     />
 				<TextBlock x:Name="textBlock3" 
                     Text="Тут типо ответ окда?"
                     Grid.Row="3" 
                     VerticalAlignment="Top"
                     TextWrapping="Wrap"
-                    Foreground="#444444"
                     TextAlignment="Justify"
-                    Padding="20,8,20,20"
+                    Padding="12,4,12,12"
                     FontWeight="Regular"
+                    Foreground="{StaticResource DisableBrush}"
                     FontFamily="{StaticResource Inter}"
-                    FontSize="20" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}"
+                    FontSize="14" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}"
                     />
 			</Grid>
 		</Border>

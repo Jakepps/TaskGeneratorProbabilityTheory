@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskGenerator.Controls.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="360">
+             d:DesignHeight="600" d:DesignWidth="240">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
-			<RowDefinition Height="96"/>
+			<RowDefinition Height="72"/>
 		</Grid.RowDefinitions>
 
 		<StackPanel 
@@ -18,25 +18,25 @@
 			<Label 
       Content="Генерация"
       FontFamily="{StaticResource Inter}"
-      FontSize="48"
+      FontSize="32"
       FontWeight="Bold"
-      Margin="16,16,16,16" FontStyle="Normal" FontStretch="Condensed"
+      Margin="12,12,12,12" FontStyle="Normal" FontStretch="Condensed"
       />
 
 			<Label 
       FontFamily="{StaticResource Inter}"
       Content="Количество вариантов:"
-      FontSize="24"
+      FontSize="16"
       FontWeight="Bold"
-      Margin="16,0,16,0"
+      Margin="12,0,12,0"
       />
 
 			<TextBox
       FontFamily="{StaticResource Inter}"
       UseLayoutRounding = "True"
-      Margin="16,8,16,0"
+      Margin="12,8,12,0"
       Text="4"
-      FontSize="20"
+      FontSize="16"
       FontWeight="SemiBold"
       Style="{StaticResource TextFieldStyle}"
       />
@@ -44,17 +44,17 @@
 			<Label 
       FontFamily="{StaticResource Inter}"
       Content="Номера задач:"
-      FontSize="24"
+      FontSize="16"
       FontWeight="Bold"
-      Margin="16,16,16,0"
+      Margin="12,12,12,0"
       />
 
 			<TextBox
       FontFamily="{StaticResource Inter}"
       UseLayoutRounding = "True"
-      Margin="16,8,16,16"
+      Margin="12,8,12,12"
       Text="Test"
-      FontSize="20"
+      FontSize="16"
       FontWeight="SemiBold"
       Style="{StaticResource TextFieldStyle}"
       />
@@ -62,9 +62,9 @@
 			<Label 
       FontFamily="{StaticResource Inter}"
       Content="Список студентов:"
-      FontSize="24"
+      FontSize="16"
       FontWeight="Bold"
-      Margin="16,0,16,8"
+      Margin="12,0,12,0"
       />
 
 			<Label 
@@ -73,21 +73,21 @@
       FontSize="16"
       Foreground="Gray"
       FontWeight="Medium"
-      Margin="16,0,16,8"
+      Margin="12,0,12,8"
       />
 
-			<Grid Height="48">
+			<Grid Height="32">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
 
 				<Button
-        Margin="16,0,8,0"
+        Margin="12,0,6,0"
         Content="Удалить" Grid.Column="0">
 				</Button>
 				<Button
-        Margin="8,0,16,0"
+        Margin="6,0,12,0"
         Content="Выбрать" Grid.Column="1">
 				</Button>
 			</Grid>
@@ -97,9 +97,9 @@
 
 		<StackPanel Grid.Row="1" Background="White">
 			<Button
-        Content="Сгенерировать варианты"
-        Margin="16"
-        Height="64"
+        Content="Сгенерировать"
+        Margin="12"
+        Height="48"
         />
 
 		</StackPanel>
