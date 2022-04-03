@@ -29,5 +29,10 @@ namespace TaskGenerator
             var1.GenerateVariant(list);
             var1.TestPrint();
         }
-    }
+
+		private void Generator_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }

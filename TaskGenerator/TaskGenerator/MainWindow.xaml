@@ -4,21 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskGenerator"
-				xmlns:control="clr-namespace:TaskGenerator.Controls"
+				xmlns:control="clr-namespace:TaskGenerator.Controls.Pages"
         mc:Ignorable="d"
-        Title="Генератор Задач" Height="540" Width="860">
+        Title="Генератор Задач" Height="540" Width="860" MinHeight="540" MinWidth="860">
 
-	<Grid>
+	<Grid x:Name="grid">
+
 		<Grid.LayoutTransform>
-			<ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+			<ScaleTransform ScaleX="0.66" ScaleY="0.66"/>
 		</Grid.LayoutTransform>
-
 		<Grid.RowDefinitions>
-			<RowDefinition Height="24"/>
-			<RowDefinition Height="2"/>
+			<RowDefinition Height="48"/>
+			<RowDefinition Height="3"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<Menu x:Name="menu" Background="{StaticResource BackgroundBrush}">
+		<Menu 
+		FontFamily="{StaticResource Inter}"
+		x:Name="menu"
+		FontSize="20"
+		FontWeight="Medium"
+		Background="{StaticResource BackgroundBrush}" Margin="0,0,0,0" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}">
 			<MenuItem Header="Файл" Height="{Binding ActualHeight, ElementName=menu, Mode=OneWay}">
 
 			</MenuItem>
@@ -30,18 +35,20 @@
 			</MenuItem>
 		</Menu>
 
-		<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Row="1"/>
-		<Grid Grid.Row="2">
+		<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Row="1" Margin="0,0,0,0" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}"/>
+		<Grid Grid.Row="2" Margin="0,0,0,0" Grid.RowSpan="2" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="216"/>
-				<ColumnDefinition Width="2"/>
-				<ColumnDefinition Width="216"/>
-				<ColumnDefinition Width="2"/>
+				<ColumnDefinition Width="360"/>
+				<ColumnDefinition Width="3"/>
+				<ColumnDefinition Width="360"/>
+				<ColumnDefinition Width="3"/>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 			<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Column="1"/>
 			<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Column="3"/>
-			<control:Generator FontFamily="{StaticResource Inter}"/>
+			<control:Generator FontFamily="{StaticResource Inter}" Loaded="Generator_Loaded"/>
+			<control:VariantsPage Grid.Column="2"/>
+			<control:TasksPage Grid.Column="4"/>
 		</Grid>
 	</Grid>
 </Window>

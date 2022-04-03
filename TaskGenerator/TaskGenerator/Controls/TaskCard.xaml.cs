@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace TaskGenerator.Controls
 {
 	/// <summary>
-	/// Логика взаимодействия для Generator.xaml
+	/// Логика взаимодействия для TaskCard.xaml
 	/// </summary>
-	public partial class Generator : UserControl
+	public partial class TaskCard : UserControl
 	{
-		public Generator()
+		public TaskCard()
 		{
 			InitializeComponent();
-		}
-
-		private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-		{
-
 		}
 	}
 }

@@ -10,10 +10,10 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type TextBoxBase}">
 					<Border Name="Border"
-                CornerRadius="6"
-								Padding="6,6,6,6"
+                CornerRadius="12"
+								Padding="16,16,16,16"
 								BorderBrush="{StaticResource HighlightBrush}"
-                BorderThickness="2">
+                BorderThickness="3">
 						<Border.Background>
 							<SolidColorBrush Color="{StaticResource Highlight}" />
 						</Border.Background>
