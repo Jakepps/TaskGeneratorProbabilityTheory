@@ -4,19 +4,12 @@ namespace TaskGenerator
 {
     public static class TaskConstructor
     {
-        public static Task CreateTask(int taskType)
+        public static Task CreateTask(int type, int subtype = 0)
         {
-            switch (taskType)
+            switch (type)
             {
                 case 1:
-                    int rand = (new Random()).Next(1, 5);
-                    switch (rand)
-                    {
-                        case 1: return CreateTaskType1Subtype1();
-                        case 2: return CreateTaskType1Subtype2();
-                        case 3: return CreateTaskType1Subtype3();
-                        case 4: return CreateTaskType1Subtype4();
-                    }
+                    return CreateTaskType1(subtype == 0 ? new Random().Next(1, 5) : subtype);
                     break;
                 case 2:
                     return new Task(2);
@@ -49,25 +42,35 @@ namespace TaskGenerator
                     return new Task(11);
                     break;
             }
-            return null;
+            throw new NotImplementedException();
         }
 
-		private static Task CreateTaskType1Subtype1()
+        public static Task CreateTaskType1(int subtype)
+        {
+            switch (subtype)
+            {
+                case 1: return CreateTaskType1Subtype1();
+                case 2: return CreateTaskType1Subtype2();
+                case 3: return CreateTaskType1Subtype3();
+                case 4: return CreateTaskType1Subtype4();
+            }
+            throw new NotImplementedException();
+        }
+
+        private static Task CreateTaskType1Subtype1()
 		{
-			Task task = new Task();
-			task.number = "1";
+            Task task = new Task(1, 1);
 			task.condition = "Наугад выбирается автомобиль с четырехзначным номером. Найти вероятность того, что: ";
 			task.questions.Add("Это автомобиль Ф. Киркорова");
 			task.questions.Add("Номер не содержит одинаковых цифр.");
 			task.answers.Add("1/10000");
-			task.answers.Add("5040/10000");
+            task.answers.Add("5040/10000");
 			return task;
 		}
 
 		private static Task CreateTaskType1Subtype2()
 		{
-			Task task = new Task();
-			task.number = "1";
+			Task task = new Task(1, 2);
 			task.condition = "Имеется девять лотерейных билетов, среди которых два выигрышных. Найти вероятность того, что среди пяти наудачу купленных билетов: ";
 			task.questions.Add("Один билет выигрышный.");
 			task.questions.Add("Нет выигрышных.");
@@ -77,8 +80,7 @@ namespace TaskGenerator
 		}
 		private static Task CreateTaskType1Subtype3()
 		{
-			Task task = new Task();
-			task.number = "1";
+			Task task = new Task(1, 3);
 			task.condition = "Цифровой кодовый замок на сейфе имеет на общей оси пять дисков, каждый из которых разделен на десять секторов." +
 							" Какова вероятность открыть замок, выбирая код наудачу, если кодовая комбинация: ";
 			task.questions.Add("Неизвестна.");
@@ -89,8 +91,7 @@ namespace TaskGenerator
 		}
 		private static Task CreateTaskType1Subtype4()
 		{
-			Task task = new Task();
-			task.number = "1";
+			Task task = new Task(1, 4);
 			task.condition = "В зале имеется 20 белых и 10 синих кресел. Случайным образом места занимают 15 человек. Найти вероятность того, что они займут: ";
 			task.questions.Add("5 белых и 10 синих кресел");
 			task.questions.Add("Хотя бы одно синее кресло.");
