@@ -7,24 +7,32 @@ using Microsoft.Office.Interop.Word;
 
 namespace TaskGenerator
 {
-
     public class Import
     {
-        public List<string> studentName;
-        public void Op()
-        {   //открытие файл, я хз как его читать без полного пути, как мне показывал рустам не получается
+        // ? надо сюда его писать хз короче List<string> studentName = new List<string>();
+        public static List<string> namefile()
+        { 
+            //открытие файл, я хз как его читать без полного пути, как мне показывал рустам не получается
+            List<string> studentName = new List<string>();
             Application application = new();
-            Document document = application.Documents.Open("C:\\Users\\artem\\source\\repos\\Jakepps\\TaskGeneratorProbabilityTheory\\TaskGenerator\\a.docx");
+            Document document = application.Documents.Open("C:\\Tests\\a.docx");
 
             string[] chars = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ")", "\r" };
             int count = document.Words.Count;
             for (int i = 1; i <= count; i++)
-            { 
+            {
                 string text = document.Words[i].Text;
-                if (chars.Contains(text)) continue;
-                studentName.Add(text);   
+                studentName.Add(text);
             }
             application.Quit();
+            for (int i = 0; i < studentName.Count - 1; i++)
+            {
+                while (chars.Contains(studentName[i]))
+                {
+                    studentName.Remove(studentName[i]);
+                }
+            }
+            return studentName;
         }
 
         public static List<int> GetTaskTypesFromString(String str)
