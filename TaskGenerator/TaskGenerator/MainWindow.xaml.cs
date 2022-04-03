@@ -33,17 +33,17 @@ namespace TaskGenerator
             //students.Add("Михайл Артёмов Наголевич");
             //students.Add("Серёга)");
 
-            List<Variant> variants = Variant.GetVariantsForStudents(students, list);
+            List<Variant> variants = Variant.GenerateSomeVariants(5, list);
 
-            //for (int i = 0; i < variants.Count; i++)
-            //{
-            //    variants[i].TestPrint();
-            //}
-            variants[0].TestPrint();
-            variants[0].RegenerateTaskSubtype(0);
-            variants[0].TestPrint();
-            variants[0].RegenerateTaskValues(0);
-            variants[0].TestPrint();
+            for (int i = 0; i < variants.Count; i++)
+            {
+                variants[i].TestPrint();
+            }
+            //variants[0].TestPrint();
+            //variants[0].RegenerateTaskSubtype(0);
+            //variants[0].TestPrint();
+            //variants[0].RegenerateTaskValues(0);
+            //variants[0].TestPrint();
         }
 
 		private void Generator_Loaded(object sender, RoutedEventArgs e)
