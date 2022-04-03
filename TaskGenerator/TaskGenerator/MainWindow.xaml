@@ -6,22 +6,18 @@
         xmlns:local="clr-namespace:TaskGenerator"
 				xmlns:control="clr-namespace:TaskGenerator.Controls.Pages"
         mc:Ignorable="d"
-        Title="Генератор Задач" Height="540" Width="860" MinHeight="540" MinWidth="860">
+        Title="Генератор Задач" Height="560" Width="860" MinHeight="540" MinWidth="860">
 
 	<Grid x:Name="grid">
-
-		<Grid.LayoutTransform>
-			<ScaleTransform ScaleX="0.66" ScaleY="0.66"/>
-		</Grid.LayoutTransform>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="48"/>
-			<RowDefinition Height="3"/>
+			<RowDefinition Height="32"/>
+			<RowDefinition Height="2"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<Menu 
 		FontFamily="{StaticResource Inter}"
 		x:Name="menu"
-		FontSize="20"
+		FontSize="12"
 		FontWeight="Medium"
 		Background="{StaticResource BackgroundBrush}" Margin="0,0,0,0" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}">
 			<MenuItem Header="Файл" Height="{Binding ActualHeight, ElementName=menu, Mode=OneWay}">
@@ -38,10 +34,10 @@
 		<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Row="1" Margin="0,0,0,0" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}"/>
 		<Grid Grid.Row="2" Margin="0,0,0,0" Grid.RowSpan="2" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="360"/>
-				<ColumnDefinition Width="3"/>
-				<ColumnDefinition Width="360"/>
-				<ColumnDefinition Width="3"/>
+				<ColumnDefinition Width="240"/>
+				<ColumnDefinition Width="2"/>
+				<ColumnDefinition Width="240"/>
+				<ColumnDefinition Width="2"/>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 			<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Column="1"/>

@@ -7,6 +7,7 @@
 	<Color x:Key="HighlightDark">#E2E2E2</Color>
 	<Color x:Key="Text">#000000</Color>
 	<Color x:Key="CardBackground">#FFFFFF</Color>
+	<Color x:Key="Disable">#838383</Color>
 
 	<SolidColorBrush x:Key="BackgroundBrush">#FFFFFF</SolidColorBrush>
 	<SolidColorBrush x:Key="AccentBrush">#597FC7</SolidColorBrush>
@@ -16,7 +17,9 @@
 	<SolidColorBrush x:Key="HighlightDarkBrush">#E2E2E2</SolidColorBrush>
 	<SolidColorBrush x:Key="TextBrush">#000000</SolidColorBrush>
 	<SolidColorBrush x:Key="CardBackgroundBrush">#FFFFFF</SolidColorBrush>
+	<SolidColorBrush x:Key="DisableBrush">#838383</SolidColorBrush>
 
 	<ImageSource x:Key="Refresh">Images/refresh.png</ImageSource>
+	<ImageSource x:Key="Change">Images/replace.png</ImageSource>
 
 </ResourceDictionary>

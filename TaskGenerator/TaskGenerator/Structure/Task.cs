@@ -5,8 +5,8 @@ namespace TaskGenerator
 {
 	public class Task
 	{
-		public string type;
-        public string subtype;
+		public int type;
+        public int subtype;
         public string condition;
 		public List<string> questions;
 		public List<string> answers;
@@ -14,7 +14,7 @@ namespace TaskGenerator
         public void TestPrint()
         {
             //Oh no, cringe
-            if(type == "1")
+            if(type == 1)
             {
                 Console.WriteLine("\nTask " + type + ". \n" + condition + "\n" + "a) " + questions[0] + "\n" + "б) " + questions[1] + "\n" +
                               "Answers: \n" + "a) " + answers[0] + "\n" + "б) " + answers[1] + "\n");
@@ -26,8 +26,8 @@ namespace TaskGenerator
         }
         public Task(int type = 0, int subtype = 0)
         {
-            this.type = type.ToString();
-            this.subtype = subtype.ToString();
+            this.type = type;
+            this.subtype = subtype;
             questions = new List<string>();
             answers = new List<string>();
         }
