@@ -14,6 +14,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskGenerator;
 
 namespace TaskGenerator.Controls.Pages
 {
@@ -22,16 +23,48 @@ namespace TaskGenerator.Controls.Pages
 	/// </summary>
 	public partial class VariantsPage : UserControl
 	{
-		double m_ScrollStepRatio = 0.0; // normalized step length of the scroll bar
-		double m_ScrollPositionRatio = 0.0; //Normalized position of the scroll bar
 		public VariantsPage()
 		{
 			InitializeComponent();
 		}
 
+		public delegate void onVariantChange(int v);
+
+		public event onVariantChange variantChange;
+
 		private void TaskCard_Loaded(object sender, RoutedEventArgs e)
 		{
 
 		}
+
+
+		private void onSelect(object sender, RoutedEventArgs e)
+		{
+			var index = (int)(((RadioButton)sender).Tag);
+			Console.WriteLine(index);
+			variantChange(index + 1);
+		}
+
+
+
+		public void presentVariants(List<Variant> vars)
+		{
+			panel.Children.RemoveRange(1,panel.Children.Count - 1);
+
+			for (int i = 0; i < vars.Count; i++){
+				var card = new VariantCard();
+				card.Padding = new Thickness(12, 6, 12, 6);
+				card.radioBtn.Tag = i;
+				if (i == 0) {
+					card.radioBtn.IsChecked = true;
+				}
+				card.radioBtn.Checked += onSelect;
+				panel.Children.Add(card);
+				card.setName("Вариант " + (i + 1));
+
+			}
+		}
 	}
+
+
 }

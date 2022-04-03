@@ -8,11 +8,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="540" d:DesignWidth="330.626">
 
-	<StackPanel x:Name="stackPanel">
-
-		<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" Height="{Binding ActualHeight, ElementName=stackPanel, Mode=OneWay}">
-			<StackPanel>
-				<Label x:Name="label" 
+	<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+		<StackPanel x:Name="panel">
+			<Label x:Name="label" 
 		      Grid.Row="0"
           Content="Варианты"
           FontFamily="{StaticResource Inter}"
@@ -21,35 +19,7 @@
           FontWeight="Bold"
           Margin="12,12,12,12"
           />
-				<views:VariantCard
-          Padding="12,6,12,6"
-        />
-				<views:VariantCard
-          Padding="12,6,12,6"
-        />
-				<views:VariantCard
-          Padding="12,6,12,6"
-        />
-				<views:VariantCard
-          Padding="12,6,12,6"
-        />
-				<views:VariantCard
-          Padding="12,6,12,6"
-        />
-				<views:VariantCard
-          Padding="12,6,12,6"
-        />
-				<views:VariantCard
-          Padding="12,6,12,6"
-        />
-				<views:VariantCard
-          Padding="12,6,12,6"
-        />
-				<views:VariantCard
-          Padding="12,6,12,6"
-        />
 
-			</StackPanel>
-		</ScrollViewer>
-	</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
 </UserControl>

@@ -9,6 +9,14 @@ namespace TaskGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        List<Variant> variantList = new List<Variant>{
+            new Variant(new List<int> { 1,1 }),
+            new Variant(new List<int> { 1 }),
+            new Variant(new List<int> { 1 }),
+            new Variant(new List<int> { 1 })
+        };
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,22 +41,27 @@ namespace TaskGenerator
             //students.Add("Михайл Артёмов Наголевич");
             //students.Add("Серёга)");
 
-            List<Variant> variants = Variant.GenerateSomeVariants(5, list);
 
-            for (int i = 0; i < variants.Count; i++)
-            {
-                variants[i].TestPrint();
-            }
-            //variants[0].TestPrint();
-            //variants[0].RegenerateTaskSubtype(0);
-            //variants[0].TestPrint();
-            //variants[0].RegenerateTaskValues(0);
-            //variants[0].TestPrint();
+           // List<Variant> variants = Variant.GetVariantsForStudents(students, list);
+
+            //for (int i = 0; i < variants.Count; i++)
+            //{
+            //    variants[i].TestPrint();
+            //}
+           
+            generator.generateBtn.Click += onClick;
+            variants.variantChange += changeVariant;
         }
 
-		private void Generator_Loaded(object sender, RoutedEventArgs e)
-		{
-
+        public void onClick(object sender, RoutedEventArgs e) {
+            variants.presentVariants(variantList);
+            tasks.setVariant(variantList[0]);
 		}
-	}
+
+        public void changeVariant(int v) {
+            tasks.setVariant(variantList[v - 1]);
+        }
+
+
+    }
 }

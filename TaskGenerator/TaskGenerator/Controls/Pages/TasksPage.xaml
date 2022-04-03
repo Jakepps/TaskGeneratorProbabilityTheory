@@ -8,31 +8,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
 	<ScrollViewer VerticalScrollBarVisibility="Hidden">
-		<StackPanel Background="{StaticResource BackgroundBrush}" SnapsToDevicePixels="True">
+		<StackPanel Background="{StaticResource BackgroundBrush}" SnapsToDevicePixels="True"
+    x:Name="panel">
 			<Label Content="Вариант 1"
         FontFamily="{StaticResource Inter}"
         FontSize="32"
         MaxWidth="600"
         FontWeight="Bold"
         Margin="12,12,12,12"
-      />
-			<view:TaskCard
-        Padding="12,6,12,6"
-      />
-			<view:TaskCard
-        Padding="12,6,12,6"
-      />
-			<view:TaskCard
-        Padding="12,6,12,6"
-      />
-			<view:TaskCard
-        Padding="12,6,12,6"
-      />
-			<view:TaskCard
-        Padding="12,6,12,6"
-      />
-			<view:TaskCard
-        Padding="12,6,12,6"
       />
 		</StackPanel>
   </ScrollViewer>

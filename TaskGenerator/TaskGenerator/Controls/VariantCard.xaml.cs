@@ -18,6 +18,7 @@ namespace TaskGenerator.Controls
 	/// <summary>
 	/// Логика взаимодействия для VariantCard.xaml
 	/// </summary>
+
 	public partial class VariantCard : UserControl
 	{
 		public VariantCard()
@@ -28,6 +29,29 @@ namespace TaskGenerator.Controls
 		private void RadioButton_Checked(object sender, RoutedEventArgs e)
 		{
 
+		}
+
+		public override void OnApplyTemplate()
+		{
+			base.OnApplyTemplate();
+
+
+			//C//onsole.WriteLine(radioBtn.Template);
+		}
+
+		public void setName(string name) {
+			this.OnApplyTemplate();
+
+			radioBtn.ApplyTemplate();
+			((Label)radioBtn.Template.FindName("varName", radioBtn)).Content = name;
+			Console.WriteLine();
+		}
+
+		private void radioBtn_Click(object sender, RoutedEventArgs e)
+		{
+			//radioBtn.ApplyTemplate();
+			///Console.WriteLine(radioBtn.ContentTemplate.FindName("bord", radioBtn));
+			//Console.WriteLine(radioBtn.Template.FindName("varName", radioBtn));
 		}
 	}
 }

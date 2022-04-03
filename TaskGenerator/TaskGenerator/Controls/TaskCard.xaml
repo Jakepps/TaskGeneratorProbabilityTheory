@@ -22,9 +22,9 @@
 			<Grid x:Name="grid" Height="Auto">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="{Binding ActualHeight, ElementName=grid2, Mode=OneWay}"/>
-					<RowDefinition Height="{Binding ActualHeight, ElementName=textBlock1, Mode=OneWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"/>
+					<RowDefinition Height="{Binding ActualHeight, ElementName=condition, Mode=OneWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"/>
 					<RowDefinition Height="32"/>
-					<RowDefinition Height="{Binding ActualHeight, ElementName=textBlock3, Mode=OneWay}"/>
+					<RowDefinition Height="{Binding ActualHeight, ElementName=answer, Mode=OneWay}"/>
 				</Grid.RowDefinitions>
 
 				<Grid Grid.Row="0" x:Name="grid2" Height="48">
@@ -34,7 +34,8 @@
 						<ColumnDefinition Width="Auto"/>
 					</Grid.ColumnDefinitions>
 
-					<TextBlock x:Name="textBlock" 
+					<TextBlock
+          x:Name="taskNum"
                     Text="Задача 1"
                     Foreground="{StaticResource TextBrush}"
                     Grid.Column="0"
@@ -62,8 +63,8 @@
 						<Image Source="{StaticResource Refresh}" Width="20" Height="20"/>
 					</Button>
 				</Grid>
-        
-				<TextBlock x:Name="textBlock1" 
+
+				<TextBlock x:Name="condition" 
                     Text="Тут типо условие задачи окда?,Тут типо условие задачи окда? Тут типо условие задачи окда?"
                     Grid.Row="1" 
                     VerticalAlignment="Top"
@@ -86,7 +87,7 @@
                     FontWeight="Bold"
                     FontSize="16"
                     />
-				<TextBlock x:Name="textBlock3" 
+				<TextBlock x:Name="answer" 
                     Text="Тут типо ответ окда?"
                     Grid.Row="3" 
                     VerticalAlignment="Top"

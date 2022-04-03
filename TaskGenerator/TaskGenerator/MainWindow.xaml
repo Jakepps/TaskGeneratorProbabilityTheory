@@ -42,9 +42,9 @@
 			</Grid.ColumnDefinitions>
 			<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Column="1"/>
 			<Rectangle Fill="{StaticResource HighlightBrush}" Grid.Column="3"/>
-			<control:Generator FontFamily="{StaticResource Inter}" Loaded="Generator_Loaded"/>
-			<control:VariantsPage Grid.Column="2"/>
-			<control:TasksPage Grid.Column="4"/>
+			<control:Generator FontFamily="{StaticResource Inter}" x:Name="generator"/>
+			<control:VariantsPage Grid.Column="2" x:Name="variants"/>
+			<control:TasksPage Grid.Column="4" x:Name="tasks"/>
 		</Grid>
 	</Grid>
 </Window>

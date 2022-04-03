@@ -24,5 +24,16 @@ namespace TaskGenerator.Controls.Pages
 		{
 			InitializeComponent();
 		}
+
+		public void setVariant(Variant v) {
+			panel.Children.RemoveRange(1, panel.Children.Count - 1);
+
+			foreach (var task in v.tasks) {
+				var taskCard = new TaskCard();
+				taskCard.Padding = new Thickness(12, 6, 12, 6);
+				taskCard.setTask(task);
+				panel.Children.Add(taskCard);
+			}
+		}
 	}
 }

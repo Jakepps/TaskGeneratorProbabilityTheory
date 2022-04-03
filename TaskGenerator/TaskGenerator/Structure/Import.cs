@@ -72,7 +72,7 @@ namespace TaskGenerator
 
         public Import()
         {
-            studentName = new List<string>();
+            //studentName = new List<string>();
         }
     }
 

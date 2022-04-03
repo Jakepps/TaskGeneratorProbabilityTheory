@@ -97,9 +97,10 @@
 
 		<StackPanel Grid.Row="1" Background="White">
 			<Button
+        x:Name="generateBtn"
         Content="Сгенерировать"
         Margin="12"
-        Height="48"
+        Height="48" Click="generateBtn_Click"
         />
 
 		</StackPanel>

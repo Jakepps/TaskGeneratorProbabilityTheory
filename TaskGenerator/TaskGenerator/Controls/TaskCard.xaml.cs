@@ -24,5 +24,15 @@ namespace TaskGenerator.Controls
 		{
 			InitializeComponent();
 		}
+
+		public void setTask(Task t) {
+			var title = (TextBlock)FindName("taskNum");
+			var condition = (TextBlock)FindName("condition");
+			var answer = (TextBlock)FindName("answer");
+
+			title.Text = "Задача " + t.type;
+			condition.Text = t.condition;
+			answer.Text = t.answers[0];
+		}
 	}
 }

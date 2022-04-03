@@ -49,4 +49,96 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+
+	<ControlTemplate TargetType="{x:Type RadioButton}" x:Key="teplateCheck">
+		<Border
+								x:Name="bord"
+                CornerRadius="12"
+                BorderThickness="0"
+								SnapsToDevicePixels="True"
+                BorderBrush="{StaticResource HighlightBrush}"
+              >
+			<Label Content="Вариант 1"
+                  FontSize="16"
+									x:Name="varName"
+                  FontWeight="Bold"
+									SnapsToDevicePixels="True"
+                  FontFamily="{StaticResource Inter}"
+                  Padding="12,12,12,12"
+                  />
+			<Border.Effect>
+				<DropShadowEffect 
+									BlurRadius="24" 
+									Direction="0" 
+									Color="#000000" 
+									RenderingBias="Quality"
+									Opacity="0.0" ShadowDepth="0"/>
+			</Border.Effect>
+
+			<Border.Background>
+				<SolidColorBrush Color="{StaticResource Background}"/>
+			</Border.Background>
+
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroup>
+					<VisualState x:Name="Normal">
+
+					</VisualState>
+					<VisualState x:Name="Checked">
+						<Storyboard>
+							<ColorAnimationUsingKeyFrames Duration="0:00:00.0" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Accent}"/>
+							</ColorAnimationUsingKeyFrames>
+
+							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Accent}"/>
+							</ColorAnimationUsingKeyFrames>
+
+							<ColorAnimationUsingKeyFrames Storyboard.TargetName="varName" Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Background}"/>
+							</ColorAnimationUsingKeyFrames>
+
+							<DoubleAnimation To="0.25" Duration="0:0:00.0" Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)" />
+
+						</Storyboard>
+					</VisualState>
+
+					<VisualState x:Name="Unhecked">
+						<Storyboard>
+							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource HighlightDark}"/>
+							</ColorAnimationUsingKeyFrames>
+
+							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Background}"/>
+							</ColorAnimationUsingKeyFrames>
+
+							<ColorAnimationUsingKeyFrames Storyboard.TargetName="varName" Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Text}"/>
+							</ColorAnimationUsingKeyFrames>
+
+							<DoubleAnimation To="0.0" Duration="0:0:00.0" Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)" />
+						</Storyboard>
+					</VisualState>
+
+					<VisualState x:Name="Pressed">
+						<Storyboard>
+							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource HighlightDark}"/>
+							</ColorAnimationUsingKeyFrames>
+						</Storyboard>
+					</VisualState>
+
+					<VisualState x:Name="MouseOver">
+						<Storyboard>
+							<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Highlight}"/>
+							</ColorAnimationUsingKeyFrames>
+						</Storyboard>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+		</Border>
+	</ControlTemplate>
+
 </ResourceDictionary>

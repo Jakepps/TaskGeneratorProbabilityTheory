@@ -29,5 +29,10 @@ namespace TaskGenerator.Controls.Pages
 		{
 
 		}
+
+		private void generateBtn_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }
