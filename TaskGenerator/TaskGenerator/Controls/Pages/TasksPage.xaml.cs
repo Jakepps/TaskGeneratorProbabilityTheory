@@ -20,20 +20,32 @@ namespace TaskGenerator.Controls.Pages
 	/// </summary>
 	public partial class TasksPage : UserControl
 	{
+
+		public Variant presentedVariant;
+		public MainWindow parentWindow;
 		public TasksPage()
 		{
 			InitializeComponent();
 		}
 
 		public void setVariant(Variant v) {
+			presentedVariant = v;
 			panel.Children.RemoveRange(1, panel.Children.Count - 1);
 
-			foreach (var task in v.tasks) {
+			for(var i = 0; i < v.tasks.Count; i++) {
 				var taskCard = new TaskCard();
 				taskCard.Padding = new Thickness(12, 6, 12, 6);
-				taskCard.setTask(task);
+				taskCard.setTask(v.tasks[i]);
+				taskCard.cardIndex = i;
+				taskCard.taskUpdate += parentWindow.updateTask;
 				panel.Children.Add(taskCard);
 			}
+		}
+
+		public void updateCard(int index) {
+			//Console.WriteLine()
+			presentedVariant.tasks[index].TestPrint();
+			((TaskCard)panel.Children[index + 1]).setTask(presentedVariant.tasks[index]);
 		}
 	}
 }

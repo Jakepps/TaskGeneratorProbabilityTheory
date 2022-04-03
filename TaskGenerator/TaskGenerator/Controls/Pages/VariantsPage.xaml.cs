@@ -41,8 +41,7 @@ namespace TaskGenerator.Controls.Pages
 		private void onSelect(object sender, RoutedEventArgs e)
 		{
 			var index = (int)(((RadioButton)sender).Tag);
-			Console.WriteLine(index);
-			variantChange(index + 1);
+			variantChange(index);
 		}
 
 
@@ -61,10 +60,7 @@ namespace TaskGenerator.Controls.Pages
 				card.radioBtn.Checked += onSelect;
 				panel.Children.Add(card);
 				card.setName("Вариант " + (i + 1));
-
 			}
 		}
 	}
-
-
 }

@@ -4,11 +4,11 @@ using System;
 
 namespace TaskGenerator
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
+
+        public int selectedVariant = 0;
 
         List<Variant> variantList = new List<Variant>{
             new Variant(new List<int> { 1,1 }),
@@ -51,17 +51,26 @@ namespace TaskGenerator
            
             generator.generateBtn.Click += onClick;
             variants.variantChange += changeVariant;
+            tasks.parentWindow = this;
         }
 
         public void onClick(object sender, RoutedEventArgs e) {
+            selectedVariant = 0;
+            variantList[0].tasks.RemoveAt(variantList[0].tasks.Count - 1);
+            variantList[0].tasks.Add(TaskConstructor.CreateTask(2));
             variants.presentVariants(variantList);
             tasks.setVariant(variantList[0]);
 		}
 
         public void changeVariant(int v) {
-            tasks.setVariant(variantList[v - 1]);
+            selectedVariant = v;
+            tasks.setVariant(variantList[v]);
         }
 
-
+        public void updateTask(int index) {
+            Console.WriteLine("aaaaa" + index);
+            variantList[selectedVariant].tasks[index] = TaskConstructor.CreateTask(index + 1);
+            tasks.updateCard(index);
+		}
     }
 }
