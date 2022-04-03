@@ -105,7 +105,7 @@ namespace TaskGenerator
             Task task = new Task(2, 3);
             Random random = new Random();
             float a = random.NextSingle() / 2f;
-            float b = 1 - a;
+            float b = 0.5f - a;
             float c = 0.5f;
             task.condition = "Два гроссмейстера играют две партии в шахматы. Вероятность выигрыша в одной партии для первого шахматиста равна " + a + ", для второго — " + b + "; вероятность ничьей — 0,5. ";
             task.questions.Add("Какова вероятность того, что первый гроссмейстер выиграет матч?");
