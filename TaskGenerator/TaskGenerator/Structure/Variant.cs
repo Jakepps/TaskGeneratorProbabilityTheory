@@ -8,15 +8,41 @@ namespace TaskGenerator
 {
     public class Variant
     {
-        public string number;
-        public string studentName;
+        public int number;
+        public string student;
         public List<Task> tasks;
 
+        public void RegenerateTaskSubtype(int index)
+        {
+            if (index < 0 || index >= tasks.Count) throw new ArgumentOutOfRangeException("index");
+            tasks[index] = TaskConstructor.CreateTask(tasks[index].type);
+        }
 
+        public void RegenerateTaskValues(int index)
+        {
+            if(index < 0 || index >= tasks.Count) throw new ArgumentOutOfRangeException("index");
+            tasks[index] = TaskConstructor.CreateTask(tasks[index].type, tasks[index].subtype);
+        }
+        public static List<Variant> GetVariantsForStudents(List<String> students, List<int> taskTypes)
+        {
+            List<Variant> result = new List<Variant>();
+            for (int i = 0; i < students.Count; i++)
+            {
+                Variant var = new Variant(taskTypes)
+                {
+                    number = i + 1,
+                    student = students[i]
+                };
+                result.Add(var);
+            } 
+            return result;
+        }
         public void TestPrint()
         {
+            Console.WriteLine(number + "-В " + student);
             foreach (Task task in tasks)
                 task.TestPrint();
+            Console.WriteLine();
         }
 
         //Перенести в класс импорта данных, когда он будет готов.
@@ -55,18 +81,15 @@ namespace TaskGenerator
             return result;
         }
 
-        //Мб лучше перенести в конструктор, пока так.
-        public void GenerateVariant(List<int> taskTypes)
+
+        public Variant(List<int> taskTypes)
         {
+            tasks = new List<Task>();
             for (int i = 0; i < taskTypes.Count; i++)
             {
                 tasks.Add(TaskConstructor.CreateTask(taskTypes[i]));
             }
-        }
-
-        public Variant()
-        {
-            tasks = new List<Task>();
+            
         }
     }
 }
