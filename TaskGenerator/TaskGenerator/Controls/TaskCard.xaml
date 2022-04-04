@@ -7,17 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="355" d:DesignWidth="358.665">
 	<StackPanel x:Name="stackPanel" Height="{Binding ActualHeight, ElementName=border, Mode=OneWay}" SnapsToDevicePixels="True">
-		<Border x:Name="border"
+		<Grid
+      SnapsToDevicePixels="True"
+      MaxWidth="600">
+			<Border x:Name="border"
             Background="{StaticResource CardBackgroundBrush}"
             BorderThickness="1"
             BorderBrush="{StaticResource HighlightDarkBrush}"
             CornerRadius="12" 
-            SnapsToDevicePixels="False"
-            MaxWidth="600"
+            SnapsToDevicePixels="True"
             >
-			<Border.Effect>
-				<DropShadowEffect Color="#FF535353" Opacity="0.05" 									RenderingBias="Quality" BlurRadius="48" Direction="0" ShadowDepth="0"/>
-			</Border.Effect>
+				<Border.Effect>
+					<DropShadowEffect Color="#FF535353" Opacity="0.05" 									RenderingBias="Quality" BlurRadius="48" Direction="0" ShadowDepth="0"/>
+				</Border.Effect>
+			</Border>
 
 			<Grid x:Name="grid" Height="Auto">
 				<Grid.RowDefinitions>
@@ -100,6 +103,6 @@
                     FontSize="14" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}"
                     />
 			</Grid>
-		</Border>
+		</Grid>
 	</StackPanel>
 </UserControl>

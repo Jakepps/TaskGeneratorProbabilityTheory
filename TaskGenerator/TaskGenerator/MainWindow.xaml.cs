@@ -56,23 +56,26 @@ namespace TaskGenerator
 
         public void onClick(object sender, RoutedEventArgs e) {
             var count = 0;
-            var tasksList = Import.GetTaskTypesFromString(generator.tasksField.Text);
+            var tasksList = new List<int>(); 
             try {
                 count = Convert.ToInt32(generator.countField.Text);
+                tasksList = Import.GetTaskTypesFromString(generator.tasksField.Text);
+                if (count <= 0) throw new FormatException();
             }
             catch {
-                MessageBox.Show("Неправельно введено количество вариантов","Ошибка");
-		    }
+                MessageBox.Show("Введены некорректные данные", "Ошибка");
+                return;
+            }
             selectedVariant = 0;
             variantList = Variant.GenerateSomeVariants(count, tasksList);
 
             variants.presentVariants(variantList);
-            tasks.setVariant(variantList[0]);
+            tasks.setVariant(variantList[0], 0);
 		}
 
         public void changeVariant(int v) {
             selectedVariant = v;
-            tasks.setVariant(variantList[v]);
+            tasks.setVariant(variantList[v], v);
         }
 
         public void updateTask(int index) {

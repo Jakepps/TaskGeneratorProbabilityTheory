@@ -28,8 +28,9 @@ namespace TaskGenerator.Controls.Pages
 			InitializeComponent();
 		}
 
-		public void setVariant(Variant v) {
+		public void setVariant(Variant v, int index) {
 			presentedVariant = v;
+			((Label)panel.Children[0]).Content = "Вариант " + (index + 1);
 			panel.Children.RemoveRange(1, panel.Children.Count - 1);
 
 			for(var i = 0; i < v.tasks.Count; i++) {
