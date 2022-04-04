@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Word;
+using System.IO;
 
 namespace TaskGenerator
 {
@@ -43,6 +44,13 @@ namespace TaskGenerator
             {
                 studentName.Add(studnam[i]);
             }
+            //StreamWriter sw = new StreamWriter("C:\\Users\\artem\\source\\repos\\ConsoleApp3\\test.txt");
+            //for (int i = 0; i < studentName.Count; i++)
+            //{
+            //    Console.WriteLine(studentName[i]);
+            //    sw.WriteLine(studentName[i]);
+            //}
+            //sw.Close();
             return studentName;
         }
 
