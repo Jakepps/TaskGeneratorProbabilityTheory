@@ -11,7 +11,7 @@ namespace TaskGenerator
     {
         public int number {get;}
         //public string student;
-        public List<Task> tasks { get; set; }
+        public ObservableCollection<Task> tasks { get; set; }
 
         public void RegenerateTaskSubtype(int index)
         {
@@ -62,7 +62,7 @@ namespace TaskGenerator
         public Variant(int number, List<int> taskTypes)
         {
             this.number = number + 5;
-            tasks = new List<Task>();
+            tasks = new ObservableCollection<Task>();
             for (int i = 0; i < taskTypes.Count; i++)
             {
                 tasks.Add(TaskConstructor.CreateTask(taskTypes[i]));
