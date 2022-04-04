@@ -32,6 +32,7 @@
       />
 
 			<TextBox
+      x:Name="countField"
       FontFamily="{StaticResource Inter}"
       UseLayoutRounding = "True"
       Margin="12,8,12,0"
@@ -50,10 +51,11 @@
       />
 
 			<TextBox
+      x:Name="tasksField"
       FontFamily="{StaticResource Inter}"
       UseLayoutRounding = "True"
       Margin="12,8,12,12"
-      Text="Test"
+      Text="1,2"
       FontSize="16"
       FontWeight="SemiBold"
       Style="{StaticResource TextFieldStyle}"

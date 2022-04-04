@@ -29,6 +29,7 @@ namespace TaskGenerator.Controls
 
 		public delegate void onUpdateTask(int index);
 		public event onUpdateTask taskUpdate;
+		public event onUpdateTask taskSubtypeUpdate;
 
 		public void setTask(Task t) {
 			presentedTask = t;
@@ -44,6 +45,11 @@ namespace TaskGenerator.Controls
 		private void button2_Click(object sender, RoutedEventArgs e)
 		{
 			taskUpdate(cardIndex);
+		}
+
+		private void button_Click(object sender, RoutedEventArgs e)
+		{
+			taskSubtypeUpdate(cardIndex);
 		}
 	}
 }

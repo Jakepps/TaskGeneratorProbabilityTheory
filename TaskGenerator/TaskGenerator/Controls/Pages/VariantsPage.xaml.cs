@@ -57,6 +57,9 @@ namespace TaskGenerator.Controls.Pages
 				if (i == 0) {
 					card.radioBtn.IsChecked = true;
 				}
+				if (i == vars.Count - 1) {
+					card.Padding = new Thickness(12, 6, 12, 12);
+				}
 				card.radioBtn.Checked += onSelect;
 				panel.Children.Add(card);
 				card.setName("Вариант " + (i + 1));

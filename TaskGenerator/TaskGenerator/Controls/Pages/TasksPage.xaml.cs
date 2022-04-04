@@ -37,7 +37,13 @@ namespace TaskGenerator.Controls.Pages
 				taskCard.Padding = new Thickness(12, 6, 12, 6);
 				taskCard.setTask(v.tasks[i]);
 				taskCard.cardIndex = i;
+				if (i == v.tasks.Count - 1)
+				{
+					taskCard.Padding = new Thickness(12, 6, 12, 12);
+				}
+
 				taskCard.taskUpdate += parentWindow.updateTask;
+				taskCard.taskSubtypeUpdate += parentWindow.updateTaskSubtype;
 				panel.Children.Add(taskCard);
 			}
 		}

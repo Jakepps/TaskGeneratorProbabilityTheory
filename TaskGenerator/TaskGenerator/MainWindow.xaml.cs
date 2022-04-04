@@ -55,9 +55,17 @@ namespace TaskGenerator
         }
 
         public void onClick(object sender, RoutedEventArgs e) {
+            var count = 0;
+            var tasksList = Import.GetTaskTypesFromString(generator.tasksField.Text);
+            try {
+                count = Convert.ToInt32(generator.countField.Text);
+            }
+            catch {
+                MessageBox.Show("Неправельно введено количество вариантов","Ошибка");
+		    }
             selectedVariant = 0;
-            variantList[0].tasks.RemoveAt(variantList[0].tasks.Count - 1);
-            variantList[0].tasks.Add(TaskConstructor.CreateTask(2));
+            variantList = Variant.GenerateSomeVariants(count, tasksList);
+
             variants.presentVariants(variantList);
             tasks.setVariant(variantList[0]);
 		}
@@ -68,10 +76,14 @@ namespace TaskGenerator
         }
 
         public void updateTask(int index) {
-            //Console.WriteLine("aaaaa" + index);
-            variantList[selectedVariant].RegenerateTaskSubtype(index);
-            //variantList[selectedVariant].tasks[index] = TaskConstructor.CreateTask(index + 1);
+            variantList[selectedVariant].RegenerateTaskValues(index);
             tasks.updateCard(index);
 		}
+
+        public void updateTaskSubtype(int index)
+        {
+            variantList[selectedVariant].RegenerateTaskSubtype(index);
+            tasks.updateCard(index);
+        }
     }
 }
