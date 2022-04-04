@@ -18,7 +18,6 @@ namespace TaskGenerator
             Application application = new();
             Document document = application.Documents.Open("C:\\test\\a.docx");
             char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ')', '(','*','-' };
-            //string[] chars = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ")", "\r" };
             int count = document.Words.Count;
             string[] arrString = new string[count + 1];
             for (int i = 1; i <= count; i++)
