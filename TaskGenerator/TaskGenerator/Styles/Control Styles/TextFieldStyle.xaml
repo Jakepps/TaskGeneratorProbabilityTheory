@@ -13,31 +13,37 @@
                 CornerRadius="8"
 								Padding="8,8,8,8"
 								BorderBrush="{StaticResource HighlightBrush}"
-                BorderThickness="2">
+                BorderThickness="3">
 						<Border.Background>
 							<SolidColorBrush Color="{StaticResource Highlight}" />
 						</Border.Background>
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
-								<VisualState x:Name="Normal" />
+								<VisualState x:Name="Normal">
+									<Storyboard>
+										<ColorAnimation 
+											To="{StaticResource Highlight}" 
+											Storyboard.TargetName="Border"
+											Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+											Duration="0:0:0.25"/>
+									</Storyboard>
+								</VisualState>
 								<VisualState x:Name="MouseOver">
 									<Storyboard>
-										<ColorAnimationUsingKeyFrames 
-												Storyboard.TargetName="Border"
-												Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-											<EasingColorKeyFrame
-													KeyTime="0"
-                          Value="{StaticResource HighlightDark}" />
-										</ColorAnimationUsingKeyFrames>
+										<ColorAnimation 
+											To="{StaticResource HighlightDark}" 
+											Storyboard.TargetName="Border"
+											Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+											Duration="0:0:0.25"/>
 									</Storyboard>
 								</VisualState>
 								<VisualState x:Name="Focused">
 									<Storyboard>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-											<EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource HighlightDark}" />
-										</ColorAnimationUsingKeyFrames>
+										<ColorAnimation 
+											To="{StaticResource Accent}" 
+											Storyboard.TargetName="Border"
+											Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+											Duration="0:0:0.25"/>
 									</Storyboard>
 								</VisualState>
 							</VisualStateGroup>
@@ -89,55 +95,38 @@
 			<VisualStateManager.VisualStateGroups>
 				<VisualStateGroup>
 					<VisualState x:Name="Normal">
+						<Storyboard>
+							<ColorAnimation 
+								To="{StaticResource Background}" 
+								Storyboard.TargetName="bord"
+								Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                Duration="0:0:0.25"/>
 
+							<DoubleAnimation 
+								Storyboard.TargetName="bord"
+								To="0.0" Duration="0:0:0.25" Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)" />
+						</Storyboard>
 					</VisualState>
 					<VisualState x:Name="Checked">
 						<Storyboard>
-							<ColorAnimationUsingKeyFrames
-								Storyboard.TargetName="bord"
-								Duration="0:00:00.0" 
-								Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Accent}"/>
-							</ColorAnimationUsingKeyFrames>
 
-							<ColorAnimationUsingKeyFrames 
+							<ColorAnimation 
+								To="{StaticResource Accent}" 
 								Storyboard.TargetName="bord"
-								Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Accent}"/>
-							</ColorAnimationUsingKeyFrames>
-
-							<ColorAnimationUsingKeyFrames Storyboard.TargetName="varName" Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Background}"/>
-							</ColorAnimationUsingKeyFrames>
+								Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.25"/>
 
 							<DoubleAnimation 
 								Storyboard.TargetName="bord"
-								To="0.25" Duration="0:0:00.0" Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)" />
+								To="0.1" Duration="0:0:0.25" Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)" />
 
-						</Storyboard>
-					</VisualState>
-
-					<VisualState x:Name="Unhecked">
-						<Storyboard>
-							<ColorAnimationUsingKeyFrames 
-								Storyboard.TargetName="bord"
-								Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource HighlightDark}"/>
-							</ColorAnimationUsingKeyFrames>
-
-							<ColorAnimationUsingKeyFrames 
-								Storyboard.TargetName="bord"
-								Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Background}"/>
-							</ColorAnimationUsingKeyFrames>
-
-							<ColorAnimationUsingKeyFrames Storyboard.TargetName="varName" Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Text}"/>
-							</ColorAnimationUsingKeyFrames>
-
-							<DoubleAnimation 
-								Storyboard.TargetName="bord"
-								To="0.0" Duration="0:0:00.0" Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)" />
+							<ColorAnimation 
+								To="{StaticResource Background}" 
+								Storyboard.TargetName="varName"
+								Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.25"/>
 						</Storyboard>
 					</VisualState>
 
@@ -153,11 +142,13 @@
 
 					<VisualState x:Name="MouseOver">
 						<Storyboard>
-							<ColorAnimationUsingKeyFrames 
+							<ColorAnimation 
+								To="{StaticResource Highlight}" 
 								Storyboard.TargetName="bord"
-								Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
-								<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Highlight}"/>
-							</ColorAnimationUsingKeyFrames>
+								Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.25"/>
+							
 						</Storyboard>
 					</VisualState>
 				</VisualStateGroup>
