@@ -18,7 +18,7 @@
             SnapsToDevicePixels="True"
             >
 				<Border.Effect>
-					<DropShadowEffect Color="#FF535353" Opacity="0.05" 									RenderingBias="Quality" BlurRadius="48" Direction="0" ShadowDepth="0"/>
+					<DropShadowEffect Color="#FF535353" Opacity="0.05" 									RenderingBias="Performance" BlurRadius="48" Direction="0" ShadowDepth="0"/>
 				</Border.Effect>
 			</Border>
 

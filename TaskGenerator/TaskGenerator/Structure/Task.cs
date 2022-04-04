@@ -3,13 +3,23 @@ using System.Collections.Generic;
 
 namespace TaskGenerator
 {
-	public class Task
-	{
-		public int type;
-        public int subtype;
-        public string condition;
-		public List<string> questions;
-		public List<string> answers;
+
+    public class Task
+    {
+        public int type { get; set; }
+        public int subtype { get; set; }
+        public string condition { get; set; }
+        public List<string> questions { get; set; }
+        public List<string> answers { get; set; }
+
+        public string conditionWithQuestions {
+            get {
+                return GetConditionAndQuestions();
+		    }
+            set {
+
+			}
+        }
 
         public string GetConditionAndQuestions()
         {

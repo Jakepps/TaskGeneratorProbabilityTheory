@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,36 +24,39 @@ namespace TaskGenerator.Controls.Pages
 
 		public Variant presentedVariant;
 		public MainWindow parentWindow;
+
+		public ObservableCollection<Task> tasks = new ObservableCollection<Task>();
 		public TasksPage()
 		{
 			InitializeComponent();
+			DataContext = tasks;
 		}
 
 		public void setVariant(Variant v, int index) {
 			presentedVariant = v;
-			((Label)panel.Children[0]).Content = "Вариант " + (index + 1);
-			panel.Children.RemoveRange(1, panel.Children.Count - 1);
 
-			for(var i = 0; i < v.tasks.Count; i++) {
-				var taskCard = new TaskCard();
-				taskCard.Padding = new Thickness(12, 6, 12, 6);
-				taskCard.setTask(v.tasks[i]);
-				taskCard.cardIndex = i;
-				if (i == v.tasks.Count - 1)
-				{
-					taskCard.Padding = new Thickness(12, 6, 12, 12);
-				}
+			Console.WriteLine(v.tasks.Count);
+			Console.WriteLine(tasks.Count);
 
-				taskCard.taskUpdate += parentWindow.updateTask;
-				taskCard.taskSubtypeUpdate += parentWindow.updateTaskSubtype;
-				panel.Children.Add(taskCard);
+			for (int i = tasks.Count; i < v.tasks.Count; i++) {
+				tasks.Add(v.tasks[i]);	
+			}
+
+			var count = tasks.Count;
+			for (int i = v.tasks.Count; i < count; i++)
+			{
+				Console.WriteLine("delete");
+				tasks.Remove(tasks.Last());
+			}
+
+			for (int i = 0; i < v.tasks.Count; i++) {
+				tasks[i] = v.tasks[i];
 			}
 		}
 
 		public void updateCard(int index) {
-			//Console.WriteLine()
 			presentedVariant.tasks[index].TestPrint();
-			((TaskCard)panel.Children[index + 1]).setTask(presentedVariant.tasks[index]);
+			tasks[index] = presentedVariant.tasks[index];
 		}
 	}
 }

@@ -20,11 +20,44 @@ namespace TaskGenerator.Controls
 	/// </summary>
 	public partial class TaskCard : UserControl
 	{
+		public static readonly DependencyProperty PresentTask =
+		DependencyProperty.Register("task", typeof(Task), typeof(TaskCard), new UIPropertyMetadata(new Task(), OnIntValuePropertyChanged));
+
+		private static void OnIntValuePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			Task newTask = (Task)e.NewValue;
+			TaskCard instance = (TaskCard)d;
+			Console.WriteLine("set");
+
+			instance.setTask(newTask);
+		}
+
+
+		public Task task {
+			get {
+
+				return (Task)GetValue(PresentTask);
+			}
+			set {
+				Console.WriteLine("hi");
+
+				SetValue(PresentTask, value);
+
+			}
+		}
+
 		public Task presentedTask;
-		public int cardIndex;
+		public int cardIndex = 0;
 		public TaskCard()
 		{
+			Console.WriteLine("create");
 			InitializeComponent();
+			try {
+				taskUpdate += ((MainWindow)Application.Current.MainWindow).updateTask;
+				taskSubtypeUpdate += ((MainWindow)Application.Current.MainWindow).updateTaskSubtype;
+			} catch {
+
+			}
 		}
 
 		public delegate void onUpdateTask(int index);
@@ -38,18 +71,22 @@ namespace TaskGenerator.Controls
 			var answer = (TextBlock)FindName("answer");
 
 			title.Text = "Задача " + t.type;
-			condition.Text = t.condition;
-			answer.Text = t.answers[0];
+			condition.Text = t.GetConditionAndQuestions();
+
+			var answers = "";
+			t.answers.ForEach(x => { answers += x + "\n"; });
+			answers = answers.Remove(answers.Length - 1);
+			answer.Text = answers;
 		}
 
 		private void button2_Click(object sender, RoutedEventArgs e)
 		{
-			taskUpdate(cardIndex);
+			taskUpdate(0);
 		}
 
 		private void button_Click(object sender, RoutedEventArgs e)
 		{
-			taskSubtypeUpdate(cardIndex);
+			taskSubtypeUpdate(0);
 		}
 	}
 }

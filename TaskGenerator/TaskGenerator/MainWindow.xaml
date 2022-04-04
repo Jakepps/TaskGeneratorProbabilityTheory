@@ -7,7 +7,6 @@
 				xmlns:control="clr-namespace:TaskGenerator.Controls.Pages"
         mc:Ignorable="d"
         Title="Генератор Задач" Height="560" Width="860" MinHeight="540" MinWidth="860">
-
 	<Grid x:Name="grid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="32"/>

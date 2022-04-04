@@ -7,16 +7,75 @@
              xmlns:view="clr-namespace:TaskGenerator.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-	<ScrollViewer VerticalScrollBarVisibility="Hidden">
-		<StackPanel Background="{StaticResource BackgroundBrush}" SnapsToDevicePixels="True"
-    x:Name="panel">
-			<Label Content="Вариант 1"
-        FontFamily="{StaticResource Inter}"
-        FontSize="32"
-        MaxWidth="600"
-        FontWeight="Bold"
-        Margin="12,12,12,12"
-      />
-		</StackPanel>
-  </ScrollViewer>
+
+	<ListView 
+  x:Name="listView"
+  ItemsSource="{Binding}" 
+  Width="Auto" 
+  BorderThickness="0"
+  Padding="0"
+  Margin="0"
+  VirtualizingPanel.IsVirtualizing="True"
+  VirtualizingPanel.ScrollUnit="Pixel"
+  VirtualizingPanel.VirtualizationMode="Recycling"
+  VirtualizingPanel.CacheLengthUnit="Item"
+  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+  Template="{StaticResource ListViewNewTemplate}"
+  VirtualizingPanel.CacheLength="5">
+
+		<ListView.Resources>
+			<Style TargetType="ListViewItem">
+				<Style.Resources>
+					<!-- SelectedItem with focus -->
+					<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                       Color="Transparent" />
+
+					<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrush}"
+                       Color="Transparent" />
+					<!-- SelectedItem without focus -->
+					<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
+                       Color="Transparent" />
+					<!-- SelectedItem text foreground -->
+					<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                       Color="Black" />
+				</Style.Resources>
+				<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+			</Style>
+		</ListView.Resources>
+		<ListView.ItemContainerStyle>
+			<Style TargetType="ListViewItem">
+				<Setter Property="Padding" Value="0"/>
+				<Setter Property="Margin" Value="0"/>
+				<Setter Property="BorderThickness" Value="0"/>
+				<Setter Property="IsTabStop" Value="False" />
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="ListBoxItem">
+							<ContentPresenter/>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+
+				<Style.Resources>
+					<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+					<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+					<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+				</Style.Resources>
+
+				
+
+			</Style>
+		</ListView.ItemContainerStyle>
+		<ListView.ItemTemplate>
+			<DataTemplate>
+				<ListViewItem Style="{StaticResource test}">
+					<view:TaskCard 
+            Padding="12,6,12,6"
+            task="{Binding}" 
+            Width="{Binding ActualWidth, ElementName=listView}"/>
+				</ListViewItem>
+				
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
 </UserControl>
