@@ -11,7 +11,7 @@ namespace TaskGenerator
     {
         public int number {get;}
         //public string student;
-        public List<Task> tasks { get; set; }
+        public List<Task> tasks { get; private set; }
 
         public void RegenerateTaskSubtype(int index)
         {
@@ -57,7 +57,6 @@ namespace TaskGenerator
                 task.TestPrint();
             Console.WriteLine();
         }
-
 
         public Variant(int number, List<int> taskTypes)
         {
