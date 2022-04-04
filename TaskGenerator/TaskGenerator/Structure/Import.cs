@@ -63,8 +63,6 @@ namespace TaskGenerator
                             result.Add(j);
                         }
                     }
-                    else Console.WriteLine("Fuck you");
-                    
                 }
                 else
                 {

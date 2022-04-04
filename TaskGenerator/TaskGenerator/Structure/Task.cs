@@ -11,10 +11,16 @@ namespace TaskGenerator
 		public List<string> questions;
 		public List<string> answers;
 
+        public string GetConditionAndQuestions()
+        {
+            string result = condition;
+            for (int i = 0; i < questions.Count; i++)
+                result +="\n" + (i+1) + ") " + questions[i];
+            return result;
+        }
         public void TestPrint()
         {
             //no cringe
-
             Console.WriteLine("\nTask " + type + ". \n" + condition);
             Console.WriteLine("questions:");
             for (int i = 0; i < questions.Count; i++)
