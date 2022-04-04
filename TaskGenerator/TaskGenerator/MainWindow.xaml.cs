@@ -79,13 +79,13 @@ namespace TaskGenerator
         }
 
         public void updateTask(int index) {
-            //variantList[selectedVariant].RegenerateTaskValues(index);
+            variantList[selectedVariant].tasks[index].RegenerateTaskValues();
             tasks.updateCard(index);
 		}
 
         public void updateTaskSubtype(int index)
         {
-            //variantList[selectedVariant].RegenerateTaskSubtype(index);
+            variantList[selectedVariant].tasks[index].RegenerateTaskSubtype();
             tasks.updateCard(index);
         }
     }

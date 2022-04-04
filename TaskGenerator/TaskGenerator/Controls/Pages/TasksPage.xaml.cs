@@ -56,7 +56,8 @@ namespace TaskGenerator.Controls.Pages
 
 		public void updateCard(int index) {
 			presentedVariant.tasks[index].TestPrint();
-			tasks[index] = presentedVariant.tasks[index];
+			tasks.RemoveAt(index);
+			tasks.Insert(index, presentedVariant.tasks[index]);
 		}
 	}
 }

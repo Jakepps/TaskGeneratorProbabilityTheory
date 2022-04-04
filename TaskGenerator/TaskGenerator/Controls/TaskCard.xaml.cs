@@ -65,6 +65,8 @@ namespace TaskGenerator.Controls
 		public event onUpdateTask taskSubtypeUpdate;
 
 		public void setTask(Task t) {
+			
+			cardIndex = ((MainWindow)Application.Current.MainWindow).tasks.tasks.IndexOf(t);
 			presentedTask = t;
 			var title = (TextBlock)FindName("taskNum");
 			var condition = (TextBlock)FindName("condition");
@@ -81,12 +83,16 @@ namespace TaskGenerator.Controls
 
 		private void button2_Click(object sender, RoutedEventArgs e)
 		{
-			taskUpdate(0);
+
+			taskUpdate(cardIndex);
+			//presentedTask.RegenerateTaskValues();
 		}
 
 		private void button_Click(object sender, RoutedEventArgs e)
 		{
-			taskSubtypeUpdate(0);
+			taskSubtypeUpdate(cardIndex);
+			//presentedTask.RegenerateTaskSubtype();
+			//taskSubtypeUpdate(0);
 		}
 	}
 }
