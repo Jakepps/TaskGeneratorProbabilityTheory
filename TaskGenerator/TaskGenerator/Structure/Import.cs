@@ -11,26 +11,37 @@ namespace TaskGenerator
     {
         // ? надо сюда его писать хз короче List<string> studentName = new List<string>();
         public static List<string> namefile()
-        { 
+        {
             //открытие файл, я хз как его читать без полного пути, как мне показывал рустам не получается
             List<string> studentName = new List<string>();
             Application application = new();
-            Document document = application.Documents.Open("C:\\Tests\\a.docx");
-
-            string[] chars = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ")", "\r" };
+            Document document = application.Documents.Open("C:\\test\\a.docx");
+            char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ')' };
+            //string[] chars = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ")", "\r" };
             int count = document.Words.Count;
+            string[] arrString = new string[count + 1];
             for (int i = 1; i <= count; i++)
             {
                 string text = document.Words[i].Text;
-                studentName.Add(text);
+                arrString[i] = text;
             }
-            application.Quit();
-            for (int i = 0; i < studentName.Count - 1; i++)
+
+            string stud = null;
+            for (int i = 0; i < arrString.Length; i++)
             {
-                while (chars.Contains(studentName[i]))
-                {
-                    studentName.Remove(studentName[i]);
-                }
+                stud += arrString[i];
+            }
+            StringBuilder newstud = new StringBuilder();
+            for (int i = 0; i < stud.Length; i++)
+            {
+                if (!(chars.Contains(stud[i])))
+                    newstud.Append(stud[i]);
+            }
+            string nst = newstud.ToString();
+            string[] studnam = nst.Split('\n');
+            for (int i = 0; i < studnam.Length; i++)
+            {
+                studentName.Add(studnam[i]);
             }
             return studentName;
         }
