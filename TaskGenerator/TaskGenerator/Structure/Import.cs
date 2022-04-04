@@ -44,7 +44,7 @@ namespace TaskGenerator
             {
                 studentName.Add(studnam[i]);
             }
-            //StreamWriter sw = new StreamWriter("C:\\Users\\artem\\source\\repos\\ConsoleApp3\\test.txt");
+            //StreamWriter sw = new StreamWriter("C:\\test\\test.txt");
             //for (int i = 0; i < studentName.Count; i++)
             //{
             //    Console.WriteLine(studentName[i]);
