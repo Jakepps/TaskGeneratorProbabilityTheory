@@ -11,10 +11,10 @@ namespace TaskGenerator
         public int selectedVariant = 0;
 
         List<Variant> variantList = new List<Variant>{
-            new Variant(new List<int> { 1,1 }),
-            new Variant(new List<int> { 1 }),
-            new Variant(new List<int> { 1 }),
-            new Variant(new List<int> { 2,2,2,2 })
+            new Variant(1,new List<int> { 1,1 }),
+            new Variant(1,new List<int> { 1 }),
+            new Variant(1,new List<int> { 1 }),
+            new Variant(1,new List<int> { 2,2,2,2 })
         };
 
         public MainWindow()
