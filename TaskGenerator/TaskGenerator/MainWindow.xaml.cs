@@ -30,14 +30,14 @@ namespace TaskGenerator
             ////var1.GenerateVariant(new List<int> { 1, 1, 1, 1, 1 });
             ////var1.TestPrint();
 
-            List<int> list = Import.GetTaskTypesFromString("123-1 25,1  2-4,,5--123-   1 24,,   --,124-,-  ,1325  4-,5-,2134-,4");
-            for (int i = 0; i < list.Count; i++)
-                Console.Write(list[i] + ",");
+            //List<int> list = Import.GetTaskTypesFromString("123-1 25,1  2-4,,5--123-   1 24,,   --,124-,-  ,1325  4-,5-,2134-,4");
+            //for (int i = 0; i < list.Count; i++)
+            //    Console.Write(list[i] + ",");
             //Console.WriteLine();
             //var1.GenerateVariant(list);
             //var1.TestPrint();
-            List<String> students = new List<String>();
-            students.Add("Нальбий Рустамов Хахукович");
+            //List<String> students = new List<String>();
+            //students.Add("Нальбий Рустамов Хахукович");
             //students.Add("Михайл Артёмов Наголевич");
             //students.Add("Серёга)");
 
@@ -79,13 +79,13 @@ namespace TaskGenerator
         }
 
         public void updateTask(int index) {
-            variantList[selectedVariant].RegenerateTaskValues(index);
+            //variantList[selectedVariant].RegenerateTaskValues(index);
             tasks.updateCard(index);
 		}
 
         public void updateTaskSubtype(int index)
         {
-            variantList[selectedVariant].RegenerateTaskSubtype(index);
+            //variantList[selectedVariant].RegenerateTaskSubtype(index);
             tasks.updateCard(index);
         }
     }

@@ -6,28 +6,41 @@ namespace TaskGenerator
 
     public class Task
     {
-        public int type { get; set; }
-        public int subtype { get; set; }
+        public int type { get; private set; }
+        public int subtype { get; private set; }
         public string condition { get; set; }
         public List<string> questions { get; set; }
         public List<string> answers { get; set; }
 
         public string conditionWithQuestions {
             get {
-                return GetConditionAndQuestions();
-		    }
-            set {
-
-			}
+                string result = condition;
+                for (int i = 0; i < questions.Count; i++)
+                    result += "\n" + (i + 1) + ") " + questions[i];
+                return result;
+            }
         }
 
-        public string GetConditionAndQuestions()
+        private void TaskReplace(Task task)
         {
-            string result = condition;
-            for (int i = 0; i < questions.Count; i++)
-                result +="\n" + (i+1) + ") " + questions[i];
-            return result;
+            this.type = task.type;
+            this.subtype = task.subtype;
+            this.condition = task.condition;
+            this.questions = task.questions;
+            this.answers = task.answers;
         }
+
+        public void RegenerateTaskSubtype()
+        {
+            TaskReplace(TaskConstructor.CreateTask(this.type));
+        }
+
+        public void RegenerateTaskValues()
+        {
+            TaskReplace(TaskConstructor.CreateTask(this.type, this.subtype));
+        }
+
+        
         public void TestPrint()
         {
             //no cringe

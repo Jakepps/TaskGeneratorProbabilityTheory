@@ -71,7 +71,7 @@ namespace TaskGenerator.Controls
 			var answer = (TextBlock)FindName("answer");
 
 			title.Text = "Задача " + t.type;
-			condition.Text = t.GetConditionAndQuestions();
+			condition.Text = t.conditionWithQuestions;
 
 			var answers = "";
 			t.answers.ForEach(x => { answers += x + "\n"; });
