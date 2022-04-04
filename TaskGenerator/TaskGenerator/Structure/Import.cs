@@ -39,27 +39,32 @@ namespace TaskGenerator
         {
             List<int> result = new List<int>();
 
-            char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',', '-' };
-            StringBuilder sbString = new StringBuilder();
+            char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',', '-', ' ' };
+            
             for (int i = 0; i < str.Length; i++)
             {
-                if (chars.Contains(str[i]))
-                    sbString.Append(str[i]);
+                if (!chars.Contains(str[i]))
+                    throw new FormatException("GetTaskTypesFromString " + str);
             }
 
-            String clearedString = sbString.ToString();
-            String[] splittedString = clearedString.Split(new char[] { ',' });
+            String clearedString = str.Replace(" ","");
+            String[] splittedString = clearedString.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
             for (int i = 0; i < splittedString.Length; i++)
             {
                 if (splittedString[i].Contains('-'))
                 {
-                    String[] splittedString2 = splittedString[i].Split('-');
-                    int from = Convert.ToInt32(splittedString2[0]), to = Convert.ToInt32(splittedString2[1]);
-                    for (int j = from; j <= to; j++)
+                    String[] splittedString2 = splittedString[i].Split('-', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                    if (splittedString2.Length == 2)
                     {
-                        result.Add(j);
+                        int from = Convert.ToInt32(splittedString2[0]), to = Convert.ToInt32(splittedString2[1]);
+                        for (int j = from; j <= to; j++)
+                        {
+                            result.Add(j);
+                        }
                     }
+                    else Console.WriteLine("Fuck you");
+                    
                 }
                 else
                 {
