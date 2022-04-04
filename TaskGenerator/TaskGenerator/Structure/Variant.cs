@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace TaskGenerator
 {
@@ -10,7 +11,7 @@ namespace TaskGenerator
     {
         public int number;
         //public string student;
-        public List<Task> tasks;
+        public ObservableCollection<Task> tasks;
 
         public void RegenerateTaskSubtype(int index)
         {
@@ -63,7 +64,7 @@ namespace TaskGenerator
 
         public Variant(List<int> taskTypes)
         {
-            tasks = new List<Task>();
+            tasks = new ObservableCollection<Task>();
             for (int i = 0; i < taskTypes.Count; i++)
             {
                 tasks.Add(TaskConstructor.CreateTask(taskTypes[i]));
