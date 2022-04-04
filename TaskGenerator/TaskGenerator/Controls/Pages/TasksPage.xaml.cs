@@ -35,6 +35,8 @@ namespace TaskGenerator.Controls.Pages
 		public void setVariant(Variant v, int index) {
 			presentedVariant = v;
 
+			variant.Content = "Вариант " + (index + 1);
+
 			Console.WriteLine(v.tasks.Count);
 			Console.WriteLine(tasks.Count);
 
@@ -45,7 +47,6 @@ namespace TaskGenerator.Controls.Pages
 			var count = tasks.Count;
 			for (int i = v.tasks.Count; i < count; i++)
 			{
-				Console.WriteLine("delete");
 				tasks.Remove(tasks.Last());
 			}
 
