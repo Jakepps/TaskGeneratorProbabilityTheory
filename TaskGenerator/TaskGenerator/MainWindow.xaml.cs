@@ -48,7 +48,9 @@ namespace TaskGenerator
             //{
             //    variants[i].TestPrint();
             //}
-           
+            
+            List<string> students = Import.namefile();
+        
             generator.generateBtn.Click += onClick;
             variants.variantChange += changeVariant;
             tasks.parentWindow = this;

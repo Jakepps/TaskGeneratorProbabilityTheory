@@ -16,7 +16,7 @@ namespace TaskGenerator
             //открытие файл, я хз как его читать без полного пути, как мне показывал рустам не получается
             List<string> studentName = new List<string>();
             Application application = new();
-            Document document = application.Documents.Open("C:\\test\\a.docx");
+            Document document = application.Documents.Open("D:\\Tests\\Students.docx");
             char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ')', '(','*','-','{','}','[',']','?', '=', '+', '-', '_' };
             int count = document.Words.Count;
             string[] arrString = new string[count + 1];
@@ -38,19 +38,19 @@ namespace TaskGenerator
                     newstud.Append(stud[i]);
             }
             string nst = newstud.ToString();
-            string[] studnam = nst.Split('\n');
+            string[] studnam = nst.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
             for (int i = 0; i < studnam.Length; i++)
             {
                 studentName.Add(studnam[i]);
-                studentName[i] = studentName[i].TrimStart(' ');
+                studentName[i] = studentName[i].TrimStart(' ').TrimEnd(' ');
             }
-            //StreamWriter sw = new StreamWriter("C:\\test\\test.txt");
-            //for (int i = 0; i < studentName.Count; i++)
-            //{
-            //    Console.WriteLine(studentName[i]);
-            //    sw.WriteLine(studentName[i]);
-            //}
-            //sw.Close();
+            StreamWriter sw = new StreamWriter("D:\\Tests\\test.txt");
+            for (int i = 0; i < studentName.Count; i++)
+            {
+                Console.WriteLine(studentName[i]);
+                sw.WriteLine(studentName[i]);
+            }
+            sw.Close();
             return studentName;
         }
 
