@@ -4,7 +4,7 @@ namespace TaskGenerator
 {
     public static class TaskConstructor
     {
-        public static Task CreateTask(int type, int subtype = 0)
+        public static Task CreateTask(int type, int subtype = 1)
         {
             switch (type)
             {
@@ -59,12 +59,21 @@ namespace TaskGenerator
 
         private static Task CreateTaskType1Subtype1()
 		{
+            var rand = new Random();
+
             Task task = new Task(1, 1);
-			task.condition = "Наугад выбирается автомобиль с четырехзначным номером. Найти вероятность того, что: ";
+            var numCount = 4 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 3));
+            var sndNum = 1;
+            for(int i = 0; i < numCount; i++) {
+                sndNum *= (10 - i);
+			}
+
+            var numString = (numCount == 4) ? "четырехзначным" : (numCount == 5) ? "пятизначным" : "шестизначным";
+			task.condition = "Наугад выбирается автомобиль с " + numString + " номером. Найти вероятность того, что: ";
 			task.questions.Add("Это автомобиль Ф. Киркорова");
 			task.questions.Add("Номер не содержит одинаковых цифр.");
-			task.answers.Add("1/10000");
-            task.answers.Add("5040/10000");
+			task.answers.Add("1/" + (Math.Pow(10, numCount)));
+            task.answers.Add(sndNum + "/" + (Math.Pow(10, numCount)));
 			return task;
 		}
 
