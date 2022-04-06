@@ -76,6 +76,25 @@ namespace TaskGenerator
             throw new ArgumentException();
 		}
 
+        private static Task CreateTaskType1Subtype1()
+		{
+            var rand = new Random();
+
+            Task task = new Task(1, 1);
+            var numCount = 4 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 3));
+            var sndNum = 1;
+            for(int i = 0; i < numCount; i++) {
+                sndNum *= (10 - i);
+			}
+
+            var numString = (numCount == 4) ? "четырехзначным" : (numCount == 5) ? "пятизначным" : "шестизначным";
+			task.condition = "Наугад выбирается автомобиль с " + numString + " номером. Найти вероятность того, что: ";
+			task.questions.Add("Это автомобиль Ф. Киркорова");
+			task.questions.Add("Номер не содержит одинаковых цифр.");
+			task.answers.Add("1/" + (Math.Pow(10, numCount)));
+            task.answers.Add(sndNum + "/" + (Math.Pow(10, numCount)));
+			return task;
+		}
         private static Task CreateTaskType2(int subtype)
         {
             switch (subtype)
