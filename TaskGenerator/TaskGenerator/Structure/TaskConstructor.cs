@@ -264,5 +264,13 @@ namespace TaskGenerator
             }
             throw new ArgumentException();
         }
+
+        private static int Factorial(int n) {
+            if (n <= 0) return 1;
+            return n * Factorial(n - 1);
+		}
+        private static double C(int p, int q) {
+            return Convert.ToDouble(Factorial(p)) / Convert.ToDouble((Factorial(q) * Factorial(p - q)));
+		}
     }
 }
