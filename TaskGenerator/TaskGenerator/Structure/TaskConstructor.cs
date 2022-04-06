@@ -115,6 +115,7 @@ namespace TaskGenerator
             switch (subtype)
             {
                 case 1:
+                    //todo
                     Task task1 = new Task(3, 1);
 
                     return task1;
@@ -209,9 +210,20 @@ namespace TaskGenerator
             switch (subtype)
             {
                 case 1:
+                    var rand = new Random();
+                    var prob1 = Convert.ToDouble(rand.Next(1, 9));
+                    var prob2 = Convert.ToDouble(rand.Next(1, 10 - Convert.ToInt32(prob1)));
+                    var prob3 = 10 - prob1 - prob2;
+
+                    prob1 /= 10; prob2 /= 10; prob3 /= 10;
+
                     Task task1 = new Task(7, 1);
 
+                    task1.condition = "В скачках учавствуют три лошади. Первая лошадь вымгрывает скачки с вероятностью " + prob1 + ", вторая - " + prob2 + ", третья - " + prob3 + ". Какова вероятность того, что лошадь, на которую поставил игрок, придет на скачках первой, если он выбирает ее на удачу?";
+                    task1.answers.Add(String.Format("{0:0.000000}", prob1 * prob2 * prob3 / 3.0));
+
                     return task1;
+
                 case 2:
                     Task task2 = new Task(7, 2);
 
