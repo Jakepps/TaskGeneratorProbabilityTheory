@@ -10,44 +10,34 @@ namespace TaskGenerator
 {
     public static class Import
     {
-        // ? надо сюда его писать хз короче List<string> studentName = new List<string>();
         public static List<string> ImportStudents(string path)
         {
-            //открытие файл, я хз как его читать без полного пути, как мне показывал рустам не получается
-            List<string> studentName = new List<string>();
+            List<string> students = new List<string>();
+
             Application application = new();
             Document document = application.Documents.Open(path);
-            char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ')', '(','*','-','{','}','[',']','?', '=', '+', '-', '_' };
-            int count = document.Words.Count;
-            string[] arrString = new string[count + 1];
-            for (int i = 1; i <= count; i++)
+
+            StringBuilder fullString = new StringBuilder();
+            for (int i = 1; i <= document.Words.Count; i++)
             {
-                string text = document.Words[i].Text;
-                arrString[i] = text;
+                fullString.Append(document.Words[i].Text);
             }
 
-            string stud = null;
-            for (int i = 0; i < arrString.Length; i++)
+            StringBuilder clearedString = new StringBuilder();
+            char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ')', '(', '*', '-', '{', '}', '[', ']', '?', '=', '+', '-', '_', ',', '.' };
+            for (int i = 0; i < fullString.Length; i++)
             {
-                stud += arrString[i];
+                if (!(chars.Contains(fullString[i])))
+                    clearedString.Append(fullString[i]);
             }
-            StringBuilder newstud = new StringBuilder();
-            for (int i = 0; i < stud.Length; i++)
-            {
-                if (!(chars.Contains(stud[i])))
-                    newstud.Append(stud[i]);
-            }
-            string nst = newstud.ToString();
-            string[] studnam = nst.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-            for (int i = 0; i < studnam.Length; i++)
-            {
-                studentName.Add(studnam[i].TrimStart(' ').TrimEnd(' '));
-                //studentName[i] = studentName[i].TrimStart(' ').TrimEnd(' ');
-            }
-            return studentName;
+
+            students = clearedString.ToString().Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
+            students.ForEach(x => x.TrimStart(' ').TrimEnd(' '));
+
+            return students;
         }
 
-        public static List<int> GetTaskTypesFromString(String str)
+        public static List<int> GetTaskTypesFromString(string str)
         {
             List<int> result = new List<int>();
 
@@ -59,14 +49,14 @@ namespace TaskGenerator
                     throw new FormatException("GetTaskTypesFromString " + str);
             }
 
-            String clearedString = str.Replace(" ","");
-            String[] splittedString = clearedString.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            string clearedString = str.Replace(" ","");
+            string[] splittedString = clearedString.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
             for (int i = 0; i < splittedString.Length; i++)
             {
                 if (splittedString[i].Contains('-'))
                 {
-                    String[] splittedString2 = splittedString[i].Split('-', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                    string[] splittedString2 = splittedString[i].Split('-', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
                     if (splittedString2.Length == 2)
                     {
                         int from = Convert.ToInt32(splittedString2[0]), to = Convert.ToInt32(splittedString2[1]);
@@ -82,6 +72,9 @@ namespace TaskGenerator
                     result.Add(type);
                 }
             }
+
+            result = result.Distinct().ToList();
+            result.Sort();
             return result;
         }
     }
