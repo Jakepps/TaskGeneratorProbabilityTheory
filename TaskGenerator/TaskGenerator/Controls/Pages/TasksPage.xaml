@@ -7,14 +7,17 @@
              xmlns:view="clr-namespace:TaskGenerator.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-	<Grid Height="Auto">
+	<Grid Height="Auto" x:Name="source">
+		<Grid.Background>
+			<SolidColorBrush Color="{StaticResource Background}" Opacity="0"/>
+		</Grid.Background>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition x:Name="row2" Height="1*"/>
 		</Grid.RowDefinitions>
 
 		<Label x:Name="variant" 
-      Content="Вариант 0"
+      Content=""
       FontFamily="{StaticResource Inter}"
       FontSize="32"
       FontWeight="Bold"
@@ -28,6 +31,7 @@
 			x:Name="listView"
 			ItemsSource="{Binding}" 
 			Width="Auto" 
+			Background="Transparent"
 			BorderThickness="0"
 			Padding="0"
 			Margin="0"

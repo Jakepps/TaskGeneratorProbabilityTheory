@@ -8,11 +8,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="540" d:DesignWidth="330.626">
 
-	<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+	<ScrollViewer Grid.Row="1" 
+  x:Name="source"
+  VerticalScrollBarVisibility="Hidden">
+		<ScrollViewer.Background>
+			<SolidColorBrush Color="{StaticResource Background}" Opacity="0"/>
+		</ScrollViewer.Background>
 		<StackPanel x:Name="panel">
 			<Label x:Name="label" 
 		      Grid.Row="0"
-          Content="Варианты"
+          Content=""
           FontFamily="{StaticResource Inter}"
           FontSize="32"
           VerticalAlignment="Top"

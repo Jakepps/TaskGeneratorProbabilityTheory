@@ -54,7 +54,6 @@ namespace TaskGenerator.Controls
 			InitializeComponent();
 			try {
 				taskUpdate += ((MainWindow)Application.Current.MainWindow).updateTask;
-				taskSubtypeUpdate += ((MainWindow)Application.Current.MainWindow).updateTaskSubtype;
 			} catch {
 
 			}
@@ -62,7 +61,6 @@ namespace TaskGenerator.Controls
 
 		public delegate void onUpdateTask(int index);
 		public event onUpdateTask taskUpdate;
-		public event onUpdateTask taskSubtypeUpdate;
 
 		public void setTask(Task t) {
 			
@@ -72,7 +70,7 @@ namespace TaskGenerator.Controls
 			var condition = (TextBlock)FindName("condition");
 			var answer = (TextBlock)FindName("answer");
 
-			title.Text = "Задача " + t.type;
+			title.Text = "Задание " + (cardIndex + 1);
 			condition.Text = t.conditionWithQuestions;
 
 			var answers = "";
@@ -86,13 +84,6 @@ namespace TaskGenerator.Controls
 
 			taskUpdate(cardIndex);
 			//presentedTask.RegenerateTaskValues();
-		}
-
-		private void button_Click(object sender, RoutedEventArgs e)
-		{
-			taskSubtypeUpdate(cardIndex);
-			//presentedTask.RegenerateTaskSubtype();
-			//taskSubtypeUpdate(0);
 		}
 	}
 }
