@@ -232,7 +232,7 @@ namespace TaskGenerator
                     Task task1 = new Task(7, 1);
 
                     task1.condition = "В скачках учавствуют три лошади. Первая лошадь вымгрывает скачки с вероятностью " + prob1 + ", вторая - " + prob2 + ", третья - " + prob3 + ". Какова вероятность того, что лошадь, на которую поставил игрок, придет на скачках первой, если он выбирает ее на удачу?";
-                    task1.answers.Add(String.Format("{0:0.000000}", prob1 * prob2 * prob3 / 3.0));
+                    task1.answers.Add(String.Format("{0:0.000000}", (prob1 + prob2 + prob3) / 3.0));
 
                     return task1;
 
