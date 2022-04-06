@@ -145,7 +145,6 @@ namespace TaskGenerator
                     task1.answers.Add(String.Format("{0:0.00}", 1 - (1 - prob1) * (1 - prob2)));
                     task1.answers.Add(String.Format("{0:0.00}", (1 - prob1) * prob2));
 
-
                     return task1;
                 case 2:
                     Task task2 = new Task(4, 2);
@@ -160,15 +159,17 @@ namespace TaskGenerator
             switch (subtype)
             {
                 case 1:
-                    //TODO: Переделать для нормального отображания, улучшить рандом.
+                    var rand = new Random();
+                    var prob1 = Convert.ToDouble(rand.Next(1, 8));
+                    var prob2 = Convert.ToDouble(rand.Next(1, 10 - Convert.ToInt32(prob1) - 1));
+                    var prob3 = Convert.ToDouble(10 - prob1 - prob2);
+
+                    prob1 /= 10; prob2 /= 10; prob3 /= 10;
+
                     Task task1 = new Task(5, 1);
-                    Random random = new Random();
-                    float a = random.NextSingle() / 2f;
-                    float b = 0.5f - a;
-                    float c = 0.5f;
-                    task1.condition = "Два гроссмейстера играют две партии в шахматы. Вероятность выигрыша в одной партии для первого шахматиста равна " + a + ", для второго — " + b + "; вероятность ничьей — 0,5. ";
+                    task1.condition = "Два гроссмейстера играют две партии в шахматы. Вероятность выигрыша в одной партии для первого шахматиста равна " + prob1 + ", для второго — " + prob2 + "; вероятность ничьей — " + prob3 + ".";
                     task1.questions.Add("Какова вероятность того, что первый гроссмейстер выиграет матч?");
-                    task1.answers.Add((a * a + a * c + c * a) + "");
+                    task1.answers.Add(String.Format("{0:0.0000}", (prob1 * prob1 + prob1 * prob3 + prob3 * prob1)));
                     return task1;
                 case 2:
                     Task task2 = new Task(5, 2);
