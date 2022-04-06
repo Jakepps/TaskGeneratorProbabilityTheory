@@ -32,7 +32,8 @@ namespace TaskGenerator
 
         public void RegenerateTaskSubtype()
         {
-            TaskReplace(TaskConstructor.CreateTask(this.type));
+            int newSubtype = this.subtype == 1 ? 2 : 1;
+            TaskReplace(TaskConstructor.CreateTask(this.type, newSubtype));
         }
 
         public void RegenerateTaskValues()

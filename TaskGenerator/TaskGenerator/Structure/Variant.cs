@@ -23,6 +23,7 @@ namespace TaskGenerator
             }
             return result;
         }
+
         //public static List<Variant> GetVariantsForStudents(List<String> students, List<int> taskTypes)
         //{
         //    List<Variant> result = new List<Variant>();
