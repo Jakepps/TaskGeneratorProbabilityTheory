@@ -75,7 +75,8 @@ namespace TaskGenerator.Controls
 
 			var answers = "";
 			t.answers.ForEach(x => { answers += x + "\n"; });
-			answers = answers.Remove(answers.Length - 1);
+			
+			if (answers.Length > 0) answers = answers.Remove(answers.Length - 1);
 			answer.Text = answers;
 		}
 

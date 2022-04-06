@@ -78,13 +78,25 @@ namespace TaskGenerator
             switch (subtype)
             {
                 case 1:
-                    Task task1 = new Task(2, 1);
-                    task1.condition = "Имеется девять лотерейных билетов, среди которых два выигрышных. Найти вероятность того, что среди пяти наудачу купленных билетов: ";
-                    task1.questions.Add("Один билет выигрышный.");
-                    task1.questions.Add("Нет выигрышных.");
-                    task1.answers.Add("5/9");
-                    task1.answers.Add("1/6");
-                    return task1;
+                    var rand = new Random();
+
+                    var loteryCount = 6 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 5));
+                    var loteryWinCount = 2 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 4));
+                    var loteryPickedCount = 2 + Convert.ToInt32(Math.Floor(rand.NextDouble() * (loteryCount - loteryWinCount - 1)));
+
+                    var loteryWinPickedCount = 1 + Convert.ToInt32(Math.Floor(rand.NextDouble() * loteryWinCount));
+
+                    var task = new Task(2, 1);
+                    task.condition = "Имеется " + loteryCount + " лотерейных билетов, среди которых " + loteryWinCount + " выйгрышных. Найдите вероятность того, что среди " + loteryPickedCount + " наудачу купленных билетов:";
+                    task.questions.Add("количество выйгрышных билетов равно " + loteryWinPickedCount + ".");
+                    task.questions.Add("нет выйгрышных билетов.");
+
+                    var result1 = (C(loteryWinCount, loteryWinPickedCount) * C(loteryCount - loteryWinCount, loteryPickedCount - loteryWinPickedCount)) / (C(loteryCount, loteryPickedCount));
+                    var result2 = (C(loteryWinCount, 0) * C(loteryCount - loteryWinCount, loteryPickedCount)) / C(loteryCount, loteryPickedCount);
+
+                    task.answers.Add(String.Format("{0:0.000000}", result1));
+                    task.answers.Add(String.Format("{0:0.000000}", result2));
+                    return task;
 
                 case 2:
                     Task task2 = new Task(2, 2);
@@ -119,7 +131,20 @@ namespace TaskGenerator
             switch (subtype)
             {
                 case 1:
+                    var rand = new Random();
+
+                    var prob1 = (rand.Next(1,10)) / 10.0;
+                    var prob2 = (rand.Next(1,10)) / 10.0;
+
                     Task task1 = new Task(4, 1);
+                    task1.condition = "Два поэта-песенника предложили по одной песне исполнителю. Известно, что песни первого поэта эстрадный певец включает в свой репертуар с вероятностью " + prob1 + ", второго - с вероятностью " + prob2 + ". Какова вероятность того, что певец возьмет:";
+                    task1.questions.Add("обе песни.");
+                    task1.questions.Add("хотя бы одну.");
+                    task1.questions.Add("только песню второго поэта.");
+                    task1.answers.Add(String.Format("{0:0.00}", prob1 * prob2));
+                    task1.answers.Add(String.Format("{0:0.00}", 1 - (1 - prob1) * (1 - prob2)));
+                    task1.answers.Add(String.Format("{0:0.00}", (1 - prob1) * prob2));
+
 
                     return task1;
                 case 2:
