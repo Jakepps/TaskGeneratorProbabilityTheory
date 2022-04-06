@@ -276,7 +276,13 @@ namespace TaskGenerator
             switch (subtype)
             {
                 case 1:
+                    var rand = new Random();
+                    var prob1 = rand.Next(1, 4);
+                    var prob2 = rand.Next(1, 8);
+
                     Task task1 = new Task(9, 1);
+                    task1.condition = "В скольких партиях с равным по силе противником выигрыш более вероятен: в " + prob1 + " партиях из 4 или в " + prob2 + " из 8?";
+                    task1.answers.Add(C(4,prob1) * Math.Pow(0.5, 4) > C(8, prob2) * Math.Pow(0.5, 8) ? "1" : "2");
 
                     return task1;
                 case 2:
