@@ -4,7 +4,7 @@ namespace TaskGenerator
 {
     public static class TaskConstructor
     {
-        //subtype 1 - задача из 2-го варианта, subtype 2 - эта же задача из третьего варианта.
+        //subtype 1 - задача из 2-го варианта, subtype 2 - эта же задача из 3-го варианта.
         public static Task CreateTask(int type, int subtype = 0)
         {
             int randomSubtype = new Random().Next(1, 3);

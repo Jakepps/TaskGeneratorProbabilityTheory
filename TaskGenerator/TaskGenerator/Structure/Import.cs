@@ -14,7 +14,7 @@ namespace TaskGenerator
         {
             List<string> students = new List<string>();
 
-            Application application = new();
+            Application application = new Application();
             Document document = application.Documents.Open(path);
 
             StringBuilder fullString = new StringBuilder();
@@ -27,12 +27,14 @@ namespace TaskGenerator
             char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ')', '(', '*', '-', '{', '}', '[', ']', '?', '=', '+', '-', '_', ',', '.' };
             for (int i = 0; i < fullString.Length; i++)
             {
-                if (!(chars.Contains(fullString[i])))
+                if (!chars.Contains(fullString[i]))
                     clearedString.Append(fullString[i]);
             }
 
-            students = clearedString.ToString().Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
-            students.ForEach(x => x.TrimStart(' ').TrimEnd(' '));
+            students = clearedString.ToString().Split(new char[] { '\r', '\n' }, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            for(int i = 0; i < students.Count; i++)
+                Console.WriteLine(students[i]);
 
             return students;
         }
