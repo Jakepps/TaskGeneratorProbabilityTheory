@@ -8,15 +8,15 @@ using System.IO;
 
 namespace TaskGenerator
 {
-    public class Import
+    public static class Import
     {
         // ? надо сюда его писать хз короче List<string> studentName = new List<string>();
-        public static List<string> namefile()
+        public static List<string> ImportStudents(string path)
         {
             //открытие файл, я хз как его читать без полного пути, как мне показывал рустам не получается
             List<string> studentName = new List<string>();
             Application application = new();
-            Document document = application.Documents.Open("D:\\Tests\\Students.docx");
+            Document document = application.Documents.Open(path);
             char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ')', '(','*','-','{','}','[',']','?', '=', '+', '-', '_' };
             int count = document.Words.Count;
             string[] arrString = new string[count + 1];
@@ -41,16 +41,9 @@ namespace TaskGenerator
             string[] studnam = nst.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
             for (int i = 0; i < studnam.Length; i++)
             {
-                studentName.Add(studnam[i]);
-                studentName[i] = studentName[i].TrimStart(' ').TrimEnd(' ');
+                studentName.Add(studnam[i].TrimStart(' ').TrimEnd(' '));
+                //studentName[i] = studentName[i].TrimStart(' ').TrimEnd(' ');
             }
-            StreamWriter sw = new StreamWriter("D:\\Tests\\test.txt");
-            for (int i = 0; i < studentName.Count; i++)
-            {
-                Console.WriteLine(studentName[i]);
-                sw.WriteLine(studentName[i]);
-            }
-            sw.Close();
             return studentName;
         }
 
@@ -91,11 +84,5 @@ namespace TaskGenerator
             }
             return result;
         }
-
-        public Import()
-        {
-            //studentName = new List<string>();
-        }
     }
-
 }  
