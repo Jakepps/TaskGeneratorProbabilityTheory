@@ -12,7 +12,7 @@ namespace TaskGenerator
                     return CreateTaskType1(subtype == 0 ? new Random().Next(1, 5) : subtype);
                     break;
                 case 2:
-                    return CreateTaskType2Subtype3();
+                    return CreateTaskType2Subtype1();
                     break;
                 case 3:
                     return new Task(3);
@@ -77,7 +77,30 @@ namespace TaskGenerator
 			return task;
 		}
 
-		private static Task CreateTaskType1Subtype2()
+        private static Task CreateTaskType2Subtype1()
+        {
+            var rand = new Random();
+
+            var loteryCount = 6 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 5));
+            var loteryWinCount = 2 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 4));
+            var loteryPickedCount = 2 + Convert.ToInt32(Math.Floor(rand.NextDouble() * (loteryCount - loteryWinCount - 1)));
+
+            var loteryWinPickedCount = 1 + Convert.ToInt32(Math.Floor(rand.NextDouble() * loteryWinCount));
+
+            var task = new Task(2, 1);
+            task.condition = "Имеется " + loteryCount + " лотерейных билетов, среди которых " + loteryWinCount + " выйгрышных. Найдите вероятность того, что среди " + loteryPickedCount + " наудачу купленных билетов:";
+            task.questions.Add("количество выйгрышных билетов равно " + loteryWinPickedCount + ".");
+            task.questions.Add("нет выйгрышных билетов.");
+
+            var result1 = (C(loteryWinCount, loteryWinPickedCount) * C(loteryCount - loteryWinCount, loteryPickedCount - loteryWinPickedCount)) / (C(loteryCount, loteryPickedCount));
+            var result2 = (C(loteryWinCount, 0) * C(loteryCount - loteryWinCount, loteryPickedCount)) / C(loteryCount, loteryPickedCount);
+
+            task.answers.Add(String.Format("{0:0.000000}", result1));
+            task.answers.Add(String.Format("{0:0.000000}", result2));
+            return task;
+        }
+
+        private static Task CreateTaskType1Subtype2()
 		{
 			Task task = new Task(1, 2);
 			task.condition = "Имеется девять лотерейных билетов, среди которых два выигрышных. Найти вероятность того, что среди пяти наудачу купленных билетов: ";
@@ -121,5 +144,13 @@ namespace TaskGenerator
             task.answers.Add((a*a + a*c + c*a) + "");
             return task;
         }
+
+        private static int Factorial(int n) {
+            if (n <= 0) return 1;
+            return n * Factorial(n - 1);
+		}
+        private static double C(int p, int q) {
+            return Convert.ToDouble(Factorial(p)) / Convert.ToDouble((Factorial(q) * Factorial(p - q)));
+		}
     }
 }
