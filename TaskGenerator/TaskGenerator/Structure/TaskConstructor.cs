@@ -223,9 +223,9 @@ namespace TaskGenerator
             {
                 case 1:
                     var rand = new Random();
-                    var prob1 = Convert.ToDouble(rand.Next(1, 9));
-                    var prob2 = Convert.ToDouble(rand.Next(1, 10 - Convert.ToInt32(prob1)));
-                    var prob3 = 10 - prob1 - prob2;
+                    var prob1 = Convert.ToDouble(rand.Next(1, 10));
+                    var prob2 = Convert.ToDouble(rand.Next(1, 10));
+                    var prob3 = Convert.ToDouble(rand.Next(1, 10));
 
                     prob1 /= 10; prob2 /= 10; prob3 /= 10;
 
@@ -249,8 +249,19 @@ namespace TaskGenerator
             switch (subtype)
             {
                 case 1:
+                    var rand = new Random();
+
+                    var prob1 = Convert.ToDouble(rand.Next(1, 20));
+                    var prob2 = Convert.ToDouble(rand.Next(1, 20));
+                    var prob3 = Convert.ToDouble(rand.Next(1, 20));
+
+                    prob1 /= 20; prob2 /= 20; prob3 /= 20;
+
                     Task task1 = new Task(8, 1);
 
+                    task1.condition = "Электростанция оборудована генератором электрического тока, приводимым во вращение дизельным двигателем.Состояние оборудования и воспламенительные свойства дизельного топлива(цетановое число) таковы, что при использовании в качестве топлива соляровых фракций прямой перегонки нефти генератор приходит в аварийное состояние с вероятностью " + prob1 + ", при использовании керосиновых фракций — с вероятностью " + prob2 + ", а при использовании газойлевых фракций — с вероятностью " + prob3 + ". 23 декабря 1998 года электростанция исправно давала ток.Какова вероятность того, что в этот день дизельный двигатель работал на солярке, если тот или иной вид топлива используется с равной вероятностью ?";
+                    
+                    task1.answers.Add(String.Format("{0:0.000000}", (1 - prob1)/((1 - prob1) + (1 - prob2) + (1 - prob3))));
                     return task1;
                 case 2:
                     Task task2 = new Task(8, 2);
