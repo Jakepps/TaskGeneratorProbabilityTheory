@@ -35,6 +35,18 @@ namespace TaskGenerator
                     return CreateTaskType11(subtype == 0 ? randomSubtype : subtype);
                 case 12:
                     return CreateTaskType12(subtype == 0 ? randomSubtype : subtype);
+                case 13:
+                    return CreateTaskType13(subtype == 0 ? randomSubtype : subtype);
+                case 14:
+                    return CreateTaskType14(subtype == 0 ? randomSubtype : subtype);
+                case 15:
+                    return CreateTaskType15(subtype == 0 ? randomSubtype : subtype);
+                case 16:
+                    return CreateTaskType16(subtype == 0 ? randomSubtype : subtype);
+                case 17:
+                    return CreateTaskType17(subtype == 0 ? randomSubtype : subtype);
+                case 18:
+                    return CreateTaskType18(subtype == 0 ? randomSubtype : subtype);
             }
             throw new NotImplementedException();
         }
@@ -86,17 +98,17 @@ namespace TaskGenerator
 
                     var loteryWinPickedCount = 1 + Convert.ToInt32(Math.Floor(rand.NextDouble() * loteryWinCount));
 
-                    var task = new Task(2, 1);
-                    task.condition = "Имеется " + loteryCount + " лотерейных билетов, среди которых " + loteryWinCount + " выйгрышных. Найдите вероятность того, что среди " + loteryPickedCount + " наудачу купленных билетов:";
-                    task.questions.Add("количество выйгрышных билетов равно " + loteryWinPickedCount + ".");
-                    task.questions.Add("нет выйгрышных билетов.");
+                    var task1 = new Task(2, 1);
+                    task1.condition = "Имеется " + loteryCount + " лотерейных билетов, среди которых " + loteryWinCount + " выйгрышных. Найдите вероятность того, что среди " + loteryPickedCount + " наудачу купленных билетов:";
+                    task1.questions.Add("количество выйгрышных билетов равно " + loteryWinPickedCount + ".");
+                    task1.questions.Add("нет выйгрышных билетов.");
 
                     var result1 = (C(loteryWinCount, loteryWinPickedCount) * C(loteryCount - loteryWinCount, loteryPickedCount - loteryWinPickedCount)) / (C(loteryCount, loteryPickedCount));
                     var result2 = (C(loteryWinCount, 0) * C(loteryCount - loteryWinCount, loteryPickedCount)) / C(loteryCount, loteryPickedCount);
 
-                    task.answers.Add(String.Format("{0:0.000000}", result1));
-                    task.answers.Add(String.Format("{0:0.000000}", result2));
-                    return task;
+                    task1.answers.Add(String.Format("{0:0.000000}", result1));
+                    task1.answers.Add(String.Format("{0:0.000000}", result2));
+                    return task1;
 
                 case 2:
                     Task task2 = new Task(2, 2);
@@ -289,6 +301,104 @@ namespace TaskGenerator
             }
             throw new ArgumentException();
         }
+
+        private static Task CreateTaskType13(int subtype)
+        {
+            switch (subtype)
+            {
+                case 1:
+                    Task task1 = new Task(13, 1);
+
+                    return task1;
+                case 2:
+                    Task task2 = new Task(13, 2);
+
+                    return task2;
+            }
+            throw new ArgumentException();
+        }
+
+        private static Task CreateTaskType14(int subtype)
+        {
+            switch (subtype)
+            {
+                case 1:
+                    Task task1 = new Task(14, 1);
+
+                    return task1;
+                case 2:
+                    Task task2 = new Task(14, 2);
+
+                    return task2;
+            }
+            throw new ArgumentException();
+        }
+
+        private static Task CreateTaskType15(int subtype)
+        {
+            switch (subtype)
+            {
+                case 1:
+                    Task task1 = new Task(15, 1);
+
+                    return task1;
+                case 2:
+                    Task task2 = new Task(15, 2);
+
+                    return task2;
+            }
+            throw new ArgumentException();
+        }
+
+        private static Task CreateTaskType16(int subtype)
+        {
+            switch (subtype)
+            {
+                case 1:
+                    Task task1 = new Task(16, 1);
+
+                    return task1;
+                case 2:
+                    Task task2 = new Task(16, 2);
+
+                    return task2;
+            }
+            throw new ArgumentException();
+        }
+
+        private static Task CreateTaskType17(int subtype)
+        {
+            switch (subtype)
+            {
+                case 1:
+                    Task task1 = new Task(17, 1);
+
+                    return task1;
+                case 2:
+                    Task task2 = new Task(17, 2);
+
+                    return task2;
+            }
+            throw new ArgumentException();
+        }
+
+        private static Task CreateTaskType18(int subtype)
+        {
+            switch (subtype)
+            {
+                case 1:
+                    Task task1 = new Task(18, 1);
+
+                    return task1;
+                case 2:
+                    Task task2 = new Task(18, 2);
+
+                    return task2;
+            }
+            throw new ArgumentException();
+        }
+
+
 
         private static int Factorial(int n) {
             if (n <= 0) return 1;
