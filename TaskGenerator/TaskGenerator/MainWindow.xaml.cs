@@ -41,16 +41,15 @@ namespace TaskGenerator
             //students.Add("Михайл Артёмов Наголевич");
             //students.Add("Серёга)");
 
-
-           // List<Variant> variants = Variant.GetVariantsForStudents(students, list);
+            //List<Variant> variants = Variant.GetVariantsForStudents(students, list);
 
             //for (int i = 0; i < variants.Count; i++)
             //{
             //    variants[i].TestPrint();
             //}
-            
-            //List<string> students = Import.namefile();
-        
+
+            //Import.ImportStudents("D:/Tests/Students.docx");
+
             generator.generateBtn.Click += onClick;
             variants.variantChange += changeVariant;
             tasks.parentWindow = this;
