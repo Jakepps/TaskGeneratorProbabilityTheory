@@ -51,18 +51,11 @@
                     />
 
 					<Button
-          x:Name="button" 
-          Grid.Column="1"
-          Style="{StaticResource CardButton}"
-          Margin="0,12,0,0" Width="{Binding ActualHeight, ElementName=button, Mode=OneWay}" Click="button_Click">
-						<Image Source="{StaticResource Change}" Width="20" Height="20"/>
-					</Button>
-
-					<Button
           x:Name="button2" 
           Grid.Column="2"
           Style="{StaticResource CardButton}"
-          Margin="0,12,12,0" Width="{Binding ActualHeight, ElementName=button, Mode=OneWay}" Click="button2_Click">
+          Margin="0,12,12,0" 
+          Width="{Binding ActualHeight, ElementName=button2, Mode=OneWay}" Click="button2_Click">
 						<Image Source="{StaticResource Refresh}" Width="20" Height="20"/>
 					</Button>
 				</Grid>

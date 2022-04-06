@@ -48,6 +48,8 @@ namespace TaskGenerator.Controls.Pages
 
 		public void presentVariants(List<Variant> vars)
 		{
+			source.Background.Opacity = 1;
+			label.Content = "Варианты";
 			panel.Children.RemoveRange(1,panel.Children.Count - 1);
 
 			for (int i = 0; i < vars.Count; i++){

@@ -33,6 +33,7 @@ namespace TaskGenerator.Controls.Pages
 		}
 
 		public void setVariant(Variant v, int index) {
+			source.Background.Opacity = 1;
 			presentedVariant = v;
 
 			variant.Content = "Вариант " + (index + 1);
