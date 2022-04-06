@@ -13,40 +13,28 @@ namespace TaskGenerator
             {
                 case 1:
                     return CreateTaskType1(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 2:
                     return CreateTaskType2(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 3:
                     return CreateTaskType3(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 4:
                     return CreateTaskType4(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 5:
                     return CreateTaskType5(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 6:
                     return CreateTaskType6(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 7:
                     return CreateTaskType7(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 8:
                     return CreateTaskType8(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 9:
                     return CreateTaskType9(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 10:
                     return CreateTaskType10(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 11:
                     return CreateTaskType11(subtype == 0 ? randomSubtype : subtype);
-                    break;
                 case 12:
                     return CreateTaskType12(subtype == 0 ? randomSubtype : subtype);
-                    break;
             }
             throw new NotImplementedException();
         }
@@ -56,15 +44,24 @@ namespace TaskGenerator
             switch (subtype)
             {
                 case 1:
+                    var rand = new Random();
+
                     Task task1 = new Task(1, 1);
-                    task1.condition = "Наугад выбирается автомобиль с четырехзначным номером. Найти вероятность того, что: ";
+                    var numCount = 4 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 3));
+                    var sndNum = 1;
+                    for (int i = 0; i < numCount; i++)
+                    {
+                        sndNum *= (10 - i);
+                    }
+                    var numString = (numCount == 4) ? "четырехзначным" : (numCount == 5) ? "пятизначным" : "шестизначным";
+                    task1.condition = "Наугад выбирается автомобиль с " + numString + " номером. Найти вероятность того, что: ";
                     task1.questions.Add("Это автомобиль Ф. Киркорова");
                     task1.questions.Add("Номер не содержит одинаковых цифр.");
-                    task1.answers.Add("1/10000");
-                    task1.answers.Add("5040/10000");
+                    task1.answers.Add("1/" + (Math.Pow(10, numCount)));
+                    task1.answers.Add(sndNum + "/" + (Math.Pow(10, numCount)));
                     return task1;
                 case 2:
-                    Task task2 = new Task(2, 1);
+                    Task task2 = new Task(1, 2);
                     task2.condition = "Цифровой кодовый замок на сейфе имеет на общей оси пять дисков, каждый из которых разделен на десять секторов." +
                                     " Какова вероятность открыть замок, выбирая код наудачу, если кодовая комбинация: ";
                     task2.questions.Add("Неизвестна.");
@@ -76,31 +73,12 @@ namespace TaskGenerator
             throw new ArgumentException();
 		}
 
-        private static Task CreateTaskType1Subtype1()
-		{
-            var rand = new Random();
-
-            Task task = new Task(1, 1);
-            var numCount = 4 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 3));
-            var sndNum = 1;
-            for(int i = 0; i < numCount; i++) {
-                sndNum *= (10 - i);
-			}
-
-            var numString = (numCount == 4) ? "четырехзначным" : (numCount == 5) ? "пятизначным" : "шестизначным";
-			task.condition = "Наугад выбирается автомобиль с " + numString + " номером. Найти вероятность того, что: ";
-			task.questions.Add("Это автомобиль Ф. Киркорова");
-			task.questions.Add("Номер не содержит одинаковых цифр.");
-			task.answers.Add("1/" + (Math.Pow(10, numCount)));
-            task.answers.Add(sndNum + "/" + (Math.Pow(10, numCount)));
-			return task;
-		}
         private static Task CreateTaskType2(int subtype)
         {
             switch (subtype)
             {
                 case 1:
-                    Task task1 = new Task(1, 2);
+                    Task task1 = new Task(2, 1);
                     task1.condition = "Имеется девять лотерейных билетов, среди которых два выигрышных. Найти вероятность того, что среди пяти наудачу купленных билетов: ";
                     task1.questions.Add("Один билет выигрышный.");
                     task1.questions.Add("Нет выигрышных.");
