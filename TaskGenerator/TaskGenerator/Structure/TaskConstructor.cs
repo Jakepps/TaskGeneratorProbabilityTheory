@@ -205,8 +205,8 @@ namespace TaskGenerator
                     task1.condition = "В ящике 100 деталей, из которых " + brockenCount + " бракованных. Из него поочередно извлекается по одной детали (с возвратом и без возврата ). Найти вероятность того, что во второй раз будет вынута стандартная деталь при условии, что в первый раз извлечена деталь:";
                     task1.questions.Add("стандартная.");
                     task1.questions.Add("бракованная.");
-                    task1.answers.Add(String.Format("{0:0.000000}", (99.0 / brockenCount)));
-                    task1.answers.Add(String.Format("{0:0.000000}", 99.0 / (brockenCount - 1)));
+                    task1.answers.Add(String.Format("{0:0.000000}", ((99.0 - brockenCount) / 99.0)));
+                    task1.answers.Add(String.Format("{0:0.000000}", (99.0 - brockenCount + 1) / 99.0));
 
                     return task1;
                 case 2:
