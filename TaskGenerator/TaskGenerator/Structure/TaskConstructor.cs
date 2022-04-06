@@ -184,7 +184,16 @@ namespace TaskGenerator
             switch (subtype)
             {
                 case 1:
+                    var rand = new Random();
+                    var brockenCount = rand.Next(1, 5) * 5;
+
                     Task task1 = new Task(6, 1);
+
+                    task1.condition = "В ящике 100 деталей, из которых " + brockenCount + " бракованных. Из него поочередно извлекается по одной детали (с возвратом и без возврата ). Найти вероятность того, что во второй раз будет вынута стандартная деталь при условии, что в первый раз извлечена деталь:";
+                    task1.questions.Add("стандартная.");
+                    task1.questions.Add("бракованная.");
+                    task1.answers.Add(String.Format("{0:0.000000}", (99.0 / brockenCount)));
+                    task1.answers.Add(String.Format("{0:0.000000}", 99.0 / (brockenCount - 1)));
 
                     return task1;
                 case 2:
