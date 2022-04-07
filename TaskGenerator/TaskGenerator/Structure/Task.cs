@@ -12,11 +12,30 @@ namespace TaskGenerator
         public List<string> questions { get; set; }
         public List<string> answers { get; set; }
 
-        public string conditionWithQuestions {
+        public string conditionWithNumberedQuestions
+        {
             get {
                 string result = condition;
                 for (int i = 0; i < questions.Count; i++)
                     result += "\n" + (i + 1) + ") " + questions[i];
+                return result;
+            }
+        }
+
+        public string numberedAnswers
+        {
+            get
+            {
+                string result = "";
+                if(answers.Count == 1)
+                {
+                    result += answers[0];
+                    return result;
+                }
+                for (int i = 0; i < answers.Count; i++)
+                {
+                    result += (i + 1) + ") " + answers[i] + (i != answers.Count - 1 ? "\n" : "");
+                } 
                 return result;
             }
         }

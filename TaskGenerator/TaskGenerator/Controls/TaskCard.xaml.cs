@@ -73,12 +73,12 @@ namespace TaskGenerator.Controls
 			var answer = (TextBlock)FindName("answer");
 
 			title.Text = "Задание " + (cardIndex + 1);
-			condition.Text = t.conditionWithQuestions;
+			condition.Text = t.conditionWithNumberedQuestions;
 
-			var answers = "";
-			t.answers.ForEach(x => { answers += x + "\n"; });
-			if (answers.Length > 0) answers = answers.Remove(answers.Length - 1);
-			answer.Text = answers;
+			//var answers = "";
+			//t.answers.ForEach(x => { answers += x + "\n"; });
+			//if (answers.Length > 0) answers = answers.Remove(answers.Length - 1);
+			answer.Text = t.numberedAnswers;
 		}
 
 		private void button2_Click(object sender, RoutedEventArgs e)
