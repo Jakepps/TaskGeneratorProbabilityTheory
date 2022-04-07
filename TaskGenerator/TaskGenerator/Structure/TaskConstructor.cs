@@ -122,11 +122,25 @@ namespace TaskGenerator
 
                 case 2:
                     Task task2 = new Task(2, 2);
-                    task2.condition = "В зале имеется 20 белых и 10 синих кресел. Случайным образом места занимают 15 человек. Найти вероятность того, что они займут: ";
-                    task2.questions.Add("5 белых и 10 синих кресел");
+                    Random random = new Random();
+                    int whiteCount = random.Next(15, 30);
+                    int blueCount = random.Next(10, 20);
+                    int manCount = random.Next(5, whiteCount);
+                    
+                    int whiteTake = random.Next(1, Math.Min(whiteCount, manCount - 1));
+                    
+                    //Test for loop
+                    while (manCount - whiteTake > blueCount)
+                        whiteTake = random.Next(1, Math.Min(whiteCount, manCount - 1));
+
+                    int blueTake = manCount - whiteTake;
+
+                    task2.condition = "В зале имеется "+ whiteCount +" белых и " +blueCount+ " синих кресел." +
+                        " Случайным образом места занимают "+manCount+" человек. Найти вероятность того, что они займут: ";
+                    task2.questions.Add(whiteTake + " белых и " +blueTake+ " синих кресел");
                     task2.questions.Add("Хотя бы одно синее кресло.");
-                    task2.answers.Add("C(20,5)/C(30,15)");
-                    task2.answers.Add("1 - C(20,15)/C(30,15) ");
+                    task2.answers.Add("C("+ whiteCount + ","+whiteTake+")*C(" + blueCount + ", " + blueTake+")/C(" + (whiteCount + blueCount) +", "+ manCount + " )" );
+                    task2.answers.Add("1 - C("+whiteCount+","+manCount+")/C("+(whiteCount+blueCount)+","+manCount+") ");
                     return task2;
             }
             throw new ArgumentException();
