@@ -289,6 +289,23 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(8, 2);
+                    Random random = new Random();
+
+                    int percentWork1 = random.Next(10, 5 + 1);
+                    int percentWork2 = random.Next(10, 100 - percentWork1 - 9);
+                    int percentWork3 = random.Next(10, 100 - percentWork1 - percentWork2 + 1);
+
+
+                    double probFail1 = Convert.ToDouble(random.Next(1,10)) / 100.0;
+                    double probFail2 = Convert.ToDouble(random.Next(1, 10)) / 100.0;
+                    double probFail3 = Convert.ToDouble(random.Next(1, 10)) / 100.0;
+
+                    task2.condition = "Три студента — Дима, Егор и Максим — на лабораторной работе по физике производят" +
+                        " 25, 35 и 40% всех измерений, допуская ошибки с вероятностями" +
+                        " 0,01, 0,03 и 0,02 соответственно. Преподаватель проверяет наугад выбранное " +
+                        "измерение и объявляет его ошибочным.";
+                    task2.questions.Add("Кто из трех студентов вероятнее всего сделал это измерение?");
+
 
                     return task2;
             }
