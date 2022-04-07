@@ -55,7 +55,7 @@
       FontFamily="{StaticResource Inter}"
       UseLayoutRounding = "True"
       Margin="12,8,12,12"
-      Text="1,2"
+      Text="1-18"
       FontSize="16"
       FontWeight="SemiBold"
       Style="{StaticResource TextFieldStyle}"

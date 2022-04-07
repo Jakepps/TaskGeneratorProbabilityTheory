@@ -72,7 +72,7 @@ namespace TaskGenerator.Controls
 			var condition = (TextBlock)FindName("condition");
 			var answer = (TextBlock)FindName("answer");
 
-			title.Text = "Задание " + cardIndex;
+			title.Text = "Задание " + (cardIndex + 1);
 			condition.Text = t.conditionWithQuestions;
 
 			var answers = "";
