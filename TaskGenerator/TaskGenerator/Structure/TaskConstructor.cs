@@ -116,8 +116,8 @@ namespace TaskGenerator
                     var result1 = (C(loteryWinCount, loteryWinPickedCount) * C(loteryCount - loteryWinCount, loteryPickedCount - loteryWinPickedCount)) / (C(loteryCount, loteryPickedCount));
                     var result2 = (C(loteryWinCount, 0) * C(loteryCount - loteryWinCount, loteryPickedCount)) / C(loteryCount, loteryPickedCount);
 
-                    task1.answers.Add(String.Format("{0:0.000000}", result1));
-                    task1.answers.Add(String.Format("{0:0.000000}", result2));
+                    task1.answers.Add(string.Format("{0:0.000000}", result1));
+                    task1.answers.Add(string.Format("{0:0.000000}", result2));
                     return task1;
 
                 case 2:
@@ -178,9 +178,9 @@ namespace TaskGenerator
                     task1.questions.Add("обе песни.");
                     task1.questions.Add("хотя бы одну.");
                     task1.questions.Add("только песню второго поэта.");
-                    task1.answers.Add(String.Format("{0:0.00}", prob1 * prob2));
-                    task1.answers.Add(String.Format("{0:0.00}", 1 - (1 - prob1) * (1 - prob2)));
-                    task1.answers.Add(String.Format("{0:0.00}", (1 - prob1) * prob2));
+                    task1.answers.Add(string.Format("{0:0.00}", prob1 * prob2));
+                    task1.answers.Add(string.Format("{0:0.00}", 1 - (1 - prob1) * (1 - prob2)));
+                    task1.answers.Add(string.Format("{0:0.00}", (1 - prob1) * prob2));
 
                     return task1;
                 case 2:
@@ -206,7 +206,7 @@ namespace TaskGenerator
                     Task task1 = new Task(5, 1);
                     task1.condition = "Два гроссмейстера играют две партии в шахматы. Вероятность выигрыша в одной партии для первого шахматиста равна " + prob1 + ", для второго — " + prob2 + "; вероятность ничьей — " + prob3 + ".";
                     task1.questions.Add("Какова вероятность того, что первый гроссмейстер выиграет матч?");
-                    task1.answers.Add(String.Format("{0:0.0000}", (prob1 * prob1 + prob1 * prob3 + prob3 * prob1)));
+                    task1.answers.Add(string.Format("{0:0.0000}", (prob1 * prob1 + prob1 * prob3 + prob3 * prob1)));
                     return task1;
                 case 2:
                     Task task2 = new Task(5, 2);
@@ -229,8 +229,8 @@ namespace TaskGenerator
                     task1.condition = "В ящике 100 деталей, из которых " + brockenCount + " бракованных. Из него поочередно извлекается по одной детали (с возвратом и без возврата ). Найти вероятность того, что во второй раз будет вынута стандартная деталь при условии, что в первый раз извлечена деталь:";
                     task1.questions.Add("стандартная.");
                     task1.questions.Add("бракованная.");
-                    task1.answers.Add(String.Format("{0:0.000000}", ((99.0 - brockenCount) / 99.0)));
-                    task1.answers.Add(String.Format("{0:0.000000}", (99.0 - brockenCount + 1) / 99.0));
+                    task1.answers.Add(string.Format("{0:0.000000}", ((99.0 - brockenCount) / 99.0)));
+                    task1.answers.Add(string.Format("{0:0.000000}", (99.0 - brockenCount + 1) / 99.0));
 
                     return task1;
                 case 2:
@@ -256,7 +256,7 @@ namespace TaskGenerator
                     Task task1 = new Task(7, 1);
 
                     task1.condition = "В скачках учавствуют три лошади. Первая лошадь вымгрывает скачки с вероятностью " + prob1 + ", вторая - " + prob2 + ", третья - " + prob3 + ". Какова вероятность того, что лошадь, на которую поставил игрок, придет на скачках первой, если он выбирает ее на удачу?";
-                    task1.answers.Add(String.Format("{0:0.000000}", (prob1 + prob2 + prob3) / 3.0));
+                    task1.answers.Add(string.Format("{0:0.000000}", (prob1 + prob2 + prob3) / 3.0));
 
                     return task1;
 
@@ -285,7 +285,7 @@ namespace TaskGenerator
 
                     task1.condition = "Электростанция оборудована генератором электрического тока, приводимым во вращение дизельным двигателем.Состояние оборудования и воспламенительные свойства дизельного топлива(цетановое число) таковы, что при использовании в качестве топлива соляровых фракций прямой перегонки нефти генератор приходит в аварийное состояние с вероятностью " + prob1 + ", при использовании керосиновых фракций — с вероятностью " + prob2 + ", а при использовании газойлевых фракций — с вероятностью " + prob3 + ". 23 декабря 1998 года электростанция исправно давала ток.Какова вероятность того, что в этот день дизельный двигатель работал на солярке, если тот или иной вид топлива используется с равной вероятностью ?";
                     
-                    task1.answers.Add(String.Format("{0:0.000000}", (1 - prob1)/((1 - prob1) + (1 - prob2) + (1 - prob3))));
+                    task1.answers.Add(string.Format("{0:0.000000}", (1 - prob1)/((1 - prob1) + (1 - prob2) + (1 - prob3))));
                     return task1;
                 case 2:
                     Task task2 = new Task(8, 2);
@@ -344,6 +344,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(9, 2);
+                    
 
                     return task2;
             }
@@ -360,7 +361,24 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(10, 2);
+                    Random random = new Random();
 
+                    double probFailure = random.Next(1, 7 + 1) * 5 / 100.0;
+                    int amount = random.Next(1, 10)*5;
+
+                    task2.condition = "Вероятность выхода из строя за время Т одного конденсатора равна " + probFailure + "." +
+                        " Определить вероятность того, что за время Т из 100 конденсаторов, работающих независимо, выйдут из строя:";
+                    task2.questions.Add("не менее "+ amount + " конденсаторов");
+                    task2.questions.Add("ровно половина");
+                    
+                    double x1 = (amount - 100* probFailure)/Math.Sqrt(100*probFailure*(1- probFailure));
+                    double x2 = (100 - 100 * probFailure) / Math.Sqrt(100 * probFailure * (1 - probFailure));
+
+                    task2.answers.Add(string.Format("Φ({0:0.00}) - Φ({1:0.00})", x2,x1));
+
+                    double k1 = 1.0/Math.Sqrt(100 * probFailure * (1 - probFailure));
+                    double k2 = (50 - 100 * probFailure) / Math.Sqrt(100 * probFailure * (1 - probFailure));
+                    task2.answers.Add(string.Format("{0:0.00} * φ({1:0.00})", k1,k2));
                     return task2;
             }
             throw new ArgumentException();
