@@ -74,12 +74,22 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(1, 2);
-                    task2.condition = "Цифровой кодовый замок на сейфе имеет на общей оси пять дисков, каждый из которых разделен на десять секторов." +
+                    Random random = new Random();
+                    int numCount2 = 3 + random.Next(0, 4);
+
+                    string numString2 = (numCount2 == 3) ? "3 диска" : (numCount2 == 4) ? "4 диска" : numCount2 == 5 ? "5 дисков" : "6 дисков";
+                    task2.condition = "Цифровой кодовый замок на сейфе имеет на общей оси " + numString2 + ", каждый из которых разделен на десять секторов." +
                                     " Какова вероятность открыть замок, выбирая код наудачу, если кодовая комбинация: ";
                     task2.questions.Add("Неизвестна.");
                     task2.questions.Add("Не содержит одинаковых цифр.");
-                    task2.answers.Add("1/100000");
-                    task2.answers.Add("1/30240");
+                    int ans1 = (int)Math.Pow(10, numCount2);
+                    task2.answers.Add("1/" + ans1);
+                    int ans2 = 1;
+                    for(int i = 0, x = 10; i < numCount2; i++, x--)
+                    {
+                        ans2 *= x;
+                    }
+                    task2.answers.Add("1/" + ans2);
                     return task2;
             }
             throw new ArgumentException();
