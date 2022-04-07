@@ -291,22 +291,38 @@ namespace TaskGenerator
                     Task task2 = new Task(8, 2);
                     Random random = new Random();
 
-                    int percentWork1 = random.Next(10, 5 + 1);
-                    int percentWork2 = random.Next(10, 100 - percentWork1 - 9);
-                    int percentWork3 = random.Next(10, 100 - percentWork1 - percentWork2 + 1);
+                    int[] percentWork = new int[3];
 
+                    percentWork[0] = random.Next(1, 12 + 1)*5;
+                    percentWork[1] = random.Next(1, 17 - percentWork[0]/5 + 1)*5;
+                    percentWork[2] = 100 - percentWork[0] - percentWork[1];
 
-                    double probFail1 = Convert.ToDouble(random.Next(1,10)) / 100.0;
-                    double probFail2 = Convert.ToDouble(random.Next(1, 10)) / 100.0;
-                    double probFail3 = Convert.ToDouble(random.Next(1, 10)) / 100.0;
+                    double[] probFail = new double[4];
+                    for (int i = 0; i < 3; i++)
+                    {
+                        probFail[i] = Convert.ToDouble(random.Next(1, 10)) / 100.0;
+                        if (i == 1 && Math.Abs(probFail[i] - probFail[i - 1]) < 0.005) i--;
+                        if (i == 2 && (Math.Abs(probFail[i] - probFail[i - 1]) < 0.005 || Math.Abs(probFail[i] - probFail[i - 2]) < 0.005)) i--;
+                    }
 
-                    task2.condition = "Три студента — Дима, Егор и Максим — на лабораторной работе по физике производят" +
-                        " 25, 35 и 40% всех измерений, допуская ошибки с вероятностями" +
-                        " 0,01, 0,03 и 0,02 соответственно. Преподаватель проверяет наугад выбранное " +
-                        "измерение и объявляет его ошибочным.";
-                    task2.questions.Add("Кто из трех студентов вероятнее всего сделал это измерение?");
+                    probFail[3] = percentWork[0] * probFail[0] + percentWork[1] * probFail[1] + percentWork[2] * probFail[2];
 
+                    task2.condition = "Три студента — Артём, Рустам и Сергей — на лабораторной работе по физике производят " +
+                        percentWork[0] + "%, "+ percentWork[1] + "% и " + percentWork[2] + "% всех измерений, допуская ошибки с вероятностями " +
+                        probFail[0] + ", " + probFail[1] + " и "+ probFail[2] + " соответственно. Преподаватель проверяет наугад выбранное " +
+                        "измерение и объявляет его ошибочным. Кто из трех студентов вероятнее всего сделал это измерение?";
 
+                    int studentInd = 0; double max = -1;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if(percentWork[i]*probFail[i]/probFail[3] > max)
+                        {
+                            max = percentWork[i] * probFail[i] / probFail[3];
+                            studentInd = i;
+                        }
+                    }
+                    string student = studentInd == 0 ? "Артём" : studentInd == 1 ? "Рустам" : "Сергей";
+                    task2.answers.Add(student);
                     return task2;
             }
             throw new ArgumentException();
