@@ -15,6 +15,11 @@ namespace TaskGenerator
                 for (int i = 0; i < this.Count; i++)
                     Console.WriteLine(this[i]);
             }
+
+            public Students()
+            {
+                //Console.WriteLine("Students()");
+            }
         }
 
         public Students students;

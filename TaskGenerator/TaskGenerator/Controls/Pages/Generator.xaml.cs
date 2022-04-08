@@ -38,14 +38,23 @@ namespace TaskGenerator.Controls.Pages
         private void btnOpenFile_Click(object sender, RoutedEventArgs e)
         {
 			OpenFileDialog openFileDialog = new OpenFileDialog();
-			Console.WriteLine("OpenFileDialog");
+			//Console.WriteLine("OpenFileDialog");
 			openFileDialog.Filter = "Text files (*.doc; *docx; *.txt)|*.doc; *.docx; *.txt";
+
 			if (openFileDialog.ShowDialog() == true)
             {
-				Console.WriteLine("ShowDialog()");
 				importFileLabel.Content = openFileDialog.SafeFileName;
-				((MainWindow)Application.Current.MainWindow).students = new MainWindow.Students(openFileDialog.FileName);
+				MainWindow mainWindow = ((MainWindow)Application.Current.MainWindow);
+				mainWindow.students = new MainWindow.Students(openFileDialog.FileName);
+				int studentsCount = mainWindow.students.Count;
+				countField.Text = studentsCount.ToString();
 			}
 		}
-	}
+
+        private void btnDeleteFile_Click(object sender, RoutedEventArgs e)
+        {
+			importFileLabel.Content = "Отсутсвует";
+			((MainWindow)Application.Current.MainWindow).students = new MainWindow.Students();
+		}
+    }
 }
