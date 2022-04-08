@@ -49,12 +49,14 @@ namespace TaskGenerator.Controls.Pages
 				int studentsCount = mainWindow.students.Count;
 				countField.Text = studentsCount.ToString();
 			}
+			countField.IsReadOnly = true;
 		}
 
         private void btnDeleteFile_Click(object sender, RoutedEventArgs e)
         {
 			importFileLabel.Content = "Отсутсвует";
 			((MainWindow)Application.Current.MainWindow).students = new MainWindow.Students();
+			countField.IsReadOnly = false;
 		}
     }
 }

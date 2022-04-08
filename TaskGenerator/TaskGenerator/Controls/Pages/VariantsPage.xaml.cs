@@ -64,7 +64,7 @@ namespace TaskGenerator.Controls.Pages
 				}
 				card.radioBtn.Checked += onSelect;
 				panel.Children.Add(card);
-				card.setName("Вариант " + (i + 1));
+				card.setName("Вариант " + (i + 1) + (vars[i].student ?? ""));
 			}
 		}
 	}

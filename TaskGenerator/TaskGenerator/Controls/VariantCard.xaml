@@ -6,6 +6,6 @@
              xmlns:local="clr-namespace:TaskGenerator.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="250">
-	<RadioButton Height="Auto" SnapsToDevicePixels="True" GroupName="Variants" Checked="RadioButton_Checked" x:Name="radioBtn" Click="radioBtn_Click" Template="{StaticResource teplateCheck}">
+	<RadioButton Height="Auto" SnapsToDevicePixels="True" GroupName="Variants" Checked="RadioButton_Checked" x:Name="radioBtn" Click="radioBtn_Click" Template="{StaticResource teplateCheck}" Content="">
 	</RadioButton>
 </UserControl>

@@ -22,7 +22,7 @@ namespace TaskGenerator
             }
         }
 
-        public Students students;
+        public Students students = new Students();
 
         public int selectedVariant = 0;
 
@@ -85,7 +85,12 @@ namespace TaskGenerator
             }
             selectedVariant = 0;
             variantList = Variant.GenerateSomeVariants(count, tasksList);
-
+            
+            if(students.Count > 0)
+            {
+                for(int i = 0; i < variantList.Count; i++)
+                    variantList[i].student = "\n" + students[i];
+            }
             variants.presentVariants(variantList);
             tasks.setVariant(variantList[0], 0);
 		}
