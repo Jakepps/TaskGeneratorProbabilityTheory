@@ -7,6 +7,17 @@ namespace TaskGenerator
 
     public partial class MainWindow : Window
     {
+        //Чёт кринж, ну ладно
+        public class Students : List<string>
+        {
+            public Students(string path) : base(Import.ImportStudents(path))
+            {
+                for (int i = 0; i < this.Count; i++)
+                    Console.WriteLine(this[i]);
+            }
+        }
+
+        public Students students;
 
         public int selectedVariant = 0;
 

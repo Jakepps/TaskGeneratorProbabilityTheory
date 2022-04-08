@@ -8,15 +8,17 @@ using System.IO;
 
 namespace TaskGenerator
 {
+  
     public static class Import
     {
+        
         public static List<string> ImportStudents(string path)
         {
             List<string> students = new List<string>();
 
             Application application = new Application();
-            Document document = application.Documents.Open(path);
-
+            Document document = application.Documents.Open(path, null, true);
+            
             StringBuilder fullString = new StringBuilder();
             for (int i = 1; i <= document.Words.Count; i++)
             {
@@ -33,9 +35,11 @@ namespace TaskGenerator
 
             students = clearedString.ToString().Split(new char[] { '\r', '\n' }, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList();
 
-            for(int i = 0; i < students.Count; i++)
-                Console.WriteLine(students[i]);
-
+            //for(int i = 0; i < students.Count; i++)
+            //    Console.WriteLine(students[i]);
+            
+            document.Close();
+           
             return students;
         }
 

@@ -39,11 +39,12 @@ namespace TaskGenerator.Controls.Pages
         {
 			OpenFileDialog openFileDialog = new OpenFileDialog();
 			Console.WriteLine("OpenFileDialog");
-			openFileDialog.Filter = "Text files (*.docx; *.txt)|*.docx; *.txt";
+			openFileDialog.Filter = "Text files (*.doc; *docx; *.txt)|*.doc; *.docx; *.txt";
 			if (openFileDialog.ShowDialog() == true)
             {
 				Console.WriteLine("ShowDialog()");
 				importFileLabel.Content = openFileDialog.SafeFileName;
+				((MainWindow)Application.Current.MainWindow).students = new MainWindow.Students(openFileDialog.FileName);
 			}
 		}
 	}
