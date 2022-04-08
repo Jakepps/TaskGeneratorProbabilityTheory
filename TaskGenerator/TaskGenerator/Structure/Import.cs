@@ -38,8 +38,6 @@ namespace TaskGenerator
 
             //for(int i = 0; i < students.Count; i++)
             //    Console.WriteLine(students[i]);
-            
-            document.Close();
            
             return students;
         }
