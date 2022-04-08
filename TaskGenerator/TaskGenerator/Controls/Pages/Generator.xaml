@@ -69,7 +69,8 @@
       Margin="12,0,12,0"
       />
 
-			<Label 
+			<Label
+      x:Name="importFileLabel"
       FontFamily="{DynamicResource Inter}"
       Content="Отсутствует"
       FontSize="16"
@@ -90,7 +91,8 @@
 				</Button>
 				<Button
         Margin="6,0,12,0"
-        Content="Выбрать" Grid.Column="1">
+        Content="Выбрать" Grid.Column="1"
+        Click="btnOpenFile_Click">
 				</Button>
 			</Grid>
 

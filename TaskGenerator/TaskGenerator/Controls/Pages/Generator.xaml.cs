@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Microsoft.Win32;
 namespace TaskGenerator.Controls.Pages
 {
 	/// <summary>
@@ -33,6 +33,18 @@ namespace TaskGenerator.Controls.Pages
 		private void generateBtn_Click(object sender, RoutedEventArgs e)
 		{
 
+		}
+
+        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			Console.WriteLine("OpenFileDialog");
+			openFileDialog.Filter = "Text files (*.docx; *.txt)|*.docx; *.txt";
+			if (openFileDialog.ShowDialog() == true)
+            {
+				Console.WriteLine("ShowDialog()");
+				importFileLabel.Content = openFileDialog.SafeFileName;
+			}
 		}
 	}
 }
