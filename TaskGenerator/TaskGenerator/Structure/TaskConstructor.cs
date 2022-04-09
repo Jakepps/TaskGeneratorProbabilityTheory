@@ -259,7 +259,7 @@ namespace TaskGenerator
                 case 2:
                     var random = new Random();
                     var ver1=random.Next(2,10);
-                    var ver2= random.Next(1,ver1-1);
+                    var ver2=random.Next(1,ver1-1);
 
                     Task task2 = new Task(6, 2);
 
@@ -300,8 +300,18 @@ namespace TaskGenerator
                     return task1;
 
                 case 2:
+                    var random = new Random();
+                    var ver1= random.Next(1, 10);
+                    var ver2= random.Next(1, ver1);
+                    var ver3= random.Next(1, ver2);
+                    var ver4= Convert.ToDouble(random.Next(1, 10)) / 10;
+                    var ver5= Convert.ToDouble(random.Next(1, 10)) / 10;
                     Task task2 = new Task(7, 2);
-
+                    task2.condition = "В ночь перед экзаменом по математике студенту Дудкину с вероятностью " + (double)ver1/10 + "  снится экзаменатор, с вероятностью " + (double)ver2 / 10 + "— тройной интеграл и с вероятностью " +
+                                       (double)ver3 / 10 + " то же,что и всегда.Если Дудкину снится преподаватель, то экзамен он сдает с вероятностью " + ver4 + ", если тройной интеграл," +
+                                       "то успех на экзамене ожидает его с вероятностью " + ver5 + ". Если же Дудкину снится то же, что и всегда, то экзамен он точно «заваливает». Какова вероятность, что Дудкин сдаст " +
+                                       "математику в ближайшую сессию?";
+                    task2.answers.Add((string.Format("{0:0.00}", (double)ver1 / 10 * (double)ver4 / 10 + (double)ver2 / 10 * (double)ver5 / 10)));
                     return task2;
             }
             throw new ArgumentException();
