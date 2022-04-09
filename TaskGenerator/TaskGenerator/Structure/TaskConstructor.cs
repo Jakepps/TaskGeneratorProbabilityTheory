@@ -220,14 +220,13 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     var random=new Random();
-                    var ver1 = Convert.ToDouble(random.Next(1, 10));
-                    var ver2 = Convert.ToDouble(random.Next(1, 15));
+                    var ver1 = random.Next(1, 10) / 10.0;
+                    var ver2 = random.Next(1, 15) / 15.0;
 
                     Task task2 = new Task(5, 2);
-                    task2.condition = "Экзаменационный билет по теории вероятностей содержит три вопроса(по одному из трех разделов). Студент знает " + ver1 + " из 10 вопросов первого раздела, " + ver2 + " из 15 — второго и все 20 вопросов третьего раздела.Преподаватель ставит положительную оценку при ответе хотя бы на два вопроса билета.";
+                    task2.condition = "Экзаменационный билет по теории вероятностей содержит три вопроса(по одному из трех разделов). Студент знает " + ver1*10 + " из 10 вопросов первого раздела, " + ver2*15 + " из 15 — второго и все 20 вопросов третьего раздела.Преподаватель ставит положительную оценку при ответе хотя бы на два вопроса билета.";
                     task2.questions.Add("Какова вероятность того,что студент не сдаст экзамен ?");
-                    task2.answers.Add(string.Format("{0:0.000}",(1-ver1/10)*(1-ver2/10)));
-                    Console.WriteLine((1 - ver1 / 10) * (1 - ver2 / 10));
+                    task2.answers.Add(string.Format("{0:0.000}",(1-ver1)*(1-ver2)));
                     return task2;
             }
             throw new ArgumentException();
