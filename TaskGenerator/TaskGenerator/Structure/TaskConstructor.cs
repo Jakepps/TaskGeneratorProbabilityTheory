@@ -210,7 +210,8 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(5, 2);
-
+                    var random = new Random();
+                    var brockenCount = (random.Next(2, 20) * 5) / 100.0;
                     return task2;
             }
             throw new ArgumentException();
@@ -422,7 +423,39 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(12, 2);
+                    Random random = new Random();
+                    double probDefective = random.Next(1,10)*5/100.0;
+                    task2.condition = string.Format("Вероятность изготовления нестандартной детали равна {0:0.00}. Из партии контролер проверяет не более четырех деталей. " +
+                        "Если деталь оказывается нестандартной, испытания прекращаются, а партия задерживается. Если деталь оказывается стандартной, " +
+                        "контролер берет следующую и т. д.", probDefective);
+                    task2.questions.Add("Составить ряд распределения числа проверенных деталей.");
+                    task2.questions.Add("Найти М(Х), D(X), σ(X), F(X).");
 
+                    double[] p = new double[4];
+                    for(int i = 0; i < 4; i++)
+                    {
+                        p[i] = Math.Pow(1 - probDefective, i) * probDefective;
+                    }
+                    task2.answers.Add(string.Format("\nP(x=1)={0:0.00} \n" +
+                        "P(x=2)={1:0.00}*{0:0.00}={2:0.000} \n" +
+                        "P(x=3)={1:0.00}*{1:0.00}*{0:0.00}={3:0.000} \n" +
+                        "P(x=4)={1:0.00}*{1:0.00}*{1:0.00}*{0:0.00}={4:0.000}", probDefective, 1- probDefective, p[1], p[2], p[3]));
+
+                    double mx = 0;
+                    for (int i = 1; i <= 4; i++)
+                        mx += i*p[i-1];
+
+                    double dx = 0;
+                    for (int i = 1; i <= 4; i++)
+                        dx += i*i * p[i - 1];
+                    dx -= mx * mx;
+
+                    double[] fx = new double[4];
+                    fx[0] = p[0];
+                    for (int i = 1; i < 4; i++)
+                        fx[i] = fx[i - 1] + p[i];
+                    task2.answers.Add(string.Format("\nM(X)={0:0.000} \nD(X)={1:0.000} \nσ(X)={2:0.000} \nF(X) = \n{3:0.000}, x = 1; \n{4:0.000}, x = 2; \n{5:0.000}, x = 3; \n{6:0.000}, x = 4;",
+                        mx, dx, Math.Sqrt(dx), fx[0], fx[1], fx[2], fx[3]));
                     return task2;
             }
             throw new ArgumentException();
