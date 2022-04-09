@@ -184,7 +184,17 @@ namespace TaskGenerator
 
                     return task1;
                 case 2:
+                    var random = new Random();
+                    var ver1 = (random.Next(1, 10)) / 10.0;
+                    var ver2 = (random.Next(1, 10)) / 10.0;
                     Task task2 = new Task(4, 2);
+                    task2.condition = "Два баскетболиста делают по одному броску мячом по корзине. Для первого спортсмена вероятность попадания равна " + ver1 + ", для второго - " + ver2 + ". Какова вероятность того,что в корзину попадут:";
+                    task2.questions.Add("оба игрока.");
+                    task2.questions.Add("хотя бы один игрок.");
+                    task2.questions.Add("попадет только первый спортсмен?");
+                    task2.answers.Add(string.Format("{0:0.00}",ver1 * ver2));
+                    task2.answers.Add(string.Format("{0:0.00}",1 - (1 - ver1) * (1 - ver2)));
+                    task2.answers.Add(string.Format("{0:0.00}",ver1 * (1 - ver2)));
 
                     return task2;
             }
@@ -209,9 +219,15 @@ namespace TaskGenerator
                     task1.answers.Add(string.Format("{0:0.0000}", (prob1 * prob1 + prob1 * prob3 + prob3 * prob1)));
                     return task1;
                 case 2:
+                    var random=new Random();
+                    var ver1 = Convert.ToDouble(random.Next(1, 10));
+                    var ver2 = Convert.ToDouble(random.Next(1, 15));
+
                     Task task2 = new Task(5, 2);
-                    var random = new Random();
-                    var brockenCount = (random.Next(2, 20) * 5) / 100.0;
+                    task2.condition = "Экзаменационный билет по теории вероятностей содержит три вопроса(по одному из трех разделов). Студент знает " + ver1 + " из 10 вопросов первого раздела, " + ver2 + " из 15 — второго и все 20 вопросов третьего раздела.Преподаватель ставит положительную оценку при ответе хотя бы на два вопроса билета.";
+                    task2.questions.Add("Какова вероятность того,что студент не сдаст экзамен ?");
+                    task2.answers.Add(string.Format("{0:0.000}",(1-ver1/10)*(1-ver2/10)));
+                    Console.WriteLine((1 - ver1 / 10) * (1 - ver2 / 10));
                     return task2;
             }
             throw new ArgumentException();
