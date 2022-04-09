@@ -157,7 +157,13 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(3, 2);
-
+                    task2.condition = "Пусть А, В, С — случайные события, выраженные подмножествами одного и того же множества элементарных событий. В алгебре событий {А, В, С} запишите следующее:";
+                    task2.questions.Add("Из данных событий произошло только А");
+                    task2.questions.Add("Произошло хотя бы одно из данных событий");
+                    task2.questions.Add("Произошло более одного из данных событий.");
+                    task2.answers.Add("A•¬B•¬C");
+                    task2.answers.Add("¬(¬A•¬B•¬C)");
+                    task2.answers.Add("¬(¬A•¬B•¬C + A•¬B•¬C + ¬A•B•¬C + ¬A•¬B•C)");
                     return task2;
             }
             throw new ArgumentException();
