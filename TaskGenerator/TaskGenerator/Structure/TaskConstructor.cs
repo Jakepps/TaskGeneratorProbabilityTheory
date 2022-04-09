@@ -503,7 +503,20 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(14, 2);
+                    Random random = new Random();
+                    int childAmount = random.Next(3, 6 + 1);
+                    task2.condition = "Предполагая одинаковой вероятность рождения мальчика и девочки, составить ряд распределения случайной величины X, " +
+                        "которая выражает число мальчиков в семье, имеющей " + childAmount + " детей. Найти M(X) и D(X) этой случайной величины.";
 
+                    double[] p = new double[childAmount+1];
+                    for (int i = 0; i < p.Length; i++)
+                        p[i] = C(childAmount, i) *Math.Pow(0.5, childAmount);
+
+                    string str = "";
+                    for (int i = 0; i < p.Length; i++)
+                        str += "P(x=" + i + ")=C("+ childAmount + ","+ i +")*0.5^" + childAmount + "=" + p[i] + "\n";
+
+                    task2.answers.Add(str);
                     return task2;
             }
             throw new ArgumentException();
