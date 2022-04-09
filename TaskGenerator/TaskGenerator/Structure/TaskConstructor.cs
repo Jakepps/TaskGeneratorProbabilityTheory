@@ -251,8 +251,24 @@ namespace TaskGenerator
 
                     return task1;
                 case 2:
+                    var random = new Random();
+                    var ver1=random.Next(2,10);
+                    var ver2= random.Next(1,ver1-1);
+
                     Task task2 = new Task(6, 2);
 
+                    task2.condition = "Работа некоторого устройства прекращается, если из строя выходит 1 из " + ver1 + ".Последовательная замена " +
+                                      "каждого элемента новым производится до тех пор пока устройство не начнет работать. " +
+                                      "Какова вероятность того, что придется заменить "+ver2+" элементов ?";
+                    double an=1.0;
+
+                    while (ver2 != 0)
+                    {
+                        an *= ((double)ver2 / (double)ver1);
+                        ver1 -= 1;
+                        ver2 -= 1;
+                    }
+                    task2.answers.Add(string.Format("{0:0.000000}", an));
                     return task2;
             }
             throw new ArgumentException();
