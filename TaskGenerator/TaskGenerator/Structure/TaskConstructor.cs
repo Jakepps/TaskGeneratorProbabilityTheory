@@ -532,7 +532,14 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(15, 2);
-
+                    Random random = new Random();
+                    int lampAmount = random.Next(10, 30)*100;
+                    double probDamage = random.Next(1, 10)*10 / 1000.0;
+                    task2.condition = "Торговая база получила " + lampAmount + " электрических лампочек. Вероятность повреждения электролампочки в пути равна " + probDamage + ". ";
+                    task2.questions.Add("Составить ряд распределения числа лампочек, поврежденных в пути.");
+                    task2.questions.Add("Найти M(X) этой случайной величины.");
+                    task2.answers.Add(string.Format("Pn(m) = {0:0}^m/m! * e^(-{0:0})", lampAmount * probDamage));
+                    task2.answers.Add(string.Format("M(X) = ∑(i=1, " + lampAmount + ") i*{0:0}^i/i! * e^(-{0:0})", lampAmount * probDamage));
                     return task2;
             }
             throw new ArgumentException();
