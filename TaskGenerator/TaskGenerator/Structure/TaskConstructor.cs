@@ -411,10 +411,13 @@ namespace TaskGenerator
                         ver1 + ". Определить вероятность того, что за время Т из " + (int)ver2 + " элементов из строя выйдет:";
                     task2.questions.Add("половина");
                     task2.questions.Add("меньше половины");
-                    var ver3 = 1 - ver1;
-                    var x = ((ver2 / 2) * ver1 * ver3) / ver2 * ver1 * ver3;
-                    var p = 1 / ver2 * ver1 * ver3;
-                    task2.answers.Add(string.Format("{0:0.00}", p + "*" + "fi(" + x + ")"));
+                    double ver3 = 1 - ver1;
+                    double x = ((ver2 / 2) * ver1 * ver3) / Math.Sqrt(ver2 * ver1 * ver3);
+                    double p = 1.0 / Math.Sqrt(ver2 * ver1 * ver3);
+                    task2.answers.Add(string.Format("{0:0.00}*ф({1:0.00})", p, x));
+                    double x1 = (1 - ver1 * ver3) / Math.Sqrt(ver2 * ver1 * ver3);
+                    double x2 = ((ver2 / 2 - 1) - ver1 * ver3) / Math.Sqrt(ver2 * ver1 * ver3);
+                    task2.answers.Add(string.Format("ф({0:0.00})-ф({1:0.00})", x2, x1));
                     return task2;
             }
             throw new ArgumentException();
@@ -617,8 +620,24 @@ namespace TaskGenerator
 
                     return task1;
                 case 2:
+                    Random random = new Random();
+                    var b=random.Next(2, 10);
+                    var a=random.Next(1, b-1);
                     Task task2 = new Task(17, 2);
-
+                    task2.condition = "        |0,x<" + a + '\n' +
+                                     "f(x)=|a(4x+3)," + a + "≤x≤" + b + '\n' +
+                                     "        |0,x>" + b + '\n';
+                    task2.questions.Add("найти параметр a;");
+                    task2.questions.Add("найти функцию распределения F(x);");
+                    task2.questions.Add("найти асимметрию и эксцесс X."); 
+                    task2.questions.Add("построить графики f(x) и F(x)");
+                    double ot = 1/(2 *(double)b * (double)b + 3 * (double)b - (2 * (double)a * (double)a + 3 * (double)a));
+                    task2.answers.Add(string.Format("A={0:0.0000}",ot));
+                    //double F=ot*():
+                    double f1 = ot * 2;
+                    double f2 = ot * 3;
+                    double f3 = 2 * a * a * ot + 3 * a * ot;
+                    task2.answers.Add(string.Format("{0:0.000}x²+3{1:0.000}x-{2:0.000}", f1, f2, f3));
                     return task2;
             }
             throw new ArgumentException();
@@ -639,8 +658,30 @@ namespace TaskGenerator
             }
             throw new ArgumentException();
         }
+        ////вычисление интегралов
+        //public delegate double Function(double x);
 
+        //public static double Trapezoidal(Function f, double a, double b, int n)
+        //{
+        //    double sum = 0.0;
+        //    double h = (b - a) / n;
+        //    for (int i = 0; i < n; i++)
+        //    {
+        //        sum += 0.5 * h * (f(a + i * h) + f(a + (i + 1) * h));
+        //    }
+        //    return sum;
+        //}
 
+        //public static double Trapezoidal(double[] y, double a, double b, int n)
+        //{
+        //    double sum = 0.0;
+        //    double h = (b - a) / (n - 1);
+        //    for (int i = 0; i < (n - 1); i++)
+        //    {
+        //        sum += 0.5 * h * (y[i] + y[i + 1]);
+        //    }
+        //    return sum;
+        //}
 
         private static int Factorial(int n) {
             if (n <= 0) return 1;
