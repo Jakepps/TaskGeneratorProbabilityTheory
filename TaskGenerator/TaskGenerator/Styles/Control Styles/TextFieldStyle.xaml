@@ -46,6 +46,7 @@
 											Duration="0:0:0.25"/>
 									</Storyboard>
 								</VisualState>
+                              
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 						<ScrollViewer Margin="0"
@@ -58,9 +59,9 @@
 
 	<ControlTemplate TargetType="{x:Type RadioButton}" x:Key="teplateCheck">
 		<Grid>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition/>
-			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
 			<Border
 								x:Name="bord"
@@ -83,16 +84,40 @@
 				</Border.Background>
 			</Border>
 
-			<Label Content="Вариант 1"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Вариант 1"
                   FontSize="16"
 									x:Name="varName"
                   FontWeight="Bold"
 									SnapsToDevicePixels="True"
                   FontFamily="{StaticResource Inter}"
-                  Padding="12,12,12,12"
+                  Padding="12,12,12,0"
                   />
 
-			<VisualStateManager.VisualStateGroups>
+                <Label Content="Артем Niggaлевский"
+					Grid.Row="1"
+                    Foreground="{StaticResource DisableBrush}"
+					FontSize="12"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Top"
+                    HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+                    x:Name="studentName"
+					FontWeight="Medium"
+					SnapsToDevicePixels="True"
+					FontFamily="{StaticResource Inter}"
+                    Padding="12,0,12,12"
+                       
+				/>
+
+            </Grid>
+			
+            <VisualStateManager.VisualStateGroups>
 				<VisualStateGroup>
 					<VisualState x:Name="Normal">
 						<Storyboard>
@@ -105,29 +130,45 @@
 							<DoubleAnimation 
 								Storyboard.TargetName="bord"
 								To="0.0" Duration="0:0:0.25" Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)" />
-						</Storyboard>
+
+                            <ColorAnimation 
+								To="{StaticResource Text}" 
+								Storyboard.TargetName="varName"
+								Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+								Duration="0:0:0.25"/>
+                            <ColorAnimation 
+								To="{StaticResource Disable}" 
+								Storyboard.TargetName="studentName"
+								Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+								Duration="0:0:0.25"/>
+                            
+                        </Storyboard>
 					</VisualState>
 					<VisualState x:Name="Checked">
 						<Storyboard>
 
-							<ColorAnimation 
+                            <ColorAnimation 
 								To="{StaticResource Accent}" 
 								Storyboard.TargetName="bord"
 								Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
-                FillBehavior="HoldEnd"
-                Duration="0:0:0.25"/>
+								FillBehavior="HoldEnd"
+								Duration="0:0:0.25"/>	
 
-							<DoubleAnimation 
+                            <DoubleAnimation 
 								Storyboard.TargetName="bord"
 								To="0.1" Duration="0:0:0.25" Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)" />
 
-							<ColorAnimation 
+                            <ColorAnimation 
 								To="{StaticResource Background}" 
 								Storyboard.TargetName="varName"
-								Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)" 
-                FillBehavior="HoldEnd"
-                Duration="0:0:0.25"/>
-						</Storyboard>
+								Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+								Duration="0:0:0.25"/>
+                            <ColorAnimation 
+								To="{StaticResource Background}" 
+								Storyboard.TargetName="studentName"
+								Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+								Duration="0:0:0.25"/>
+                        </Storyboard>
 					</VisualState>
 
 					<VisualState x:Name="Pressed">
@@ -142,14 +183,13 @@
 
 					<VisualState x:Name="MouseOver">
 						<Storyboard>
-							<ColorAnimation 
+                            <ColorAnimation 
 								To="{StaticResource Highlight}" 
 								Storyboard.TargetName="bord"
 								Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
-                FillBehavior="HoldEnd"
-                Duration="0:0:0.25"/>
-							
-						</Storyboard>
+								FillBehavior="HoldEnd"
+								Duration="0:0:0.25"/>
+                        </Storyboard>
 					</VisualState>
 				</VisualStateGroup>
 			</VisualStateManager.VisualStateGroups>

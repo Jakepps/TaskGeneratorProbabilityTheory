@@ -49,14 +49,23 @@ namespace TaskGenerator.Controls.Pages
 				int studentsCount = mainWindow.students.Count;
 				countField.Text = studentsCount.ToString();
 			}
+
+			countField.Foreground = new SolidColorBrush(Color.FromArgb(255, 160, 160, 160));
 			countField.IsReadOnly = true;
+			countField.Focusable = false;
+			//countField.IsEnabled = false;
 		}
 
         private void btnDeleteFile_Click(object sender, RoutedEventArgs e)
         {
-			importFileLabel.Content = "Отсутсвует";
+			importFileLabel.Content = "Отсутствует";
 			((MainWindow)Application.Current.MainWindow).students = new MainWindow.Students();
+
+			countField.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
 			countField.IsReadOnly = false;
+			countField.Focusable = true;
+
+			//countField.IsEnabled = true;
 		}
-    }
+	}
 }

@@ -10,7 +10,7 @@
 
 	<ScrollViewer Grid.Row="1" 
   x:Name="source"
-  VerticalScrollBarVisibility="Visible">
+  VerticalScrollBarVisibility="Hidden">
 		<ScrollViewer.Background>
 			<SolidColorBrush Color="{StaticResource Background}" Opacity="0"/>
 		</ScrollViewer.Background>

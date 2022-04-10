@@ -50,7 +50,7 @@ namespace TaskGenerator
 
         public Variant(int number, List<int> taskTypes)
         {
-            this.number = number + 5;
+            this.number = number;
             tasks = new List<Task>();
             for (int i = 0; i < taskTypes.Count; i++)
             {

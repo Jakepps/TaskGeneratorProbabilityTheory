@@ -39,12 +39,13 @@ namespace TaskGenerator.Controls
 			//C//onsole.WriteLine(radioBtn.Template);
 		}
 
-		public void setName(string name) {
+		public void setName(Variant var) {
 			this.OnApplyTemplate();
 
 			radioBtn.ApplyTemplate();
-			((Label)radioBtn.Template.FindName("varName", radioBtn)).Content = name;
-			Console.WriteLine();
+			((Label)radioBtn.Template.FindName("varName", radioBtn)).Content = "Вариант " + var.number;
+			((Label)radioBtn.Template.FindName("studentName", radioBtn)).Content = var.student;
+			//Console.WriteLine();
 		}
 
 		private void radioBtn_Click(object sender, RoutedEventArgs e)
