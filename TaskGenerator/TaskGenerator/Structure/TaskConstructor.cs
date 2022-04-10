@@ -429,6 +429,26 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(10, 1);
+                    Random rand = new Random();
+
+                    var testCount = rand.Next(7,10) * 100;
+                    var prob = rand.Next(5, 15) / 20.0;
+                    var equalCount = rand.Next(5,10) * 50;
+
+                    var startCount = rand.Next(2, 6) * 50;
+                    var endCount = rand.Next(6, 11) * 50;
+
+                    task1.condition = "В каждом из " + testCount + " независимых испытаний событие А происходит с постоянной вероятностью " + prob + ". Найти вероятность того, что событие А происходит:";
+                    task1.questions.Add("меньше чем " + endCount + " и больше чем " + startCount + " раз.");
+                    task1.questions.Add("точно " + equalCount + " раз.");
+
+                    var x = (equalCount - testCount * prob) / Math.Sqrt(testCount * prob * (1 - prob));
+
+                    var x11 = (startCount - testCount * prob) / Math.Sqrt(testCount * prob * (1 - prob));
+                    var x22 = (endCount - testCount * prob) / Math.Sqrt(testCount * prob * (1 - prob));
+
+                    task1.answers.Add("Ф(" + String.Format("{0:0.0000}", x22) + ") - Ф(" + String.Format("{0:0.0000}", x11) + ")");
+                    task1.answers.Add("Φ(" + String.Format("{0:0.0000}",x) + ")");
 
                     return task1;
                 case 2:

@@ -34,9 +34,6 @@ namespace TaskGenerator.Controls
 		public override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();
-
-
-			//C//onsole.WriteLine(radioBtn.Template);
 		}
 
 		public void setName(Variant var) {
@@ -45,14 +42,11 @@ namespace TaskGenerator.Controls
 			radioBtn.ApplyTemplate();
 			((Label)radioBtn.Template.FindName("varName", radioBtn)).Content = "Вариант " + var.number;
 			((Label)radioBtn.Template.FindName("studentName", radioBtn)).Content = var.student;
-			//Console.WriteLine();
 		}
 
 		private void radioBtn_Click(object sender, RoutedEventArgs e)
 		{
-			//radioBtn.ApplyTemplate();
-			///Console.WriteLine(radioBtn.ContentTemplate.FindName("bord", radioBtn));
-			//Console.WriteLine(radioBtn.Template.FindName("varName", radioBtn));
+
 		}
 	}
 }
