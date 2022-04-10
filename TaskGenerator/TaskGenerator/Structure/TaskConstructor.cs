@@ -653,7 +653,6 @@ namespace TaskGenerator
                     task2.questions.Add("построить графики f(x) и F(x)");
                     double ot = 1/(2 *(double)b * (double)b + 3 * (double)b - (2 * (double)a * (double)a + 3 * (double)a));
                     task2.answers.Add(string.Format("A={0:0.0000}",ot));
-                    //double F=ot*():
                     double f1 = ot * 2;
                     double f2 = ot * 3;
                     double f3 = 2 * a * a * ot + 3 * a * ot;
@@ -672,7 +671,15 @@ namespace TaskGenerator
 
                     return task1;
                 case 2:
+                    Random random = new Random();
+                    var a = random.NextDouble() * 10.0 + 1.0;
+                    var b = Convert.ToDouble(random.Next(1, 10));
                     Task task2 = new Task(18, 2);
+                    task2.condition = "        ⎧0, x≤0" + '\n' +
+                                     "f(x)=⎨2x/3, 0≤x≤1"+'\n' +
+                                     "        |3-x/3, 1≤x≤3" + '\n'+
+                                     "        ⎩0, x>3"+'\n'+
+                                     "α="+a+",β="+b;
 
                     return task2;
             }
