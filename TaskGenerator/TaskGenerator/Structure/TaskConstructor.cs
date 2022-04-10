@@ -644,9 +644,9 @@ namespace TaskGenerator
                     var b=random.Next(2, 10);
                     var a=random.Next(1, b-1);
                     Task task2 = new Task(17, 2);
-                    task2.condition = "        |0,x<" + a + '\n' +
-                                     "f(x)=|a(4x+3)," + a + "≤x≤" + b + '\n' +
-                                     "        |0,x>" + b + '\n';
+                    task2.condition = "        ⎧0,x<" + a + '\n' +
+                                     "f(x)=⎨a(4x+3)," + a + "≤x≤" + b + '\n' +
+                                     "        ⎩0,x>" + b + '\n';
                     task2.questions.Add("найти параметр a;");
                     task2.questions.Add("найти функцию распределения F(x);");
                     task2.questions.Add("найти асимметрию и эксцесс X."); 
