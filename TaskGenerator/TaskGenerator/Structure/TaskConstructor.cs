@@ -301,17 +301,18 @@ namespace TaskGenerator
 
                 case 2:
                     var random = new Random();
-                    var ver1= random.Next(1, 10);
-                    var ver2= random.Next(1, ver1);
-                    var ver3= random.Next(1, ver2);
+                    var ver1 = Convert.ToDouble(random.Next(1, 8));
+                    var ver2 = Convert.ToDouble(random.Next(1, 10 - Convert.ToInt32(ver1) - 1));
+                    var ver3 = Convert.ToDouble(10 - ver1 - ver2);
                     var ver4= Convert.ToDouble(random.Next(1, 10)) / 10;
                     var ver5= Convert.ToDouble(random.Next(1, 10)) / 10;
+                    ver1 /= 10; ver2 /= 10; ver3 /= 10;
                     Task task2 = new Task(7, 2);
-                    task2.condition = "В ночь перед экзаменом по математике студенту Дудкину с вероятностью " + (double)ver1/10 + "  снится экзаменатор, с вероятностью " + (double)ver2 / 10 + "— тройной интеграл и с вероятностью " +
-                                       (double)ver3 / 10 + " то же,что и всегда.Если Дудкину снится преподаватель, то экзамен он сдает с вероятностью " + ver4 + ", если тройной интеграл," +
+                    task2.condition = "В ночь перед экзаменом по математике студенту Дудкину с вероятностью " + ver1 + "  снится экзаменатор, с вероятностью " + ver2 + "— тройной интеграл и с вероятностью " +
+                                       ver3 + " то же,что и всегда.Если Дудкину снится преподаватель, то экзамен он сдает с вероятностью " + ver4 + ", если тройной интеграл," +
                                        "то успех на экзамене ожидает его с вероятностью " + ver5 + ". Если же Дудкину снится то же, что и всегда, то экзамен он точно «заваливает». Какова вероятность, что Дудкин сдаст " +
                                        "математику в ближайшую сессию?";
-                    task2.answers.Add((string.Format("{0:0.00}", (double)ver1 / 10 * (double)ver4 / 10 + (double)ver2 / 10 * (double)ver5 / 10)));
+                    task2.answers.Add((string.Format("{0:0.00}", ver1 * ver4 + ver2 * ver5)));
                     return task2;
             }
             throw new ArgumentException();
@@ -397,9 +398,23 @@ namespace TaskGenerator
 
                     return task1;
                 case 2:
+                    var random = new Random();
+                    var ver1 = Convert.ToDouble(random.Next(1, 10))/10;
+                    var ver2=0.0;
+                    do
+                    {
+                        ver2 =Convert.ToDouble(random.Next(4, 100));
+                    }
+                    while (ver2 % 2 != 0);
                     Task task2 = new Task(9, 2);
-                    
-
+                    task2.condition = "Вероятность выхода из строя за время Т одного (любого) элемента равна " +
+                        ver1 + ". Определить вероятность того, что за время Т из " + (int)ver2 + " элементов из строя выйдет:";
+                    task2.questions.Add("половина");
+                    task2.questions.Add("меньше половины");
+                    var ver3 = 1 - ver1;
+                    var x = ((ver2 / 2) * ver1 * ver3) / ver2 * ver1 * ver3;
+                    var p = 1 / ver2 * ver1 * ver3;
+                    task2.answers.Add(string.Format("{0:0.00}", p + "*" + "fi(" + x + ")"));
                     return task2;
             }
             throw new ArgumentException();
