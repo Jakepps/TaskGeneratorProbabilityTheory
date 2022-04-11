@@ -623,6 +623,29 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(13, 2);
+                    Random random = new Random();
+                    int childAmount = random.Next(3, 6 + 1);
+                    task2.condition = "Предполагая одинаковой вероятность рождения мальчика и девочки, составить ряд распределения случайной величины X, " +
+                        "которая выражает число мальчиков в семье, имеющей " + childAmount + " детей. Найти M(X) и D(X) этой случайной величины.";
+
+                    double[] p = new double[childAmount + 1];
+                    for (int i = 0; i < p.Length; i++)
+                        p[i] = C(childAmount, i) * Math.Pow(0.5, childAmount);
+
+                    string str = "";
+                    for (int i = 0; i < p.Length; i++)
+                        str += "P(x=" + i + ")=C(" + childAmount + "," + i + ")*0.5^" + childAmount + "=" + p[i] + "\n";
+                    task2.answers.Add(str);
+                    double mx2 = 0;
+                    for (int i = 1; i <= 4; i++)
+                        mx2 += i * p[i - 1];
+
+                    double dx2 = 0;
+                    for (int i = 1; i <= 4; i++)
+                        dx2 += i * i * p[i - 1];
+                    dx2 -= mx2 * mx2;
+                    task2.answers.Add(string.Format("\nM(X)={0:0.000} \nD(X)={1:0.000}",mx2, dx2));
+
 
                     return task2;
             }
@@ -651,19 +674,13 @@ namespace TaskGenerator
                 case 2:
                     Task task2 = new Task(14, 2);
                     Random random = new Random();
-                    int childAmount = random.Next(3, 6 + 1);
-                    task2.condition = "Предполагая одинаковой вероятность рождения мальчика и девочки, составить ряд распределения случайной величины X, " +
-                        "которая выражает число мальчиков в семье, имеющей " + childAmount + " детей. Найти M(X) и D(X) этой случайной величины.";
-
-                    double[] p = new double[childAmount+1];
-                    for (int i = 0; i < p.Length; i++)
-                        p[i] = C(childAmount, i) *Math.Pow(0.5, childAmount);
-
-                    string str = "";
-                    for (int i = 0; i < p.Length; i++)
-                        str += "P(x=" + i + ")=C("+ childAmount + ","+ i +")*0.5^" + childAmount + "=" + p[i] + "\n";
-
-                    task2.answers.Add(str);
+                    int lampAmount = random.Next(10, 30) * 100;
+                    double probDamage = random.Next(1, 10) * 10 / 1000.0;
+                    task2.condition = "Торговая база получила " + lampAmount + " электрических лампочек. Вероятность повреждения электролампочки в пути равна " + probDamage + ". ";
+                    task2.questions.Add("Составить ряд распределения числа лампочек, поврежденных в пути.");
+                    task2.questions.Add("Найти M(X) этой случайной величины.");
+                    task2.answers.Add(string.Format("Pn(m) = {0:0}^m/m! * e^(-{0:0})", lampAmount * probDamage));
+                    task2.answers.Add(string.Format("M(X) = ∑(i=1, " + lampAmount + ") i*{0:0}^i/i! * e^(-{0:0})", lampAmount * probDamage));
                     return task2;
             }
             throw new ArgumentException();
@@ -679,15 +696,9 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(15, 2);
-                    Random random = new Random();
-                    int lampAmount = random.Next(10, 30)*100;
-                    double probDamage = random.Next(1, 10)*10 / 1000.0;
-                    task2.condition = "Торговая база получила " + lampAmount + " электрических лампочек. Вероятность повреждения электролампочки в пути равна " + probDamage + ". ";
-                    task2.questions.Add("Составить ряд распределения числа лампочек, поврежденных в пути.");
-                    task2.questions.Add("Найти M(X) этой случайной величины.");
-                    task2.answers.Add(string.Format("Pn(m) = {0:0}^m/m! * e^(-{0:0})", lampAmount * probDamage));
-                    task2.answers.Add(string.Format("M(X) = ∑(i=1, " + lampAmount + ") i*{0:0}^i/i! * e^(-{0:0})", lampAmount * probDamage));
+
                     return task2;
+
             }
             throw new ArgumentException();
         }
@@ -771,7 +782,8 @@ namespace TaskGenerator
                     var b=random.Next(2, 10);
                     var a=random.Next(1, b-1);
                     Task task2 = new Task(17, 2);
-                    task2.condition = "        ⎧0,x<" + a + '\n' +
+                    task2.condition ="Дана функция распределения F(x) непрерывной случайной величины X."+
+                                     "\n        ⎧0,x<" + a + '\n' +
                                      "f(x)=⎨a(4x+3)," + a + "≤x≤" + b + '\n' +
                                      "        ⎩0,x>" + b + '\n';
                     task2.questions.Add("найти параметр a;");
@@ -837,7 +849,8 @@ namespace TaskGenerator
                     var a = Math.Round(random.NextDouble() * 20.0 + 1.0)/10;
                     var b = random.Next(1, 10);
                     Task task2 = new Task(18, 2);
-                    task2.condition ="        ⎧0, x≤0" + '\n' +
+                    task2.condition ="Дана плотность вероятности f(x) непрерывной случайной величины X."+
+                                     "\n        ⎧0, x≤0" + '\n' +
                                      "f(x)=⎨2x/3, 0≤x≤1"+'\n' +
                                      "        |3-x/3, 1≤x≤3" + '\n'+
                                      "        ⎩0, x>3"+'\n'+
