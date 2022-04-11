@@ -506,7 +506,7 @@ namespace TaskGenerator
                     Task task1 = new Task(12, 1);
                     var rand = new Random();
 
-                    var prob = 0.4;// rand.Next(3, 7) / 10.0;
+                    var prob =  rand.Next(3, 7) / 10.0;
 
                     task1.condition = "Вероятность поражения цели при одном выстреле равна " + prob + ".";
                     task1.questions.Add("Составить ряд распределения числа выстрелов, производимых до первого поражения цели, если у стрелка четыре патрона.");
@@ -709,7 +709,31 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(16, 1);
+                    var rand = new Random();
 
+                    var a = rand.Next(0,3);
+                    var b = rand.Next(3, 6);
+
+                    var alpha = a == 0 ? "0" : a == 1 ? "π/6" : "π/4";
+                    var beta = b == 3 ? "π/3" : b == 4 ? "π/2" : "π";
+
+                    var alphaF = a == 0 ? 0 : a == 1 ? Math.PI/6.0 : Math.PI/4.0;
+                    var betaF = b == 3 ? Math.PI / 3.0 : b == 4 ? Math.PI / 2.0 : Math.PI;
+
+                    task1.condition = "Дана функция распределения F(x) непрерывной случайной величины X:\n" + 
+                        "F(x) =\n" +
+                        "    ⎧ 0, x ≤ 0\n" +
+                        "    ⎨ (1/2) * (1 - cos x), 0 < x ≤ π\n" +
+                        "    ⎩ 0, x > π\n" +
+                        "α = " + alpha + ", β = " + beta + "\n" + 
+                        "Требуется:";
+                    task1.questions.Add("Hайти плотность вероятности f(x).");
+                    task1.questions.Add("Построить графики F(x) и f(x).");
+                    task1.questions.Add("найти P(α < X < β) для данных α,β.");
+
+                    task1.answers.Add("\nf(x) = \n    ⎧ 0, x <= 0\n    ⎨ sin(x) / 2, 0 < x <= π\n    ⎩ 0, x > π");
+                    task1.answers.Add("");
+                    task1.answers.Add(String.Format("P(α < X < β) = {0:0.0000}", ((1.0/2.0) * (1 - Math.Cos(betaF))) - ((1.0/2.0) * (1 - Math.Cos(alphaF)))));
                     return task1;
                 case 2:
                     Task task2 = new Task(16, 2);
@@ -725,6 +749,33 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(17, 1);
+                    var rand = new Random();
+
+                    var variant = rand.Next(1, 4);
+                    var start = variant == 1 ? 2 : variant == 2 ? 2 : 3;
+                    var end = variant == 1 ? 4 : variant == 2 ? 3 : 4;
+
+                    task1.condition = "Дана плотность вероятности f(X) непрерывной случайной величины X:\nf(x)=\n" +
+                        "    ⎧0, x < " + start + "\n" +
+                        "    ⎨a(x-2)(x-4), " + start + " ≤ x < " + end + "\n" +
+                        "    ⎩0, x > " + end;
+                    task1.questions.Add("Найти параметр a.");
+                    task1.questions.Add("Построить функцию распределения F(X)");
+                    task1.questions.Add("Построить графики f(X) и F(X)");
+
+                    var fun = (double x) => x * x * x / 3.0 - 3 * x * x + 8 * x;
+                    var aa = 1 / (fun(end) - fun(start));
+
+                    var dx = (double a) => String.Format("{0:0.00}x^3 - {1:0.00}x^2 + {2:0.00}x",
+                        aa / 3.0,
+                        3 * aa,
+                        8 * aa
+                        );
+
+
+                    task1.answers.Add("a = " + String.Format("{0:0.00}", aa));
+                    task1.answers.Add("F(X) = " + dx(aa));
+                    //task1.answers.Add("(-1/4)x^3 + (9/4)x^2 - 6x");
 
                     return task1;
                 case 2:
@@ -766,7 +817,7 @@ namespace TaskGenerator
                                      "f(x)=⎨2x/3, 0≤x≤1"+'\n' +
                                      "        |3-x/3, 1≤x≤3" + '\n'+
                                      "        ⎩0, x>3"+'\n'+
-                                     "α="+a+",β="+b;
+                                     "α="+a+",β="+b + "\n";
 
                     
                     task2.questions.Add("проверить свойство -∞∫∞(f(x)dx)=1");
@@ -779,6 +830,7 @@ namespace TaskGenerator
                                       "f(x)=⎨x²/3, 0≤x≤1" + '\n' +
                                       "        |(-3-x²)/6+x, 1≤x≤3" + '\n' +
                                       "        ⎩1, x>3" + '\n');
+
                     double ot3 = 3 * (double)b * (double)b * (double)b - 3 * a * a * a - 9 * (double)b * (double)b + 9 * a * a + 9 * a + 9 * (double)b;
                     task2.answers.Add(String.Format("{0:0.000}",ot3));
 
@@ -788,30 +840,6 @@ namespace TaskGenerator
             }
             throw new ArgumentException();
         }
-        ////вычисление интегралов
-        //public delegate double Function(double x);
-
-        //public static double Trapezoidal(Function f, double a, double b, int n)
-        //{
-        //    double sum = 0.0;
-        //    double h = (b - a) / n;
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        sum += 0.5 * h * (f(a + i * h) + f(a + (i + 1) * h));
-        //    }
-        //    return sum;
-        //}
-
-        //public static double Trapezoidal(double[] y, double a, double b, int n)
-        //{
-        //    double sum = 0.0;
-        //    double h = (b - a) / (n - 1);
-        //    for (int i = 0; i < (n - 1); i++)
-        //    {
-        //        sum += 0.5 * h * (y[i] + y[i + 1]);
-        //    }
-        //    return sum;
-        //}
 
         private static int Factorial(int n) {
             if (n <= 0) return 1;
