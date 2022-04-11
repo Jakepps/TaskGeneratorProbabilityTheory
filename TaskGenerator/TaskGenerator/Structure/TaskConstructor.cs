@@ -721,7 +721,8 @@ namespace TaskGenerator
                     var b=random.Next(2, 10);
                     var a=random.Next(1, b-1);
                     Task task2 = new Task(17, 2);
-                    task2.condition = "        ⎧0,x<" + a + '\n' +
+                    task2.condition ="Дана функция распределения F(x) непрерывной случайной величины X."+
+                                     "\n        ⎧0,x<" + a + '\n' +
                                      "f(x)=⎨a(4x+3)," + a + "≤x≤" + b + '\n' +
                                      "        ⎩0,x>" + b + '\n';
                     task2.questions.Add("найти параметр a;");
@@ -751,7 +752,8 @@ namespace TaskGenerator
                     var a = Math.Round(random.NextDouble() * 20.0 + 1.0)/10;
                     var b = random.Next(1, 10);
                     Task task2 = new Task(18, 2);
-                    task2.condition ="        ⎧0, x≤0" + '\n' +
+                    task2.condition ="Дана плотность вероятности f(x) непрерывной случайной величины X."+
+                                     "\n        ⎧0, x≤0" + '\n' +
                                      "f(x)=⎨2x/3, 0≤x≤1"+'\n' +
                                      "        |3-x/3, 1≤x≤3" + '\n'+
                                      "        ⎩0, x>3"+'\n'+
