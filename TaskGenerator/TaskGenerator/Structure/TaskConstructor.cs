@@ -672,8 +672,8 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Random random = new Random();
-                    var a = random.NextDouble() * 10.0 + 1.0;
-                    var b = Convert.ToDouble(random.Next(1, 10));
+                    var a = Math.Round(random.NextDouble() * 10.0 + 1.0)/100;
+                    var b = random.Next(1, 10);
                     Task task2 = new Task(18, 2);
                     task2.condition = "        ⎧0, x≤0" + '\n' +
                                      "f(x)=⎨2x/3, 0≤x≤1"+'\n' +
