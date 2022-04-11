@@ -506,7 +506,7 @@ namespace TaskGenerator
                     Task task1 = new Task(12, 1);
                     var rand = new Random();
 
-                    var prob = 0.4;// rand.Next(3, 7) / 10.0;
+                    var prob =  rand.Next(3, 7) / 10.0;
 
                     task1.condition = "Вероятность поражения цели при одном выстреле равна " + prob + ".";
                     task1.questions.Add("Составить ряд распределения числа выстрелов, производимых до первого поражения цели, если у стрелка четыре патрона.");
@@ -750,7 +750,6 @@ namespace TaskGenerator
                                      "        ⎩0,x>" + b + '\n';
                     task2.questions.Add("найти параметр a;");
                     task2.questions.Add("найти функцию распределения F(x);");
-                    task2.questions.Add("найти асимметрию и эксцесс X."); 
                     task2.questions.Add("построить графики f(x) и F(x)");
                     double ot = 1/(2 *(double)b * (double)b + 3 * (double)b - (2 * (double)a * (double)a + 3 * (double)a));
                     task2.answers.Add(string.Format("A={0:0.0000}",ot));
@@ -773,7 +772,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Random random = new Random();
-                    var a = Math.Round(random.NextDouble() * 10.0 + 1.0)/100;
+                    var a = Math.Round(random.NextDouble() * 20.0 + 1.0)/10;
                     var b = random.Next(1, 10);
                     Task task2 = new Task(18, 2);
                     task2.condition ="        ⎧0, x≤0" + '\n' +
@@ -793,35 +792,16 @@ namespace TaskGenerator
                                       "f(x)=⎨x²/3, 0≤x≤1" + '\n' +
                                       "        |(-3-x²)/6+x, 1≤x≤3" + '\n' +
                                       "        ⎩1, x>3" + '\n');
-                    //task2.answers.Add();    
+
+                    double ot3 = 3 * (double)b * (double)b * (double)b - 3 * a * a * a - 9 * (double)b * (double)b + 9 * a * a + 9 * a + 9 * (double)b;
+                    task2.answers.Add(String.Format("{0:0.000}",ot3));
+
+                    double x1 = 4.0 / 3.0, x2 = 7.0 / 18.0, x3 = Math.Sqrt(7.0 / 18.0);
+                    task2.answers.Add(string.Format("M(X)={0:0.000},\nD(X)={1:0.000},\nσ(X)={2:0.000}", x1, x2, x3));
                     return task2;
             }
             throw new ArgumentException();
         }
-        ////вычисление интегралов
-        //public delegate double Function(double x);
-
-        //public static double Trapezoidal(Function f, double a, double b, int n)
-        //{
-        //    double sum = 0.0;
-        //    double h = (b - a) / n;
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        sum += 0.5 * h * (f(a + i * h) + f(a + (i + 1) * h));
-        //    }
-        //    return sum;
-        //}
-
-        //public static double Trapezoidal(double[] y, double a, double b, int n)
-        //{
-        //    double sum = 0.0;
-        //    double h = (b - a) / (n - 1);
-        //    for (int i = 0; i < (n - 1); i++)
-        //    {
-        //        sum += 0.5 * h * (y[i] + y[i + 1]);
-        //    }
-        //    return sum;
-        //}
 
         private static int Factorial(int n) {
             if (n <= 0) return 1;
