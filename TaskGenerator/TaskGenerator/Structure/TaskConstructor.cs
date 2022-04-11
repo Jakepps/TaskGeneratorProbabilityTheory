@@ -711,8 +711,8 @@ namespace TaskGenerator
 
                     task1.condition = "Дана функция распределения F(x) непрерывной случайной величины X:\n" + 
                         "F(x) =\n" +
-                        "    ⎧ 0, x <= 0\n" +
-                        "    ⎨ (1/2) * (1 - cos x), 0 < x <= π\n" +
+                        "    ⎧ 0, x ≤ 0\n" +
+                        "    ⎨ (1/2) * (1 - cos x), 0 < x ≤ π\n" +
                         "    ⎩ 0, x > π\n" +
                         "α = " + alpha + ", β = " + beta + "\n" + 
                         "Требуется:";
@@ -738,6 +738,33 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(17, 1);
+                    var rand = new Random();
+
+                    var variant = rand.Next(1, 4);
+                    var start = variant == 1 ? 2 : variant == 2 ? 2 : 3;
+                    var end = variant == 1 ? 4 : variant == 2 ? 3 : 4;
+
+                    task1.condition = "Дана плотность вероятности f(X) непрерывной случайной величины X:\nf(x)=\n" +
+                        "    ⎧0, x < " + start + "\n" +
+                        "    ⎨a(x-2)(x-4), " + start + " ≤ x < " + end + "\n" +
+                        "    ⎩0, x > " + end;
+                    task1.questions.Add("Найти параметр a.");
+                    task1.questions.Add("Построить функцию распределения F(X)");
+                    task1.questions.Add("Построить графики f(X) и F(X)");
+
+                    var fun = (double x) => x * x * x / 3.0 - 3 * x * x + 8 * x;
+                    var aa = 1 / (fun(end) - fun(start));
+
+                    var dx = (double a) => String.Format("{0:0.00}x^3 - {1:0.00}x^2 + {2:0.00}x",
+                        aa / 3.0,
+                        3 * aa,
+                        8 * aa
+                        );
+
+
+                    task1.answers.Add("a = " + String.Format("{0:0.00}", aa));
+                    task1.answers.Add("F(X) = " + dx(aa));
+                    //task1.answers.Add("(-1/4)x^3 + (9/4)x^2 - 6x");
 
                     return task1;
                 case 2:
