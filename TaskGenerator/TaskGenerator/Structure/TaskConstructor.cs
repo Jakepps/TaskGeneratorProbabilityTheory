@@ -698,7 +698,31 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(16, 1);
+                    var rand = new Random();
 
+                    var a = rand.Next(0,3);
+                    var b = rand.Next(3, 6);
+
+                    var alpha = a == 0 ? "0" : a == 1 ? "π/6" : "π/4";
+                    var beta = b == 3 ? "π/3" : b == 4 ? "π/2" : "π";
+
+                    var alphaF = a == 0 ? 0 : a == 1 ? Math.PI/6.0 : Math.PI/4.0;
+                    var betaF = b == 3 ? Math.PI / 3.0 : b == 4 ? Math.PI / 2.0 : Math.PI;
+
+                    task1.condition = "Дана функция распределения F(x) непрерывной случайной величины X:\n" + 
+                        "F(x) =\n" +
+                        "    ⎧ 0, x <= 0\n" +
+                        "    ⎨ (1/2) * (1 - cos x), 0 < x <= π\n" +
+                        "    ⎩ 0, x > π\n" +
+                        "α = " + alpha + ", β = " + beta + "\n" + 
+                        "Требуется:";
+                    task1.questions.Add("Hайти плотность вероятности f(x).");
+                    task1.questions.Add("Построить графики F(x) и f(x).");
+                    task1.questions.Add("найти P(α < X < β) для данных α,β.");
+
+                    task1.answers.Add("\nf(x) = \n    ⎧ 0, x <= 0\n    ⎨ sin(x) / 2, 0 < x <= π\n    ⎩ 0, x > π");
+                    task1.answers.Add("");
+                    task1.answers.Add(String.Format("P(α < X < β) = {0:0.0000}", ((1.0/2.0) * (1 - Math.Cos(betaF))) - ((1.0/2.0) * (1 - Math.Cos(alphaF)))));
                     return task1;
                 case 2:
                     Task task2 = new Task(16, 2);
@@ -756,7 +780,7 @@ namespace TaskGenerator
                                      "f(x)=⎨2x/3, 0≤x≤1"+'\n' +
                                      "        |3-x/3, 1≤x≤3" + '\n'+
                                      "        ⎩0, x>3"+'\n'+
-                                     "α="+a+",β="+b;
+                                     "α="+a+",β="+b + "\n";
 
                     
                     task2.questions.Add("проверить свойство -∞∫∞(f(x)dx)=1");
@@ -769,7 +793,7 @@ namespace TaskGenerator
                                       "f(x)=⎨x²/3, 0≤x≤1" + '\n' +
                                       "        |(-3-x²)/6+x, 1≤x≤3" + '\n' +
                                       "        ⎩1, x>3" + '\n');
-                    task2.answers.Add();    
+                    //task2.answers.Add();    
                     return task2;
             }
             throw new ArgumentException();
