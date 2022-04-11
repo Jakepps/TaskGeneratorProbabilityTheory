@@ -24,5 +24,6 @@
     <ImageSource x:Key="ZedNull">Images/ZedNull.jpg</ImageSource>
     <ImageSource x:Key="Jakepps">Images/Jakepps.jpg</ImageSource>
     <ImageSource x:Key="StarProxima">Images/StarProxima.jpg</ImageSource>
+    <ImageSource x:Key="AppIcon">Images/AppIcon.png</ImageSource>
 
 </ResourceDictionary>

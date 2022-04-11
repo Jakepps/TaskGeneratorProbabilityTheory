@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:TaskGenerator"
 				xmlns:control="clr-namespace:TaskGenerator.Controls.Pages"
         mc:Ignorable="d"
-				Background="{StaticResource HighlightBrush}"
+        Icon="{StaticResource AppIcon}"
+		Background="{StaticResource HighlightBrush}"
         Title="Генератор Задач" Height="560" Width="860" MinHeight="540" MinWidth="860">
 	<Grid x:Name="grid">
 		<Grid.RowDefinitions>

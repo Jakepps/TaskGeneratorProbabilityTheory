@@ -6,19 +6,62 @@
         xmlns:local="clr-namespace:TaskGenerator"
         xmlns:control="clr-namespace:TaskGenerator.Controls"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="600" Width="350" MinHeight="600" MinWidth="350">
-    <Grid>
-        <ScrollViewer
-            VerticalScrollBarVisibility="Hidden"
+        Title="AboutWindow" Height="480" Width="640" MinHeight="480" MinWidth="640">
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="256"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="{StaticResource HighlightBrush}" Grid.Column="1"/>
+        <Grid
+             Grid.Column="0"
+            Background="{StaticResource BackgroundBrush}"
             >
-            <StackPanel>
+            <StackPanel 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center">
+                <Image 
+                    Source="{StaticResource AppIcon}"
+                    Width="164"
+                    Margin="0,46,0,0"
+                    Height="164"/>
                 <Label 
-                Content="О Приложении"
-                FontFamily="{StaticResource Inter}"
-                FontSize="24"
-                FontWeight="Bold"
-                Padding="24,24,24,12"
-                />
+                        Content="Генератор"
+                        FontFamily="{StaticResource Inter}"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        />
+                <Label 
+                        Content="Версия 1.0"
+                        FontFamily="{StaticResource Inter}"
+                        Foreground="{StaticResource DisableBrush}"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        />
+            </StackPanel>
+
+        </Grid>
+       
+        <ScrollViewer
+            Grid.Column="2"
+                Width="Auto"
+                Height="Auto"
+                VerticalScrollBarVisibility="Hidden"
+                >
+            <StackPanel
+                    Width="Auto"
+                    >
+                <Label 
+                    Content="О Приложении"
+                    FontFamily="{StaticResource Inter}"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Padding="24,24,24,12"
+                    />
                 <TextBlock
                     Text="Данное приложение предназначено для генерации контрольных вариантов дисциплины Теория вероятностей."
                     TextWrapping="Wrap"
@@ -43,7 +86,7 @@
 
                 <control:DeveloperCard
                     avatar="{StaticResource StarProxima}"
-                    name="Прозоров Сергей"
+                    name="Прозоров Максим"
                     work1="Разработка структуры"
                     work2="Решение задач"
                     Margin="24,0,24,24" Height="80"/>
