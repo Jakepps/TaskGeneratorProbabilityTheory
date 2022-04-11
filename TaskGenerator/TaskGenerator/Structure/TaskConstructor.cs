@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 namespace TaskGenerator
 {
     public static class TaskConstructor
@@ -588,6 +588,37 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(13, 1);
+                    var rand = new Random();
+                    var count = rand.Next(3, 5);
+
+                    task1.condition = "Игральная кость брошена " + count + " раза.";
+                    task1.questions.Add("Составить ряд распределения числа выпадений шестерки.");
+                    task1.questions.Add("Найти M(X) и D(X) этой случайной величины.");
+
+                    var probs = new List<String>();
+
+                    for(int i = 0; i <= count; i++)
+                    {
+                        probs.Add("P(x = " + i + ") = " + (int)Math.Pow(5, count - i) * C(count, i) + "/" + (int)Math.Pow(6, count) + "\n");
+                    }
+
+                    var result = "";
+
+                    probs.ForEach(value => result += value);
+
+                    var mx = 0.0;
+                    var dx = 0.0;
+
+                    for (int i = 0; i <= count; i++)
+                    {
+                        mx += (Math.Pow(5, count - i) * C(count, i)) / (Math.Pow(6, count)) * i;
+                        dx += (Math.Pow(5, count - i) * C(count, i)) / (Math.Pow(6, count)) * Math.Pow(i,2);
+                    }
+
+                    dx -= Math.Pow(mx, 2);
+
+                    task1.answers.Add(result);
+                    task1.answers.Add(String.Format("\nM(X)={0:0.0000}\nD(X)={1:0.0000}",mx,dx));
 
                     return task1;
                 case 2:
