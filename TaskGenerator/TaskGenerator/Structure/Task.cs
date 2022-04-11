@@ -3,6 +3,20 @@ using System.Collections.Generic;
 
 namespace TaskGenerator
 {
+    struct table
+    {
+        //ширина таблицы
+        public int width;
+        //высота таблицы
+        public int height;
+        //значения таблицы (описываются последовательно строки)
+        public List<String> values;
+        //надо ли вставлять таблицу в секцию ответов
+        public bool isAnswer;
+        //индекс в секции, куда надо вставить таблицу
+        //к примеру если isAnswer = true и tableIndex = 1, значит надо вставить таблицу в ответ под номером 1
+        public bool tableIndex;
+    }
 
     public class Task
     {
@@ -11,6 +25,13 @@ namespace TaskGenerator
         public string condition { get; set; }
         public List<string> questions { get; set; }
         public List<string> answers { get; set; }
+        
+        //массив информации для экспорта. на примере с таблицами:
+        //1 значение - тип информации(для таблицы пусть будет 0)
+        //2 значение - кол-во таблиц в массиве
+        //далее объекты описаны структурами table
+        public List<object> exportInfo { get; set; }
+
         public List<double[,]>? tables = null;
 
         
