@@ -1053,6 +1053,51 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
+        private static Task CreateTaskType19(int subtype)
+        {
+            switch (subtype)
+            {
+                case 1:
+                    Task task1 = new Task(19, 1);
+                    return task1;
+                case 2:
+                    Task task2 = new Task(19, 2);
+                    
+                    return task2;
+            }
+            throw new ArgumentException();
+        }
+
+        private static Task CreateTaskType20(int subtype)
+        {
+            switch (subtype)
+            {
+                case 1:
+                    Task task1 = new Task(20, 1);
+                    return task1;
+                case 2:
+                    Task task2 = new Task(20, 2);
+
+                    return task2;
+            }
+            throw new ArgumentException();
+        }
+
+        private static Task CreateTaskType21(int subtype)
+        {
+            switch (subtype)
+            {
+                case 1:
+                    Task task1 = new Task(21, 1);
+                    return task1;
+                case 2:
+                    Task task2 = new Task(21, 2);
+
+                    return task2;
+            }
+            throw new ArgumentException();
+        }
+
         private static int Factorial(int n) {
             if (n <= 0) return 1;
             return n * Factorial(n - 1);

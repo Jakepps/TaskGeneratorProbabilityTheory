@@ -7,6 +7,7 @@ namespace TaskGenerator
 
     public partial class MainWindow : Window
     {
+
         //Чёт кринж, ну ладно
         public class Students : List<string>
         {
@@ -37,35 +38,6 @@ namespace TaskGenerator
         {
             InitializeComponent();
 
-            //Variant var1 = new Variant();
-            //var1.number = "1";
-            //var1.studentName = "Нальбий Рустамов Хахукович";
-
-            ////for (int i = 0; i < 10; i++)
-            ////    var1.tasks.Add(TaskConstructor.CreateTask(1));
-            ////var1.GenerateVariant(new List<int> { 1, 1, 1, 1, 1 });
-            ////var1.TestPrint();
-
-            //List<int> list = Import.GetTaskTypesFromString("123-1 25,1  2-4,,5--123-   1 24,,   --,124-,-  ,1325  4-,5-,2134-,4");
-            //for (int i = 0; i < list.Count; i++)
-            //    Console.Write(list[i] + ",");
-            //Console.WriteLine();
-            //var1.GenerateVariant(list);
-            //var1.TestPrint();
-            //List<String> students = new List<String>();
-            //students.Add("Нальбий Рустамов Хахукович");
-            //students.Add("Михайл Артёмов Наголевич");
-            //students.Add("Серёга)");
-
-            //List<Variant> variants = Variant.GetVariantsForStudents(students, list);
-
-            //for (int i = 0; i < variants.Count; i++)
-            //{
-            //    variants[i].TestPrint();
-            //}
-
-            //Import.ImportStudents("D:/Tests/Students.docx");
-
             generator.generateBtn.Click += onClick;
             variants.variantChange += changeVariant;
             tasks.parentWindow = this;
@@ -77,7 +49,8 @@ namespace TaskGenerator
             try {
                 count = Convert.ToInt32(generator.countField.Text);
                 tasksList = Import.GetTaskTypesFromString(generator.tasksField.Text);
-                if (count <= 0) throw new FormatException();
+                if (tasksList.FindAll(x => x <= 0 || x > 21).Count != 0) throw new FormatException();
+                if (count <= 0 || count > 21) throw new FormatException();
             }
             catch {
                 MessageBox.Show("Введены некорректные данные", "Ошибка");
@@ -109,6 +82,13 @@ namespace TaskGenerator
         {
             variantList[selectedVariant].tasks[index].RegenerateTaskSubtype();
             tasks.updateCard(index);
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var win = new AboutWindow();
+            win.Show();
+
         }
     }
 }
