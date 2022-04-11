@@ -635,6 +635,17 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(14, 1);
+                    var rand = new Random();
+                    var count = rand.Next(2,5) * 500;
+
+                    task1.condition = "Устройство содержит " + count + " ламп.Вероятность выхода из строя одной лампы в течение одного часа работы устройства равна 0,001.";
+                    task1.questions.Add("Составить ряд распределения числа ламп, вышедших из строя в течение одного часа работы устройства.");
+                    task1.questions.Add("Найти M(X) этой случайной величины.");
+
+                    var a = count * 0.001;
+
+                    task1.answers.Add(String.Format("Pn(m) = (({0:0.0})^m) / (m!) * e^({0:0.0})", a));
+                    task1.answers.Add(String.Format("M(X) = {0:0.0}", a));
 
                     return task1;
                 case 2:
