@@ -527,7 +527,7 @@ namespace TaskGenerator
                     var MX = 1 * k1 + 2 * k2 + 3 * k3 + 4 * k4;
                     var DX = 1 * k1 + 4 * k2 + 9 * k3 + 16 * k4 - Math.Pow(MX, 2);
 
-                    Console.WriteLine(String.Format("{0:0.0000} {1:0.0000} {2:0.0000} {3:0.0000}", k1, k2, k3, k4));
+                    //Console.WriteLine(String.Format("{0:0.0000} {1:0.0000} {2:0.0000} {3:0.0000}", k1, k2, k3, k4));
 
                     task1.answers.Add( "\n" + 
                         "P(x = 1) = " + String.Format("{0:0.0000}",k1) + "\n" +
@@ -695,12 +695,14 @@ namespace TaskGenerator
 
         private static Task CreateTaskType15(int subtype)
         {
-            
             Task task2 = new Task(15, 2);
             Random random = new Random();
 
+            task2.tables = new List<double[,]>();
+
             int[] x = new int[3];
             double[] px = new double[3];
+
             x[0] = random.Next(-5, 0);
             x[1] = random.Next(1, 4);
             x[2] = random.Next(5, 9);
@@ -709,6 +711,15 @@ namespace TaskGenerator
             px[1] = random.Next(1, 10 - (int)(px[0]*10)) * 10 / 100.0;
             px[2] = Math.Round((1 - px[0] - px[1])*10)/10.0;
 
+            task2.tables.Add(new double[3, 2]);
+            for (int i = 0; i < 3; i++)
+            {
+                task2.tables[^1][i, 0] = x[i];
+                task2.tables[^1][i, 1] = Math.Round(px[i] * 10) / 10;
+            }
+
+
+
             int[] y = new int[2];
             double[] py = new double[2];
             y[0] = random.Next(-2, 0);
@@ -716,6 +727,15 @@ namespace TaskGenerator
 
             py[0] = random.Next(1, 9) * 10 / 100.0;
             py[1] = Math.Round((1 - py[0]) * 10) / 10.0;
+
+            task2.tables.Add(new double[2, 2]);
+            for (int i = 0; i < 2; i++)
+            {
+                task2.tables[^1][i, 0] = y[i];
+                task2.tables[^1][i, 1] = Math.Round(py[i] * 10) /10;
+            }
+
+
 
             task2.condition = "Независимые случайные величины X и Y заданы таблицами распределений. \n" +
                 "x: " + x[0] + ", " + x[1] + ", " + x[2] + ". \n" +
@@ -760,6 +780,15 @@ namespace TaskGenerator
                 pz1[j + 1] = px[i] * py[1];
             }
 
+            task2.tables.Add(new double[6, 2]);
+            for (int i = 0; i < 6; i++)
+            {
+                task2.tables[^1][i, 0] = z1[i];
+                task2.tables[^1][i, 1] = Math.Round(pz1[i] * 100) / 100;
+            }
+
+
+
             int[] z2 = new int[6];
             double[] pz2 = new double[6];
             for (int i = 0, j = 0; i < 3; i++, j += 2)
@@ -770,6 +799,15 @@ namespace TaskGenerator
                 pz2[j] = px[i] * py[0];
                 pz2[j + 1] = px[i] * py[1];
             }
+
+            task2.tables.Add(new double[6, 2]);
+            for (int i = 0; i < 6; i++)
+            {
+                task2.tables[^1][i, 0] = z2[i];
+                task2.tables[^1][i, 1] = Math.Round(pz2[i] * 100) / 100;
+            }
+
+
 
             task2.answers.Add(string.Format("\nz1: {0:0}, {1:0}, {2:0}, {3:0}, {4:0}, {5:0}", z1[0], z1[1], z1[2], z1[3], z1[4], z1[5]) +
                                 string.Format("\np: {0:0.00}, {1:0.00}, {2:0.00}, {3:0.00}, {4:0.00}, {5:0.00}\n", pz1[0], pz1[1], pz1[2], pz1[3], pz1[4], pz1[5]) +
@@ -792,6 +830,22 @@ namespace TaskGenerator
             dz2 -= mz2 * mz2;
 
             task2.answers.Add(string.Format("\nM(Z1)={0:0.000} \nM(Z2)={1:0.000} \nD(Z1)={2:0.000} \nD(Z2)={3:0.000}", mz1, mz2, dz1, dz2));
+
+            
+            for (int i = 0; i < task2.tables.Count; i++)
+            {
+                for (int j = 0; j < task2.tables[i].Length / 2; j++)
+                {
+                    Console.Write(task2.tables[i][j, 0] + " ");
+                }
+                Console.WriteLine();
+                for (int j = 0; j < task2.tables[i].Length / 2; j++)
+                {
+                    Console.Write(task2.tables[i][j, 1] + " ");
+                }
+                Console.WriteLine();
+                Console.WriteLine("-----------");
+            }
             return task2;
         }
 

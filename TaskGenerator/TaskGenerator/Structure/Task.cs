@@ -11,7 +11,9 @@ namespace TaskGenerator
         public string condition { get; set; }
         public List<string> questions { get; set; }
         public List<string> answers { get; set; }
+        public List<double[,]>? tables = null;
 
+        
         public string conditionWithNumberedQuestions
         {
             get {
@@ -21,7 +23,7 @@ namespace TaskGenerator
                 return result;
             }
         }
-
+       
         public string numberedAnswers
         {
             get
@@ -42,6 +44,7 @@ namespace TaskGenerator
 
         private void TaskReplace(Task task)
         {
+            
             this.type = task.type;
             this.subtype = task.subtype;
             this.condition = task.condition;
