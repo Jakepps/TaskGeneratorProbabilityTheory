@@ -482,7 +482,7 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(11, 1);
-
+                    
                     return task1;
                 case 2:
                     Task task2 = new Task(11, 2);
@@ -498,15 +498,50 @@ namespace TaskGenerator
             }
             throw new ArgumentException();
         }
-
         private static Task CreateTaskType12(int subtype)
         {
             switch (subtype)
             {
                 case 1:
                     Task task1 = new Task(12, 1);
+                    var rand = new Random();
 
+                    var prob = 0.4;// rand.Next(3, 7) / 10.0;
+
+                    task1.condition = ". Вероятность поражения цели при одном выстреле равна " + prob + ".";
+                    task1.questions.Add("Составить ряд распределения числа выстрелов, производимых до первого поражения цели, если у стрелка четыре патрона.");
+                    task1.questions.Add("Найти M(X), D(X), σ(X), F(X) числа выстрелов до первого поражения цели.");
+                    task1.questions.Add("Построить график F(X).");
+
+                    var k1 = prob;
+                    var k2 = (1 - prob) * prob;
+                    var k3 = (1 - prob) * (1 - prob) * prob;
+                    var k4 = (1 - prob) * (1 - prob) * (1 - prob) * prob;
+
+                    var MX = 1 * k1 + 2 * k2 + 3 * k3 + 4 * k4;
+                    var DX = 1 * k1 + 4 * k2 + 9 * k3 + 16 * k4 - Math.Pow(MX, 2);
+
+                    Console.WriteLine(String.Format("{0:0.0000} {1:0.0000} {2:0.0000} {3:0.0000}", k1, k2, k3, k4));
+
+                    task1.answers.Add( "\n" + 
+                        "P(x = 1) = " + k1 + "\n" +
+                        "P(x = 2) = " + k2 + "\n" +
+                        "P(x = 3) = " + k3 + "\n" +
+                        "P(x = 4) = " + k4
+                    );
+                    task1.answers.Add( "\n" + 
+                        "M(X) = " + String.Format("{0:0.0000}", MX) + "\n" +
+                        "D(X) = " + String.Format("{0:0.0000}", DX) + "\n" +
+                        "σ(X) = " + String.Format("{0:0.0000}", Math.Sqrt(DX)) + "\n" +
+                        "F(X) = \n" +
+                        "    | 0, x = 0\n" +
+                        "    | " + String.Format("{0:0.0000}", k1) + ", x = 1\n" +
+                        "    | " + String.Format("{0:0.0000}", k1 + k2) + ", x = 2\n" +
+                        "    | " + String.Format("{0:0.0000}", k1 + k2 + k3) + ", x = 3\n" +
+                        "    | " + String.Format("{0:0.0000}", k1 + k2 + k3 + k4) + ", x = 4"
+                    );
                     return task1;
+                  
                 case 2:
                     Task task2 = new Task(12, 2);
                     Random random = new Random();
