@@ -1024,7 +1024,7 @@ namespace TaskGenerator
                     var a = Math.Round(random.NextDouble() * 20.0 + 1.0)/10;
                     var b = random.Next(1, 10);
                     Task task2 = new Task(18, 2);
-                    task2.condition ="Дана плотность вероятности f(x) непрерывной случайной величины X."+
+                    task2.condition ="Дана плотность вероятности f(x) непрерывной случайной величины X." +
                                      "\n        ⎧0, x≤0" + '\n' +
                                      "f(x)=⎨2x/3, 0≤x≤1"+'\n' +
                                      "        |3-x/3, 1≤x≤3" + '\n'+

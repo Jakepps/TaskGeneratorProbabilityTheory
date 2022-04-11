@@ -96,13 +96,12 @@
                   FontWeight="Bold"
 									SnapsToDevicePixels="True"
                   FontFamily="{StaticResource Inter}"
-                  Padding="12,12,12,0"
+                  Padding="12,12,12,12"
                   />
 
                 <Label Content="Артем Niggaлевский"
-					Grid.Row="1"
                     Foreground="{StaticResource DisableBrush}"
-					FontSize="12"
+					FontSize="13"
                     HorizontalContentAlignment="Left"
                     VerticalContentAlignment="Top"
                     HorizontalAlignment="Left"
@@ -111,7 +110,7 @@
 					FontWeight="Medium"
 					SnapsToDevicePixels="True"
 					FontFamily="{StaticResource Inter}"
-                    Padding="12,0,12,12"
+                    Padding="12,20,12,12"
                        
 				/>
 
