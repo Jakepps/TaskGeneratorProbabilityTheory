@@ -726,7 +726,6 @@ namespace TaskGenerator
                                      "        ⎩0,x>" + b + '\n';
                     task2.questions.Add("найти параметр a;");
                     task2.questions.Add("найти функцию распределения F(x);");
-                    task2.questions.Add("найти асимметрию и эксцесс X."); 
                     task2.questions.Add("построить графики f(x) и F(x)");
                     double ot = 1/(2 *(double)b * (double)b + 3 * (double)b - (2 * (double)a * (double)a + 3 * (double)a));
                     task2.answers.Add(string.Format("A={0:0.0000}",ot));
