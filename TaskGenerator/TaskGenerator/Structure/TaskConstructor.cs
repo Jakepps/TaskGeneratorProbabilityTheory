@@ -488,7 +488,18 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(11, 1);
-                    
+                    var rand = new Random();
+                    var count = rand.Next(1, 4);
+                    count = count == 1 ? 120 : count == 2 ? 180 : 240;
+
+                    task1.condition = "Среднее число вызовов, поступающих на АТС в минуту, равно " + count + ".Найти вероятность того, что за две секунды на АТС поступит менее двух вызовов.";
+
+                    var lambda = count / 60.0 * 2.0;
+                    var p0 = Math.Pow(lambda, 0) * Math.Exp(-lambda) / Factorial(0);
+                    var p1 = Math.Pow(lambda, 1) * Math.Exp(-lambda) / Factorial(1);
+
+                    var result = p1 + p0;
+                    task1.answers.Add(String.Format("{0:0.0000}", result));
                     return task1;
                 case 2:
                     Task task2 = new Task(11, 2);
