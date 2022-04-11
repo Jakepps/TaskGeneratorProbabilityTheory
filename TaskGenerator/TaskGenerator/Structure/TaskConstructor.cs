@@ -151,7 +151,6 @@ namespace TaskGenerator
             switch (subtype)
             {
                 case 1:
-                    //todo
                     Task task1 = new Task(3, 1);
 
                     task1.condition = "Эксперимент состоит в бросании игральной кости. Пусть событие А — появление больше 4 очков, событие В — появление больше 3 и меньше 6 очков, событие С — появление больше 3 очков.Выразите событие С через события А и В. Постройте множество элементарных исходов и выявите состав подмножеств, соответствующих событиям:";
@@ -696,111 +695,104 @@ namespace TaskGenerator
 
         private static Task CreateTaskType15(int subtype)
         {
-            switch (subtype)
+            
+            Task task2 = new Task(15, 2);
+            Random random = new Random();
+
+            int[] x = new int[3];
+            double[] px = new double[3];
+            x[0] = random.Next(-5, 0);
+            x[1] = random.Next(1, 4);
+            x[2] = random.Next(5, 9);
+
+            px[0] = random.Next(1, 8)*10/100.0;
+            px[1] = random.Next(1, 10 - (int)(px[0]*10)) * 10 / 100.0;
+            px[2] = Math.Round((1 - px[0] - px[1])*10)/10.0;
+
+            int[] y = new int[2];
+            double[] py = new double[2];
+            y[0] = random.Next(-2, 0);
+            y[1] = random.Next(1, 5);
+
+            py[0] = random.Next(1, 9) * 10 / 100.0;
+            py[1] = Math.Round((1 - py[0]) * 10) / 10.0;
+
+            task2.condition = "Независимые случайные величины X и Y заданы таблицами распределений. \n" +
+                "x: " + x[0] + ", " + x[1] + ", " + x[2] + ". \n" +
+                "p: " + px[0] + ", " + px[1] + ", p. \n\n" +
+                "y: " + y[0] + ", " + y[1] + ". \n" +
+                "p: " + py[0] + ", " + py[1] + ". \n" +
+                "Найти: ";
+
+            task2.questions.Add("M(X), M(Y), D(X), D(Y);");
+            task2.questions.Add("Таблицы распределения случайных величин Z1 = 2X + Y, Z2 = X * Y; ");
+            task2.questions.Add("M(Z1), M(Z2), D(Z1), D(Z2) непосредственно по таблицам распределений и на основании свойств математического ожидания и дисперсии.");
+
+            double mx = 0;
+            double dx = 0;
+            for (int i = 0; i < 3; i++)
             {
-                case 1:
-                    Task task1 = new Task(15, 1);
+                mx += x[i] * px[i];
+                dx += x[i] * x[i] * px[i];
+            }
+            dx -= mx * mx;
 
-                    return task1;
-                case 2:
-                    Task task2 = new Task(15, 2);
-                    Random random = new Random();
-                    int[] x = new int[3];
-                    double[] px = new double[3];
-                    x[0] = random.Next(-5, 0);
-                    x[1] = random.Next(1, 4);
-                    x[2] = random.Next(5, 9);
-
-                    px[0] = random.Next(1, 8)*10/100.0;
-                    px[1] = random.Next(1, 10 - (int)(px[0]*10)) * 10 / 100.0;
-                    px[2] = Math.Round((1 - px[0] - px[1])*10)/10.0;
-
-                    int[] y = new int[2];
-                    double[] py = new double[2];
-                    y[0] = random.Next(-2, 0);
-                    y[1] = random.Next(1, 5);
-
-                    py[0] = random.Next(1, 9) * 10 / 100.0;
-                    py[1] = Math.Round((1 - py[0]) * 10) / 10.0;
-
-                    task2.condition = "Независимые случайные величины X и Y заданы таблицами распределений. \n" +
-                        "x: " + x[0] + ", " + x[1] + ", " + x[2] + ". \n" +
-                        "p: " + px[0] + ", " + px[1] + ", p. \n\n" +
-                        "y: " + y[0] + ", " + y[1] + ". \n" +
-                        "p: " + py[0] + ", " + py[1] + ". \n" +
-                        "Найти: ";
-
-                    task2.questions.Add("M(X), M(Y), D(X), D(Y);");
-                    task2.questions.Add("Таблицы распределения случайных величин Z1 = 2X + Y, Z2 = X * Y; ");
-                    task2.questions.Add("M(Z1), M(Z2), D(Z1), D(Z2) непосредственно по таблицам распределений и на основании свойств математического ожидания и дисперсии.");
-
-                    double mx = 0;
-                    double dx = 0;
-                    for (int i = 0; i < 3; i++)
-                    {
-                        mx += x[i] * px[i];
-                        dx += x[i] * x[i] * px[i];
-                    }
-                    dx -= mx * mx;
-
-                    double my = 0;
-                    double dy = 0;
-                    for (int i = 0; i < 2; i++)
-                    {
-                        my += y[i] * py[i];
-                        dy += y[i] * y[i] * py[i];
-                    }
-                    dy -= my * my;
+            double my = 0;
+            double dy = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                my += y[i] * py[i];
+                dy += y[i] * y[i] * py[i];
+            }
+            dy -= my * my;
                     
 
-                    task2.answers.Add(string.Format("\nM(X)={0:0.000} \nM(Y)={1:0.000} \nD(X)={2:0.000} \nD(Y)={3:0.000}", mx, my, dx, dy));
+            task2.answers.Add(string.Format("\nM(X)={0:0.000} \nM(Y)={1:0.000} \nD(X)={2:0.000} \nD(Y)={3:0.000}", mx, my, dx, dy));
 
-                    int[] z1 = new int[6];
-                    double[] pz1 = new double[6];
-                    for(int i = 0, j = 0; i < 3; i++, j+=2)
-                    {
-                        z1[j] = 2 * x[i] + y[0];
-                        z1[j+1] = 2 * x[i] + y[1];
+            int[] z1 = new int[6];
+            double[] pz1 = new double[6];
+            for(int i = 0, j = 0; i < 3; i++, j+=2)
+            {
+                z1[j] = 2 * x[i] + y[0];
+                z1[j+1] = 2 * x[i] + y[1];
 
-                        pz1[j] = px[i] * py[0];
-                        pz1[j + 1] = px[i] * py[1];
-                    }
-
-                    int[] z2 = new int[6];
-                    double[] pz2 = new double[6];
-                    for (int i = 0, j = 0; i < 3; i++, j += 2)
-                    {
-                        z2[j] = x[i] * y[0];
-                        z2[j + 1] = x[i] * y[1];
-
-                        pz2[j] = px[i] * py[0];
-                        pz2[j + 1] = px[i] * py[1];
-                    }
-
-                    task2.answers.Add(string.Format("\nz1: {0:0}, {1:0}, {2:0}, {3:0}, {4:0}, {5:0}", z1[0], z1[1], z1[2], z1[3], z1[4], z1[5]) +
-                                      string.Format("\np: {0:0.00}, {1:0.00}, {2:0.00}, {3:0.00}, {4:0.00}, {5:0.00}\n", pz1[0], pz1[1], pz1[2], pz1[3], pz1[4], pz1[5]) +
-                                      string.Format("\nz2: {0:0}, {1:0}, {2:0}, {3:0}, {4:0}, {5:0}", z2[0], z2[1], z2[2], z2[3], z2[4], z2[5]) +
-                                      string.Format("\np: {0:0.00}, {1:0.00}, {2:0.00}, {3:0.00}, {4:0.00}, {5:0.00}", pz2[0], pz2[1], pz2[2], pz2[3], pz2[4], pz2[5]));
-
-                    double mz1 = 0;
-                    double dz1 = 0;
-                    double mz2 = 0;
-                    double dz2 = 0;
-                    for (int i = 0; i < 6; i++)
-                    {
-                        mz1 += z1[i] * pz1[i];
-                        dz1 += z1[i] * z1[i] * pz1[i];
-
-                        mz2 += z2[i] * pz2[i];
-                        dz2 += z2[i] * z2[i] * pz2[i];
-                    }
-                    dz1 -= mz1 * mz1;
-                    dz2 -= mz2 * mz2;
-
-                    task2.answers.Add(string.Format("\nM(Z1)={0:0.000} \nM(Z2)={1:0.000} \nD(Z1)={2:0.000} \nD(Z2)={3:0.000}", mz1, mz2, dz1, dz2));
-                    return task2;
+                pz1[j] = px[i] * py[0];
+                pz1[j + 1] = px[i] * py[1];
             }
-            throw new ArgumentException();
+
+            int[] z2 = new int[6];
+            double[] pz2 = new double[6];
+            for (int i = 0, j = 0; i < 3; i++, j += 2)
+            {
+                z2[j] = x[i] * y[0];
+                z2[j + 1] = x[i] * y[1];
+
+                pz2[j] = px[i] * py[0];
+                pz2[j + 1] = px[i] * py[1];
+            }
+
+            task2.answers.Add(string.Format("\nz1: {0:0}, {1:0}, {2:0}, {3:0}, {4:0}, {5:0}", z1[0], z1[1], z1[2], z1[3], z1[4], z1[5]) +
+                                string.Format("\np: {0:0.00}, {1:0.00}, {2:0.00}, {3:0.00}, {4:0.00}, {5:0.00}\n", pz1[0], pz1[1], pz1[2], pz1[3], pz1[4], pz1[5]) +
+                                string.Format("\nz2: {0:0}, {1:0}, {2:0}, {3:0}, {4:0}, {5:0}", z2[0], z2[1], z2[2], z2[3], z2[4], z2[5]) +
+                                string.Format("\np: {0:0.00}, {1:0.00}, {2:0.00}, {3:0.00}, {4:0.00}, {5:0.00}", pz2[0], pz2[1], pz2[2], pz2[3], pz2[4], pz2[5]));
+
+            double mz1 = 0;
+            double dz1 = 0;
+            double mz2 = 0;
+            double dz2 = 0;
+            for (int i = 0; i < 6; i++)
+            {
+                mz1 += z1[i] * pz1[i];
+                dz1 += z1[i] * z1[i] * pz1[i];
+
+                mz2 += z2[i] * pz2[i];
+                dz2 += z2[i] * z2[i] * pz2[i];
+            }
+            dz1 -= mz1 * mz1;
+            dz2 -= mz2 * mz2;
+
+            task2.answers.Add(string.Format("\nM(Z1)={0:0.000} \nM(Z2)={1:0.000} \nD(Z1)={2:0.000} \nD(Z2)={3:0.000}", mz1, mz2, dz1, dz2));
+            return task2;
         }
 
         private static Task CreateTaskType16(int subtype)
