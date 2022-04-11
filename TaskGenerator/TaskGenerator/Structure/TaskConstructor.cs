@@ -877,9 +877,9 @@ namespace TaskGenerator
                     var end = variant == 1 ? 4 : variant == 2 ? 3 : 4;
 
                     task1.condition = "Дана плотность вероятности f(X) непрерывной случайной величины X:\nf(x)=\n" +
-                        "    ⎧0, x < " + start + "\n" +
-                        "    ⎨a(x-2)(x-4), " + start + " ≤ x < " + end + "\n" +
-                        "    ⎩0, x > " + end;
+                        "    ⎧ 0, x < " + start + "\n" +
+                        "    ⎨ a(x-2)(x-4), " + start + " ≤ x < " + end + "\n" +
+                        "    ⎩ 0, x > " + end;
                     task1.questions.Add("Найти параметр a.");
                     task1.questions.Add("Построить функцию распределения F(X)");
                     task1.questions.Add("Построить графики f(X) и F(X)");

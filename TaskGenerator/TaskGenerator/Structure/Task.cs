@@ -11,6 +11,12 @@ namespace TaskGenerator
         public string condition { get; set; }
         public List<string> questions { get; set; }
         public List<string> answers { get; set; }
+        
+        //массив информации для экспорта. на примере с таблицами:
+        //1 значение - тип информации(для таблицы пусть будет 0)
+        //2 знаяение - кол-во столбцов, 3 - кол-во сторок
+        //далее последовательно описывается каждая ячейка таблицы в виде строк
+        public List<object> exportInfo { get; set; }
 
         public string conditionWithNumberedQuestions
         {
