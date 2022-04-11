@@ -827,12 +827,12 @@ namespace TaskGenerator
                         "F(x) =\n" +
                         "    ⎧ 0, x ≤ 0\n" +
                         "    ⎨ (1/2) * (1 - cos x), 0 < x ≤ π\n" +
-                        "    ⎩ 0, x > π\n" +
+                        "    ⎩ 1, x > π\n" +
                         "α = " + alpha + ", β = " + beta + "\n" + 
                         "Требуется:";
                     task1.questions.Add("Hайти плотность вероятности f(x).");
                     task1.questions.Add("Построить графики F(x) и f(x).");
-                    task1.questions.Add("найти P(α < X < β) для данных α,β.");
+                    task1.questions.Add("Найти P(α < X < β) для данных α,β.");
 
                     task1.answers.Add("\nf(x) = \n    ⎧ 0, x <= 0\n    ⎨ sin(x) / 2, 0 < x <= π\n    ⎩ 0, x > π");
                     task1.answers.Add("");
@@ -840,7 +840,25 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(16, 2);
+                    var random = new Random();
 
+                    var alpha2 = random.Next(1, 5);
+                    var beta2 = random.Next(6, 11);
+
+                    task2.condition = "Дана функция распределения F(x) непрерывной случайной величины X:\n" +
+                        "F(x) =\n" +
+                        "    ⎧ 0, x ≤ 0\n" +
+                        "    ⎨ x^2/100, 0 < x ≤ 10\n" +
+                        "    ⎩ 1, x > 10\n" +
+                        "α = " + alpha2 + ", β = " + beta2 + "\n" +
+                        "Требуется:";
+                    task2.questions.Add("Hайти плотность вероятности f(x).");
+                    task2.questions.Add("Построить графики F(x) и f(x).");
+                    task2.questions.Add("Найти P(α < X < β) для данных α,β.");
+
+                    task2.answers.Add("\nf(x) = \n    ⎧ 0, x <= 0\n    ⎨ x/50, 0 < x <= 10\n    ⎩ 0, x > 10");
+                    task2.answers.Add("");
+                    task2.answers.Add(String.Format("P(α < X < β) = {0:0.0000}", (beta2 * beta2/100.0) - (alpha2* alpha2/100.0)));
                     return task2;
             }
             throw new ArgumentException();
