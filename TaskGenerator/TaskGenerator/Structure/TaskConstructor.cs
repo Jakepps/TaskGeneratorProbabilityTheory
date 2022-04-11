@@ -738,7 +738,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Random random = new Random();
-                    var a = Math.Round(random.NextDouble() * 10.0 + 1.0)/100;
+                    var a = Math.Round(random.NextDouble() * 20.0 + 1.0)/10;
                     var b = random.Next(1, 10);
                     Task task2 = new Task(18, 2);
                     task2.condition ="        ⎧0, x≤0" + '\n' +
@@ -758,7 +758,11 @@ namespace TaskGenerator
                                       "f(x)=⎨x²/3, 0≤x≤1" + '\n' +
                                       "        |(-3-x²)/6+x, 1≤x≤3" + '\n' +
                                       "        ⎩1, x>3" + '\n');
-                    task2.answers.Add();    
+                    double ot3 = 3 * (double)b * (double)b * (double)b - 3 * a * a * a - 9 * (double)b * (double)b + 9 * a * a + 9 * a + 9 * (double)b;
+                    task2.answers.Add(String.Format("{0:0.000}",ot3));
+
+                    double x1 = 4.0 / 3.0, x2 = 7.0 / 18.0, x3 = Math.Sqrt(7.0 / 18.0);
+                    task2.answers.Add(string.Format("M(X)={0:0.000},\nD(X)={1:0.000},\nσ(X)={2:0.000}", x1, x2, x3));
                     return task2;
             }
             throw new ArgumentException();
