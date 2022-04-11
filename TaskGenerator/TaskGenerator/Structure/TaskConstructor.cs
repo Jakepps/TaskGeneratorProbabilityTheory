@@ -508,7 +508,7 @@ namespace TaskGenerator
 
                     var prob = 0.4;// rand.Next(3, 7) / 10.0;
 
-                    task1.condition = ". Вероятность поражения цели при одном выстреле равна " + prob + ".";
+                    task1.condition = "Вероятность поражения цели при одном выстреле равна " + prob + ".";
                     task1.questions.Add("Составить ряд распределения числа выстрелов, производимых до первого поражения цели, если у стрелка четыре патрона.");
                     task1.questions.Add("Найти M(X), D(X), σ(X), F(X) числа выстрелов до первого поражения цели.");
                     task1.questions.Add("Построить график F(X).");
@@ -710,12 +710,24 @@ namespace TaskGenerator
                     var a = Math.Round(random.NextDouble() * 10.0 + 1.0)/100;
                     var b = random.Next(1, 10);
                     Task task2 = new Task(18, 2);
-                    task2.condition = "        ⎧0, x≤0" + '\n' +
+                    task2.condition ="        ⎧0, x≤0" + '\n' +
                                      "f(x)=⎨2x/3, 0≤x≤1"+'\n' +
                                      "        |3-x/3, 1≤x≤3" + '\n'+
                                      "        ⎩0, x>3"+'\n'+
                                      "α="+a+",β="+b;
 
+                    
+                    task2.questions.Add("проверить свойство -∞∫∞(f(x)dx)=1");
+                    task2.questions.Add("найти функцию распределния F(x)");
+                    task2.questions.Add("найти P(α≤x≤β) для данных α,β");
+                    task2.questions.Add("найти M(X),D(x),σ(X)");
+                    task2.questions.Add("построить график f(x)");
+                    task2.answers.Add("1/3+2/3=1 =>Условие выполнено");
+                    task2.answers.Add("    ⎧0, x≤0" + '\n' +
+                                      "f(x)=⎨x²/3, 0≤x≤1" + '\n' +
+                                      "        |(-3-x²)/6+x, 1≤x≤3" + '\n' +
+                                      "        ⎩1, x>3" + '\n');
+                    task2.answers.Add();    
                     return task2;
             }
             throw new ArgumentException();
