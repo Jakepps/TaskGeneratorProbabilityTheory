@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskGenerator"
+        Icon="{StaticResource AppIcon}"
         xmlns:control="clr-namespace:TaskGenerator.Controls"
         mc:Ignorable="d"
         Title="AboutWindow" Height="480" Width="640" MinHeight="480" MinWidth="640">
@@ -34,6 +35,7 @@
                         FontWeight="Bold"
                         HorizontalAlignment="Center"
                         />
+                
                 <Label 
                         Content="Версия 1.0"
                         FontFamily="{StaticResource Inter}"
@@ -96,7 +98,7 @@
                     name="Нагалевский Артём"
                     work1="Импорт / экспорт файлов"
                     work2="Решение задач"
-                    Margin="24,0,24,12" Height="80"/>
+                    Margin="24,0,24,24" Height="80"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
