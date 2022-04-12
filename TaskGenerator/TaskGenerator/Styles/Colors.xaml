@@ -20,6 +20,10 @@
 	<SolidColorBrush x:Key="DisableBrush">#838383</SolidColorBrush>
 
 	<ImageSource x:Key="Refresh">Images/refresh.png</ImageSource>
-	<ImageSource x:Key="Change">Images/replace.png</ImageSource>
+    <ImageSource x:Key="Change">Images/replace.png</ImageSource>
+    <ImageSource x:Key="ZedNull">Images/ZedNull.jpg</ImageSource>
+    <ImageSource x:Key="Jakepps">Images/Jakepps.jpg</ImageSource>
+    <ImageSource x:Key="StarProxima">Images/StarProxima.jpg</ImageSource>
+    <ImageSource x:Key="AppIcon">Images/AppIcon.png</ImageSource>
 
 </ResourceDictionary>

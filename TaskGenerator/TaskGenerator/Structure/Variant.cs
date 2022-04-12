@@ -40,14 +40,7 @@ namespace TaskGenerator
         //    return result;
         //}
 
-        public void TestPrint()
-        {
-            Console.WriteLine(number + "-В ");
-            foreach (Task task in tasks)
-                task.TestPrint();
-            Console.WriteLine();
-        }
-
+      
         public Variant(int number, List<int> taskTypes)
         {
             this.number = number;

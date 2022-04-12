@@ -32,6 +32,9 @@ namespace TaskGenerator
         //далее объекты описаны структурами table
         public List<object> exportInfo { get; set; }
 
+        public List<double[,]>? tables = null;
+
+        
         public string conditionWithNumberedQuestions
         {
             get {
@@ -41,7 +44,7 @@ namespace TaskGenerator
                 return result;
             }
         }
-
+       
         public string numberedAnswers
         {
             get
@@ -62,6 +65,7 @@ namespace TaskGenerator
 
         private void TaskReplace(Task task)
         {
+            
             this.type = task.type;
             this.subtype = task.subtype;
             this.condition = task.condition;

@@ -49,7 +49,7 @@ namespace TaskGenerator.Controls.Pages
 				int studentsCount = mainWindow.students.Count;
 				countField.Text = studentsCount.ToString();
 			}
-
+			
 			countField.Foreground = new SolidColorBrush(Color.FromArgb(255, 160, 160, 160));
 			countField.IsReadOnly = true;
 			countField.Focusable = false;

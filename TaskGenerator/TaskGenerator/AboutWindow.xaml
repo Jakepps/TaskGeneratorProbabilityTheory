@@ -1,0 +1,103 @@
+﻿<Window x:Class="TaskGenerator.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskGenerator"
+        xmlns:control="clr-namespace:TaskGenerator.Controls"
+        mc:Ignorable="d"
+        Title="AboutWindow" Height="480" Width="640" MinHeight="480" MinWidth="640">
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="256"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="{StaticResource HighlightBrush}" Grid.Column="1"/>
+        <Grid
+             Grid.Column="0"
+            Background="{StaticResource BackgroundBrush}"
+            >
+            <StackPanel 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center">
+                <Image 
+                    Source="{StaticResource AppIcon}"
+                    Width="164"
+                    Margin="0,46,0,0"
+                    Height="164"/>
+                <Label 
+                        Content="Генератор"
+                        FontFamily="{StaticResource Inter}"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        />
+                <Label 
+                        Content="Версия 1.0"
+                        FontFamily="{StaticResource Inter}"
+                        Foreground="{StaticResource DisableBrush}"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        />
+            </StackPanel>
+
+        </Grid>
+       
+        <ScrollViewer
+            Grid.Column="2"
+                Width="Auto"
+                Height="Auto"
+                VerticalScrollBarVisibility="Hidden"
+                >
+            <StackPanel
+                    Width="Auto"
+                    >
+                <Label 
+                    Content="О Приложении"
+                    FontFamily="{StaticResource Inter}"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Padding="24,24,24,12"
+                    />
+                <TextBlock
+                    Text="Данное приложение предназначено для генерации контрольных вариантов дисциплины Теория вероятностей."
+                    TextWrapping="Wrap"
+                    TextAlignment="Justify"
+                    Padding="24,0,24,24"
+                    FontFamily="{StaticResource Inter}"
+                    FontSize="16"
+                    FontWeight="Medium"/>
+                <Label 
+                    Content="Разработчики"
+                    FontFamily="{StaticResource Inter}"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Padding="24,0,24,24"/>
+
+                <control:DeveloperCard
+                    avatar="{StaticResource ZedNull}"
+                    name="Хахук Рустам"
+                    work1="Разработка интерфейса"
+                    work2="Решение задач"
+                    Margin="24,0,24,24" Height="80"/>
+
+                <control:DeveloperCard
+                    avatar="{StaticResource StarProxima}"
+                    name="Прозоров Максим"
+                    work1="Разработка структуры"
+                    work2="Решение задач"
+                    Margin="24,0,24,24" Height="80"/>
+
+                <control:DeveloperCard
+                    avatar="{StaticResource Jakepps}"
+                    name="Нагалевский Артём"
+                    work1="Импорт / экспорт файлов"
+                    work2="Решение задач"
+                    Margin="24,0,24,12" Height="80"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
