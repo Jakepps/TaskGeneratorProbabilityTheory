@@ -39,7 +39,7 @@
 			VirtualizingPanel.ScrollUnit="Pixel"
 			VirtualizingPanel.VirtualizationMode="Recycling"
 			VirtualizingPanel.CacheLengthUnit="Item"
-			ScrollViewer.VerticalScrollBarVisibility="Hidden"
+			ScrollViewer.VerticalScrollBarVisibility="Visible"
             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 			Template="{StaticResource ListViewNewTemplate}"
 			VirtualizingPanel.CacheLength="5">
@@ -91,7 +91,7 @@
 				<DataTemplate>
 					<ListViewItem Style="{StaticResource test}">
 						<view:TaskCard 
-            Padding="12,6,12,6"
+            Padding="12,6,24,6"
             task="{Binding}" 
             Width="{Binding ActualWidth, ElementName=listView}"/>
 					</ListViewItem>

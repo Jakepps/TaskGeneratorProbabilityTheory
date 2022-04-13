@@ -10,17 +10,14 @@
 		<Grid
       SnapsToDevicePixels="True"
       MaxWidth="600">
-			<Border x:Name="border"
+            <Border x:Name="border"
             Background="{StaticResource CardBackgroundBrush}"
-            BorderThickness="1"
+            BorderThickness="1.5"
             BorderBrush="{StaticResource HighlightDarkBrush}"
             CornerRadius="12" 
             SnapsToDevicePixels="True"
             >
-				<Border.Effect>
-					<DropShadowEffect Color="#FF535353" Opacity="0.05" 									RenderingBias="Performance" BlurRadius="48" Direction="0" ShadowDepth="0"/>
-				</Border.Effect>
-			</Border>
+            </Border>
 
 			<Grid x:Name="grid" Height="Auto">
 				<Grid.RowDefinitions>

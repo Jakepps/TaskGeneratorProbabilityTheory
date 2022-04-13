@@ -41,6 +41,8 @@ namespace TaskGenerator
             generator.generateBtn.Click += onClick;
             variants.variantChange += changeVariant;
             tasks.parentWindow = this;
+
+            exportBtn.IsEnabled = false;
         }
 
         public void onClick(object sender, RoutedEventArgs e) {
@@ -51,6 +53,7 @@ namespace TaskGenerator
                 tasksList = Import.GetTaskTypesFromString(generator.tasksField.Text);
                 if (tasksList.FindAll(x => x <= 0 || x > 21).Count != 0) throw new FormatException();
                 if (count <= 0 || count > 21) throw new FormatException();
+                exportBtn.IsEnabled = true;
             }
             catch {
                 MessageBox.Show("Введены некорректные данные", "Ошибка");
@@ -88,6 +91,11 @@ namespace TaskGenerator
         {
             var win = new AboutWindow();
             win.Show();
+
+        }
+
+        private void exportBtn_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
