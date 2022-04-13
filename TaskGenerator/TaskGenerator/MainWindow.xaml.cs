@@ -52,7 +52,6 @@ namespace TaskGenerator
                 count = Convert.ToInt32(generator.countField.Text);
                 tasksList = Import.GetTaskTypesFromString(generator.tasksField.Text);
                 if (tasksList.FindAll(x => x <= 0 || x > 21).Count != 0) throw new FormatException();
-                if (count <= 0 || count > 21) throw new FormatException();
                 exportBtn.IsEnabled = true;
             }
             catch {
