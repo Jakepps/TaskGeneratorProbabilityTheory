@@ -1,10 +1,10 @@
 ﻿using System.Windows;
 using System.Collections.Generic;
 using System;
+using System.Windows.Interop;
 
 namespace TaskGenerator
 {
-
     public partial class MainWindow : Window
     {
 
@@ -99,4 +99,5 @@ namespace TaskGenerator
 
         }
     }
+
 }

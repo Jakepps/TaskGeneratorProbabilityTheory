@@ -39,6 +39,7 @@
             <Label 
                 x:Name="devName"
                 Content="Хахук Рустам"
+                                        Foreground="{StaticResource TextBrush}"
                 FontFamily="{StaticResource Inter}"
                 FontSize="20"
                 FontWeight="Bold"

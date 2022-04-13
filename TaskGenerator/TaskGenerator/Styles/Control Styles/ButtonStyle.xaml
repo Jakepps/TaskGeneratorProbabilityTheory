@@ -1,18 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<Style TargetType="Button">
-		<Setter Property="SnapsToDevicePixels"
-          Value="true" />
-		<Setter Property="OverridesDefaultStyle"
-          Value="true" />
-		<Setter Property="FocusVisualStyle"
-          Value="{x:Null}" />
-		<Setter Property="FontFamily" Value="{StaticResource Inter}"/>
+		<Setter Property="SnapsToDevicePixels" Value="true"/>
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Inter}"/>
 		<Setter Property="FontWeight" Value="Medium"/>
 		<Setter Property="FontSize" Value="14"/>
-		<Setter Property="Foreground" Value="{StaticResource HighlightBrush}"/>
-
-		<Setter Property="Template">
+        <Setter Property="Foreground" Value="{StaticResource HighlightBrush}"/>
+        <Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
 					<Border TextBlock.Foreground="{TemplateBinding Foreground}"

@@ -267,10 +267,11 @@
 		FontSize="12"
 		FontWeight="Medium"
 		Background="{StaticResource BackgroundBrush}" Margin="0,0,0,0" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}">
-			<MenuItem Header="Файл" Height="{Binding ActualHeight, ElementName=menu, Mode=OneWay}">
+			<MenuItem Header="Файл" Height="{Binding ActualHeight, ElementName=menu, Mode=OneWay}" Foreground="{StaticResource TextBrush}">
 				<MenuItem Header="Экспорт" x:Name="exportBtn" Click="exportBtn_Click"/>
 			</MenuItem>
-            <MenuItem Header="О приложении" Height="{Binding ActualHeight, ElementName=menu, Mode=OneWay}" Click="MenuItem_Click">
+            <MenuItem Header="О приложении" Height="{Binding ActualHeight, ElementName=menu, Mode=OneWay}" Click="MenuItem_Click"
+                      Foreground="{StaticResource TextBrush}">
 
 			</MenuItem>
 		</Menu>

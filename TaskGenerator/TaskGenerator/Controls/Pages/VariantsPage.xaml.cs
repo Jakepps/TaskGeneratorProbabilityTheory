@@ -50,6 +50,7 @@ namespace TaskGenerator.Controls.Pages
 		{
 			source.Background.Opacity = 1;
 			label.Content = "Варианты";
+			label.Foreground = Application.Current.Resources["TextBrush"] as SolidColorBrush;
 			panel.Children.RemoveRange(1,panel.Children.Count - 1);
 
 			for (int i = 0; i < vars.Count; i++){

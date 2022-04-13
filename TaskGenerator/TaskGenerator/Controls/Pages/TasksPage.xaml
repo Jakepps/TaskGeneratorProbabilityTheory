@@ -20,6 +20,7 @@
       Content=""
       FontFamily="{StaticResource Inter}"
       FontSize="32"
+			Foreground="{StaticResource TextBrush}"
       FontWeight="Bold"
 			MaxWidth="600"
       Margin="12,12,12,12" FontStyle="Normal" FontStretch="Condensed"

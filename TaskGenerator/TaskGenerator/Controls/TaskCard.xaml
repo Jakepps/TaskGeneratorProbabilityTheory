@@ -7,19 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="355" d:DesignWidth="358.665">
 	<StackPanel x:Name="stackPanel" Height="{Binding ActualHeight, ElementName=border, Mode=OneWay}" SnapsToDevicePixels="True">
-		<Grid
+	<Grid
       SnapsToDevicePixels="True"
       MaxWidth="600">
             <Border x:Name="border"
             Background="{StaticResource CardBackgroundBrush}"
-            BorderThickness="1.5"
-            BorderBrush="{StaticResource HighlightDarkBrush}"
+            BorderThickness="2.0"
+            BorderBrush="{StaticResource HighlightBrush}"
             CornerRadius="12" 
-            SnapsToDevicePixels="True"
-            >
+            SnapsToDevicePixels="True">
             </Border>
-
-			<Grid x:Name="grid" Height="Auto">
+            <Grid x:Name="grid" Height="Auto">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="{Binding ActualHeight, ElementName=grid2, Mode=OneWay}"/>
 					<RowDefinition Height="{Binding ActualHeight, ElementName=condition, Mode=OneWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"/>
@@ -53,7 +51,8 @@
           Style="{StaticResource CardButton}"
           Margin="0,12,12,0" 
           Width="{Binding ActualHeight, ElementName=button1, Mode=OneWay}" Click="button_Click">
-						<Image Source="{StaticResource Change}" Width="20" Height="20"/>
+						<Image
+                            Source="{StaticResource Change}" Width="20" Height="20"/>
 					</Button>
 					<Button
           x:Name="button2" 

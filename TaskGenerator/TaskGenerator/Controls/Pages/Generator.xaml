@@ -13,13 +13,14 @@
 		</Grid.RowDefinitions>
 
 		<StackPanel 
-    Background="White"
+    Background="{StaticResource BackgroundBrush}"
     >
 			<Label 
       Content="Генерация"
       FontFamily="{StaticResource Inter}"
       FontSize="32"
       FontWeight="Bold"
+           Foreground="{StaticResource TextBrush}"
       Margin="12,12,12,12" FontStyle="Normal" FontStretch="Condensed"
       />
 
@@ -27,49 +28,55 @@
       FontFamily="{StaticResource Inter}"
       Content="Количество вариантов:"
       FontSize="16"
+                           Foreground="{StaticResource TextBrush}"
+
       FontWeight="Bold"
       Margin="12,0,12,0"
       />
 
-			<TextBox
-      x:Name="countField"
-      FontFamily="{StaticResource Inter}"
-      UseLayoutRounding = "True"
-      Margin="12,8,12,0"
-      Text="4"
-      FontSize="16"
-      FontWeight="SemiBold"
-      Style="{StaticResource TextFieldStyle}"
-      />
+	<TextBox
+          x:Name="countField"
+          FontFamily="{StaticResource Inter}"
+          UseLayoutRounding = "True"
+          Margin="12,8,12,0"
+          Text="4"
+          FontSize="16"
+          Foreground="{StaticResource TextBrush}"
 
-			<Label 
-      FontFamily="{StaticResource Inter}"
-      Content="Номера задач:"
-      FontSize="16"
-      FontWeight="Bold"
-      Margin="12,12,12,0"
-      />
+          FontWeight="SemiBold"
+          Style="{StaticResource TextFieldStyle}"/>
+
+	<Label 
+        FontFamily="{StaticResource Inter}"
+        Content="Номера задач:"
+        Foreground="{StaticResource TextBrush}"
+        FontSize="16"
+        FontWeight="Bold"
+        Margin="12,12,12,0"/>
 
 			<TextBox
       x:Name="tasksField"
       FontFamily="{StaticResource Inter}"
       UseLayoutRounding = "True"
       Margin="12,8,12,12"
+                           Foreground="{StaticResource TextBrush}"
+
       Text="1-18"
       FontSize="16"
       FontWeight="SemiBold"
       Style="{StaticResource TextFieldStyle}"
       />
 
-			<Label 
+            <Label 
       FontFamily="{StaticResource Inter}"
       Content="Список студентов:"
+                           Foreground="{StaticResource TextBrush}"
+
       FontSize="16"
       FontWeight="Bold"
       Margin="12,0,12,0"
       />
-
-			<Label
+            <Label
       x:Name="importFileLabel"
       FontFamily="{DynamicResource Inter}"
       Content="Отсутствует"
@@ -87,10 +94,14 @@
 
 				<Button
         Margin="12,0,6,0"
+        Foreground="{StaticResource BackgroundBrush}"
+
         Content="Удалить" Grid.Column="0"
         Click="btnDeleteFile_Click">
 				</Button>
 				<Button
+                               Foreground="{StaticResource BackgroundBrush}"
+
         Margin="6,0,12,0"
         Content="Выбрать" Grid.Column="1"
         Click="btnOpenFile_Click">
@@ -100,11 +111,13 @@
 
 		</StackPanel>
 
-		<StackPanel Grid.Row="1" Background="White">
+        <StackPanel Grid.Row="1" Background="{StaticResource BackgroundBrush}">
 			<Button
         x:Name="generateBtn"
         Content="Сгенерировать"
         Margin="12"
+                           Foreground="{StaticResource BackgroundBrush}"
+
         Height="48" Click="generateBtn_Click"
         />
 

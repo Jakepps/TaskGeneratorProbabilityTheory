@@ -30,6 +30,7 @@
                     Height="164"/>
                 <Label 
                         Content="Генератор"
+                        Foreground="{StaticResource TextBrush}"
                         FontFamily="{StaticResource Inter}"
                         FontSize="24"
                         FontWeight="Bold"
@@ -59,6 +60,8 @@
                     >
                 <Label 
                     Content="О Приложении"
+                                            Foreground="{StaticResource TextBrush}"
+
                     FontFamily="{StaticResource Inter}"
                     FontSize="24"
                     FontWeight="Bold"
@@ -66,6 +69,8 @@
                     />
                 <TextBlock
                     Text="Данное приложение предназначено для генерации контрольных вариантов дисциплины Теория вероятностей."
+                                            Foreground="{StaticResource TextBrush}"
+
                     TextWrapping="Wrap"
                     TextAlignment="Justify"
                     Padding="24,0,24,24"
@@ -73,6 +78,8 @@
                     FontSize="16"
                     FontWeight="Medium"/>
                 <Label 
+                                            Foreground="{StaticResource TextBrush}"
+
                     Content="Разработчики"
                     FontFamily="{StaticResource Inter}"
                     FontSize="24"
