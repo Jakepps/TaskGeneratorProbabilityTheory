@@ -957,10 +957,10 @@ namespace TaskGenerator
                     var b=random.Next(2, 10);
                     var a=random.Next(1, b-1);
                     Task task2 = new Task(17, 2);
-                    task2.condition ="Дана функция распределения F(x) непрерывной случайной величины X."+
-                                     "\n        ⎧0,x<" + a + '\n' +
-                                     "f(x)=⎨a(4x+3)," + a + "≤x≤" + b + '\n' +
-                                     "        ⎩0,x>" + b + '\n';
+                    task2.condition = "Дана функция распределения F(x) непрерывной случайной величины X:\nf(x)=\n"+
+                                     "        ⎧0, x<" + a + '\n' +
+                                     "        ⎨a(4x+3), " + a + "≤x≤" + b + '\n' +
+                                     "        ⎩0, x>" + b;
                     task2.questions.Add("найти параметр a;");
                     task2.questions.Add("найти функцию распределения F(x);");
                     task2.questions.Add("построить графики f(x) и F(x)");
@@ -1024,12 +1024,12 @@ namespace TaskGenerator
                     var a = Math.Round(random.NextDouble() * 20.0 + 1.0)/10;
                     var b = random.Next(1, 10);
                     Task task2 = new Task(18, 2);
-                    task2.condition ="Дана плотность вероятности f(x) непрерывной случайной величины X." +
-                                     "\n        ⎧0, x≤0" + '\n' +
-                                     "f(x)=⎨2x/3, 0≤x≤1"+'\n' +
-                                     "        |3-x/3, 1≤x≤3" + '\n'+
+                    task2.condition = "Дана плотность вероятности f(x) непрерывной случайной величины X:\nf(x)=\n" +
+                                     "        ⎧0, x≤0" + '\n' +
+                                     "        ⎨2x/3, 0≤x≤1"+'\n' +
+                                     "        ⎨3-x/3, 1≤x≤3" + '\n'+
                                      "        ⎩0, x>3"+'\n'+
-                                     "α="+a+",β="+b + "\n";
+                                     "α="+a+",β="+b;
 
                     
                     task2.questions.Add("проверить свойство -∞∫∞(f(x)dx)=1");
@@ -1038,10 +1038,11 @@ namespace TaskGenerator
                     task2.questions.Add("найти M(X),D(x),σ(X)");
                     task2.questions.Add("построить график f(x)");
                     task2.answers.Add("1/3+2/3=1 =>Условие выполнено");
-                    task2.answers.Add("    ⎧0, x≤0" + '\n' +
-                                      "f(x)=⎨x²/3, 0≤x≤1" + '\n' +
-                                      "        |(-3-x²)/6+x, 1≤x≤3" + '\n' +
-                                      "        ⎩1, x>3" + '\n');
+                    task2.answers.Add("f(x)="+'\n' +
+                                      "     ⎧0, x≤0" + '\n' +
+                                      "     ⎨x²/3, 0≤x≤1" + '\n' +
+                                      "     ⎨(-3-x²)/6+x, 1≤x≤3" + '\n' +
+                                      "     ⎩1, x>3");
 
                     double ot3 = 3 * (double)b * (double)b * (double)b - 3 * a * a * a - 9 * (double)b * (double)b + 9 * a * a + 9 * a + 9 * (double)b;
                     task2.answers.Add(String.Format("{0:0.000}",ot3));
