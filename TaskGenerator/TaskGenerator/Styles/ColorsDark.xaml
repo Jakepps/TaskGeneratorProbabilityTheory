@@ -1,24 +1,24 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Color x:Key="Background">#2D2D2D</Color>
-    <Color x:Key="Accent">#8DB0F3</Color>
-    <Color x:Key="AccentDark">#8DB0F3</Color>
-    <Color x:Key="Highlight">#444444</Color>
-    <Color x:Key="HighlightDark">#3D3D3D</Color>
+    <Color x:Key="Background">#36393f</Color>
+    <Color x:Key="Accent">#95a3f2</Color>
+    <Color x:Key="AccentDark">#95a3f2</Color>
+    <Color x:Key="Highlight">#40444b</Color>
+    <Color x:Key="HighlightDark">#40444b</Color>
     <Color x:Key="Text">#FFFFFF</Color>
-    <Color x:Key="CardBackground">#3D3D3D</Color>
+    <Color x:Key="CardBackground">#40444b</Color>
     <Color x:Key="Disable">#B1B1B1</Color>
     <Color x:Key="Shadow">#333333</Color>
 
-    <SolidColorBrush x:Key="BackgroundBrush">#2D2D2D</SolidColorBrush>
-    <SolidColorBrush x:Key="AccentBrush">#8DB0F3</SolidColorBrush>
-    <SolidColorBrush x:Key="AccentDarkBrush">#8DB0F3</SolidColorBrush>
+    <SolidColorBrush x:Key="BackgroundBrush">#36393f</SolidColorBrush>
+    <SolidColorBrush x:Key="AccentBrush">#414675</SolidColorBrush>
+    <SolidColorBrush x:Key="AccentDarkBrush">#414675</SolidColorBrush>
 
-    <SolidColorBrush x:Key="HighlightBrush">#444444</SolidColorBrush>
-    <SolidColorBrush x:Key="HighlightDarkBrush">#3D3D3D</SolidColorBrush>
+    <SolidColorBrush x:Key="HighlightBrush">#42464d</SolidColorBrush>
+    <SolidColorBrush x:Key="HighlightDarkBrush">#40444b</SolidColorBrush>
     <SolidColorBrush x:Key="TextBrush">#FFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="CardBackgroundBrush">#3D3D3D</SolidColorBrush>
+    <SolidColorBrush x:Key="CardBackgroundBrush">#40444b</SolidColorBrush>
     <SolidColorBrush x:Key="DisableBrush">#B1B1B1</SolidColorBrush>
 
     <ImageSource x:Key="Refresh">Images/refreshdark.png</ImageSource>
