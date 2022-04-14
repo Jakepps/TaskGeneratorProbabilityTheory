@@ -16,7 +16,11 @@
             BorderBrush="{StaticResource HighlightBrush}"
             CornerRadius="12" 
             SnapsToDevicePixels="True">
+                <Border.Effect>
+                    <DropShadowEffect Color="{StaticResource Shadow}" Opacity="0.05" 									RenderingBias="Quality" BlurRadius="24" Direction="0" ShadowDepth="0"/>
+                </Border.Effect>
             </Border>
+            
             <Grid x:Name="grid" Height="Auto">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="{Binding ActualHeight, ElementName=grid2, Mode=OneWay}"/>

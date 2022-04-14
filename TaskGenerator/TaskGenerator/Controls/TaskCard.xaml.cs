@@ -27,7 +27,7 @@ namespace TaskGenerator.Controls
 		{
 			Task newTask = (Task)e.NewValue;
 			TaskCard instance = (TaskCard)d;
-			Console.WriteLine("set");
+			//Console.WriteLine("set");
 
 			instance.setTask(newTask);
 		}
@@ -39,7 +39,7 @@ namespace TaskGenerator.Controls
 				return (Task)GetValue(PresentTask);
 			}
 			set {
-				Console.WriteLine("hi");
+				//Console.WriteLine("hi");
 
 				SetValue(PresentTask, value);
 
@@ -48,9 +48,13 @@ namespace TaskGenerator.Controls
 
 		public Task presentedTask;
 		public int cardIndex = 0;
+
+		public TextBlock titleText;
+		public TextBlock conditionText;
+		public TextBlock answerText;
 		public TaskCard()
 		{
-			Console.WriteLine("create");
+			//Console.WriteLine("create");
 			InitializeComponent();
 			try {
 				taskUpdate += ((MainWindow)Application.Current.MainWindow).updateTask;
@@ -58,7 +62,12 @@ namespace TaskGenerator.Controls
 			} catch {
 
 			}
-		}
+
+			titleText = (TextBlock)FindName("taskNum");
+			conditionText = (TextBlock)FindName("condition");
+			answerText = (TextBlock)FindName("answer");
+
+	}
 
 		public delegate void onUpdateTask(int index);
 		public event onUpdateTask taskUpdate;
@@ -68,17 +77,10 @@ namespace TaskGenerator.Controls
 			
 			cardIndex = ((MainWindow)Application.Current.MainWindow).tasks.tasks.IndexOf(t);
 			presentedTask = t;
-			var title = (TextBlock)FindName("taskNum");
-			var condition = (TextBlock)FindName("condition");
-			var answer = (TextBlock)FindName("answer");
 
-			title.Text = "Задание " + (cardIndex + 1);
-			condition.Text = t.conditionWithNumberedQuestions;
-
-			//var answers = "";
-			//t.answers.ForEach(x => { answers += x + "\n"; });
-			//if (answers.Length > 0) answers = answers.Remove(answers.Length - 1);
-			answer.Text = t.numberedAnswers;
+			titleText.Text = "Задание " + (cardIndex + 1);
+			conditionText.Text = t.conditionWithNumberedQuestions;
+			answerText.Text = t.numberedAnswers;
 		}
 
 		private void button2_Click(object sender, RoutedEventArgs e)

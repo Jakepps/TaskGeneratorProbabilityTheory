@@ -10,6 +10,7 @@
     <Color x:Key="Text">#000000</Color>
     <Color x:Key="CardBackground">#FFFFFF</Color>
     <Color x:Key="Disable">#838383</Color>
+    <Color x:Key="Shadow">#535353</Color>
 
     <SolidColorBrush x:Key="BackgroundBrush">#FFFFFF</SolidColorBrush>
     <SolidColorBrush x:Key="AccentBrush">#597FC7</SolidColorBrush>

@@ -43,7 +43,7 @@
 			ScrollViewer.VerticalScrollBarVisibility="Visible"
             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 			Template="{StaticResource ListViewNewTemplate}"
-			VirtualizingPanel.CacheLength="5">
+			VirtualizingPanel.CacheLength="1">
 
 			<ListView.Resources>
 				<Style TargetType="ListViewItem">

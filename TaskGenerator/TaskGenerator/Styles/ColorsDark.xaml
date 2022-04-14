@@ -9,6 +9,7 @@
     <Color x:Key="Text">#FFFFFF</Color>
     <Color x:Key="CardBackground">#3D3D3D</Color>
     <Color x:Key="Disable">#B1B1B1</Color>
+    <Color x:Key="Shadow">#333333</Color>
 
     <SolidColorBrush x:Key="BackgroundBrush">#2D2D2D</SolidColorBrush>
     <SolidColorBrush x:Key="AccentBrush">#8DB0F3</SolidColorBrush>
