@@ -47,6 +47,12 @@ namespace TaskGenerator
                     return CreateTaskType17(subtype == 0 ? randomSubtype : subtype);
                 case 18:
                     return CreateTaskType18(subtype == 0 ? randomSubtype : subtype);
+                case 19:
+                    return CreateTaskType19(subtype == 0 ? randomSubtype : subtype);
+                case 20:
+                    return CreateTaskType20(subtype == 0 ? randomSubtype : subtype);
+                case 21:
+                    return CreateTaskType21(subtype == 0 ? randomSubtype : subtype);
             }
             throw new NotImplementedException();
         }
@@ -1020,10 +1026,11 @@ namespace TaskGenerator
 
                     return task1;
                 case 2:
+                    Task task2 = new Task(18, 2);
                     Random random = new Random();
                     var a = Math.Round(random.NextDouble() * 20.0 + 1.0)/10;
                     var b = random.Next(1, 10);
-                    Task task2 = new Task(18, 2);
+                    
                     task2.condition = "Дана плотность вероятности f(x) непрерывной случайной величины X:\nf(x)=\n" +
                                      "        ⎧0, x≤0" + '\n' +
                                      "        ⎨2x/3, 0≤x≤1"+'\n' +
@@ -1063,7 +1070,13 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(19, 2);
-                    
+                    Random random = new Random();
+                    int hours = random.Next(1, 6 + 1);
+                    int minutes = random.Next(1, 20 + 1);
+                    task2.condition = "Интервал движения теплоходов «Москва» на реке Иртыш составляет "+ hours + " ч. " +
+                        "Дачники подходят к пристани в некоторый момент, не зная расписания. Какова вероятность того, " +
+                        "что они опоздали на очередной теплоход не более чем на "+ minutes +" мин?";
+                    task2.answers.Add(string.Format(minutes + "/" + (hours*60) + "≈ {0:0.000}", minutes/(hours * 60.0)));
                     return task2;
             }
             throw new ArgumentException();
