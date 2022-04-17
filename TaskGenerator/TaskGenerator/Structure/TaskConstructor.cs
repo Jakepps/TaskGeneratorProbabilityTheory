@@ -731,8 +731,8 @@ namespace TaskGenerator
             task2.tables.Add(new double[3, 2]);
             for (int i = 0; i < 3; i++)
             {
-                task2.tables[^1][i, 0] = x[i];
-                task2.tables[^1][i, 1] = Math.Round(px[i] * 10) / 10;
+                task2.tables[task2.tables.Count - 1][i, 0] = x[i];
+                task2.tables[task2.tables.Count - 1][i, 1] = Math.Round(px[i] * 10) / 10;
             }
 
 
@@ -748,8 +748,8 @@ namespace TaskGenerator
             task2.tables.Add(new double[2, 2]);
             for (int i = 0; i < 2; i++)
             {
-                task2.tables[^1][i, 0] = y[i];
-                task2.tables[^1][i, 1] = Math.Round(py[i] * 10) /10;
+                task2.tables[task2.tables.Count - 1][i, 0] = y[i];
+                task2.tables[task2.tables.Count - 1][i, 1] = Math.Round(py[i] * 10) /10;
             }
 
 
@@ -800,8 +800,8 @@ namespace TaskGenerator
             task2.tables.Add(new double[6, 2]);
             for (int i = 0; i < 6; i++)
             {
-                task2.tables[^1][i, 0] = z1[i];
-                task2.tables[^1][i, 1] = Math.Round(pz1[i] * 100) / 100;
+                task2.tables[task2.tables.Count - 1][i, 0] = z1[i];
+                task2.tables[task2.tables.Count - 1][i, 1] = Math.Round(pz1[i] * 100) / 100;
             }
 
 
@@ -820,8 +820,8 @@ namespace TaskGenerator
             task2.tables.Add(new double[6, 2]);
             for (int i = 0; i < 6; i++)
             {
-                task2.tables[^1][i, 0] = z2[i];
-                task2.tables[^1][i, 1] = Math.Round(pz2[i] * 100) / 100;
+                task2.tables[task2.tables.Count - 1][i, 0] = z2[i];
+                task2.tables[task2.tables.Count - 1][i, 1] = Math.Round(pz2[i] * 100) / 100;
             }
 
 
@@ -924,6 +924,10 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
+        static double fun(double x)
+        {
+            return x * x * x / 3.0 - 3 * x * x + 8 * x;
+        }
         private static Task CreateTaskType17(int subtype)
         {
             switch (subtype)
@@ -944,18 +948,18 @@ namespace TaskGenerator
                     task1.questions.Add("Построить функцию распределения F(X)");
                     task1.questions.Add("Построить графики f(X) и F(X)");
 
-                    var fun = (double x) => x * x * x / 3.0 - 3 * x * x + 8 * x;
+                    //var fun = (double x) => x * x * x / 3.0 - 3 * x * x + 8 * x;
                     var aa = 1 / (fun(end) - fun(start));
 
-                    var dx = (double a) => String.Format("{0:0.00}x^3 - {1:0.00}x^2 + {2:0.00}x",
-                        aa / 3.0,
-                        3 * aa,
-                        8 * aa
-                        );
+                    
 
 
                     task1.answers.Add("a = " + String.Format("{0:0.00}", aa));
-                    task1.answers.Add("F(X) = " + dx(aa));
+                    task1.answers.Add("F(X) = " + String.Format("{0:0.00}x^3 - {1:0.00}x^2 + {2:0.00}x",
+                        aa / 3.0,
+                        3 * aa,
+                        8 * aa
+                        ));
 
                     return task1;
                 case 2:
@@ -979,6 +983,11 @@ namespace TaskGenerator
                     return task2;
             }
             throw new ArgumentException();
+        }
+
+        static double fun2(double x)
+        {
+            return -(x * x) / 2.0 + 2 * x;
         }
 
         private static Task CreateTaskType18(int subtype)
@@ -1012,8 +1021,7 @@ namespace TaskGenerator
                         "    ⎨ -(x^2)/2 + 2x, 1 < x ≤ 2\n" +
                         "    ⎩ 1, x > 2");
 
-                    var fun1 = (double x) => (x * x) / 2.0;
-                    var fun2 = (double x) => -(x * x) / 2.0 + 2 * x;
+                    
 
                     var ans = 1 / 2.0 + fun2(bb) - fun2(1);
                     task1.answers.Add("P(α≤x≤β) = " + String.Format("{0:0.0000}", ans));

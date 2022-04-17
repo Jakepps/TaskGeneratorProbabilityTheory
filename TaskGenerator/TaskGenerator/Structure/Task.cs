@@ -10,7 +10,7 @@ namespace TaskGenerator
         //высота таблицы
         public int height;
         //значения таблицы (описываются последовательно строки)
-        public List<String> values;
+        public List<string> values;
         //надо ли вставлять таблицу в секцию ответов
         public bool isAnswer;
         //индекс в секции, куда надо вставить таблицу
@@ -32,7 +32,7 @@ namespace TaskGenerator
         //далее объекты описаны структурами table
         public List<object> exportInfo { get; set; }
 
-        public List<double[,]>? tables = null;
+        public List<double[,]> tables = null;
 
         
         public string conditionWithNumberedQuestions

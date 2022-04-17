@@ -11,7 +11,7 @@ namespace TaskGenerator
     {
         public int number {get;}
 
-        public string? student = null;
+        public string student = null;
         public List<Task> tasks { get; private set; }
 
         public static List<Variant>  GenerateSomeVariants(int count, List<int> taskTypes)

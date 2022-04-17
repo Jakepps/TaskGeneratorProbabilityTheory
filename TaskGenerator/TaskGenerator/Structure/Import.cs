@@ -34,7 +34,7 @@ namespace TaskGenerator
                     clearedString.Append(fullString[i]);
             }
 
-            students = clearedString.ToString().Split(new char[] { '\r', '\n' }, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList();
+            students = clearedString.ToString().Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             //for(int i = 0; i < students.Count; i++)
             //    Console.WriteLine(students[i]);
@@ -55,13 +55,13 @@ namespace TaskGenerator
             }
 
             string clearedString = str.Replace(" ","");
-            string[] splittedString = clearedString.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            string[] splittedString = clearedString.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
             for (int i = 0; i < splittedString.Length; i++)
             {
                 if (splittedString[i].Contains('-'))
                 {
-                    string[] splittedString2 = splittedString[i].Split('-', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                    string[] splittedString2 = splittedString[i].Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
                     if (splittedString2.Length == 2)
                     {
                         int from = Convert.ToInt32(splittedString2[0]), to = Convert.ToInt32(splittedString2[1]);

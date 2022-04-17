@@ -1,11 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <StartupObject></StartupObject>
-    
+	
+    <LangVersion>8.0</LangVersion>
+    <Nullable>disable</Nullable>
+	  
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Styles\Images\Jakepps.jpg" />
@@ -56,6 +59,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="DocX" Version="2.1.0" />
 	  <PackageReference Include="System.Management" Version="6.0.0" />
 	</ItemGroup>
 

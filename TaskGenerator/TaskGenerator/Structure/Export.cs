@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Word;
 using System.IO;
+using System;
+using System.Diagnostics;
+using Xceed;
 
 namespace TaskGenerator.Structure
 {
@@ -14,8 +17,9 @@ namespace TaskGenerator.Structure
         {
             Application application = new Application();
             Document doc= new Document();
-
-
+            
+            
+            
 
 
             return null;
