@@ -10,8 +10,8 @@ using System.Drawing;
 namespace TaskGenerator
 {
     public partial class MainWindow : Window
-    {
 
+    {
         //Чёт кринж, ну ладно
         public class Students : List<string>
         {
@@ -46,10 +46,12 @@ namespace TaskGenerator
             variants.variantChange += changeVariant;
             tasks.parentWindow = this;
 
-            exportBtn.IsEnabled = false;
+            exportBtn.IsEnabled = true;
         }
 
         public void onClick(object sender, RoutedEventArgs e) {
+            //string pathdoc = (@"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\test.docx");
+            //var doc = DocX.Create(pathdoc);
             var count = 0;
             var tasksList = new List<int>(); 
             try {
@@ -72,7 +74,8 @@ namespace TaskGenerator
             }
             variants.presentVariants(variantList);
             tasks.setVariant(variantList[0], 0);
-		}
+            
+        }
 
         public void changeVariant(int v) {
             selectedVariant = v;
@@ -100,33 +103,7 @@ namespace TaskGenerator
 
         private void exportBtn_Click(object sender, RoutedEventArgs e)
         {
-            exportBtn.IsEnabled = true;
-            string pathdoc = (@"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\test.docx");        
-             string headlineText = "Хустам Рахух"; 
-
-            string paraOne = "говно";
-
-            // A formatting object for our headline:
-            var headLineFormat = new Formatting();
-            //headLineFormat.FontFamily = new FontFamily("Arial Black");
-            //Xceed.Document.NET.Drawing.FontFamily("Arial Black");
-            headLineFormat.Size = 18D;
-            headLineFormat.Position = 12;
-
-            // A formatting object for our normal paragraph text:
-            var paraFormat = new Formatting();
-            //paraFormat.FontFamily = new FontFamily("Calibri");
-            paraFormat.Size = 10D;
-
-            // Create the document in memory:
-            var doc = DocX.Create(pathdoc);
-
-            // Insert the now text obejcts;
-            doc.InsertParagraph(headlineText, false, headLineFormat);
-            doc.InsertParagraph(paraOne, false, paraFormat);
-
-            // Save to the output directory:
-            doc.Save();
+            
 
         }
     }

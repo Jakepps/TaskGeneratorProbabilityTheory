@@ -3,52 +3,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Office.Interop.Word;
 using System.IO;
 using System.Diagnostics;
 using Xceed;
 using Xceed.Words.NET;
 using Xceed.Document.NET;
-using System.Drawing;
+//using System.Drawing;
 
-namespace TaskGenerator.Structure
+namespace TaskGenerator
 {
     public class Export
     {
-        public void ExportStudents()
+        public static DocX ExportStudents(string st, int var, string varlist, string ot)
         {
             string pathdoc = (@"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\test.docx");
-            string headlineText = "Constitution of the United States";
-            string paraOne = ""
-            + "We the People of the United States, in Order to form a more perfect Union, "
-            + "establish Justice, insure domestic Tranquility, provide for the common defence, "
-            + "promote the general Welfare, and secure the Blessings of Liberty to ourselves "
-            + "and our Posterity, do ordain and establish this Constitution for the United "
-            + "States of America.";
-
-            // A formatting object for our headline:
-            var headLineFormat = new Formatting();
-            //headLineFormat.FontFamily = new FontFamily("Arial Black");
-                //Xceed.Document.NET.Drawing.FontFamily("Arial Black");
-            headLineFormat.Size = 18D;
-            headLineFormat.Position = 12;
-
-            // A formatting object for our normal paragraph text:
-            var paraFormat = new Formatting();
-            //paraFormat.FontFamily = new FontFamily("Calibri");
-            paraFormat.Size = 10D;
-
-            // Create the document in memory:
+            //Title  
+            string title = st;
+            string titlevar = "Вариант" + var;
+            //Text  
+            string textParagraph = varlist;
+            string otvet = ot;
+            //Formatting Title  
+            Formatting titleFormat = new Formatting();
+            //Specify font family  
+            titleFormat.FontFamily = new Font("Times New Roman");
+            //Specify font size  
+            titleFormat.Size = 18D;
+            titleFormat.Position = 40;
+            titleFormat.FontColor = System.Drawing.Color.Black;
+            titleFormat.UnderlineColor = System.Drawing.Color.Black;
+            titleFormat.Italic = true;
+            //Specify font family  
+            titleFormat.FontFamily = new Font("Times New Roman");
+            //Specify font size  
+            titleFormat.Size = 18D;
+            titleFormat.Position = 40;
+            titleFormat.FontColor = System.Drawing.Color.Black;
+            titleFormat.UnderlineColor = System.Drawing.Color.Black;
+            titleFormat.Italic = true;
+            //Formatting Text Paragraph  
+            Formatting textParagraphFormat = new Formatting();
+            //font family  
+            textParagraphFormat.FontFamily = new Font("Arial");
+            //font size  
+            textParagraphFormat.Size = 10D;
+            //Spaces between characters  
+            textParagraphFormat.Spacing = 2;
+            //Create docx  
             var doc = DocX.Create(pathdoc);
-
-            // Insert the now text obejcts;
-            doc.InsertParagraph(headlineText, false, headLineFormat);
-            doc.InsertParagraph(paraOne, false, paraFormat);
-
-            // Save to the output directory:
+            //Insert title  
+            Paragraph paragraphTitle = doc.InsertParagraph(title, false, titleFormat);
+            Paragraph paragraphTitle2 = doc.InsertParagraph(titlevar, false, titleFormat);
+            paragraphTitle.Alignment = Alignment.center;
+            paragraphTitle2.Alignment = Alignment.center;
+            //Insert text  
+            doc.InsertParagraph(textParagraph, false, textParagraphFormat);
+            doc.InsertParagraph(otvet, false, textParagraphFormat);
             doc.Save();
+            //Process.Start("WINWORD.EXE", pathdoc);
 
-
+            return doc; 
         }
     }
 }

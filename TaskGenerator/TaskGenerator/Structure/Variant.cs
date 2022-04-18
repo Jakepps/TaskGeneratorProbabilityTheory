@@ -40,7 +40,7 @@ namespace TaskGenerator
         //    return result;
         //}
 
-      
+
         public Variant(int number, List<int> taskTypes)
         {
             this.number = number;
