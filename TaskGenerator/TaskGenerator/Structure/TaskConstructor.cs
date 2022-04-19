@@ -715,7 +715,7 @@ namespace TaskGenerator
             Task task2 = new Task(15, 2);
             Random random = new Random();
 
-            task2.tables = new List<double[,]>();
+            task2.tables = new List<string[,]>();
 
             int[] x = new int[3];
             double[] px = new double[3];
@@ -728,13 +728,13 @@ namespace TaskGenerator
             px[1] = random.Next(1, 10 - (int)(px[0]*10)) * 10 / 100.0;
             px[2] = Math.Round((1 - px[0] - px[1])*10)/10.0;
 
-            task2.tables.Add(new double[3, 2]);
+            task2.tables.Add(new string[3, 2]);
             for (int i = 0; i < 3; i++)
             {
-                task2.tables[task2.tables.Count - 1][i, 0] = x[i];
-                task2.tables[task2.tables.Count - 1][i, 1] = Math.Round(px[i] * 10) / 10;
+                task2.tables[task2.tables.Count - 1][i, 0] = x[i] +"";
+                task2.tables[task2.tables.Count - 1][i, 1] = (Math.Round(px[i] * 10) / 10) + "";
             }
-
+            task2.tables[task2.tables.Count - 1][2, 1] = "p";
 
 
             int[] y = new int[2];
@@ -745,13 +745,13 @@ namespace TaskGenerator
             py[0] = random.Next(1, 9) * 10 / 100.0;
             py[1] = Math.Round((1 - py[0]) * 10) / 10.0;
 
-            task2.tables.Add(new double[2, 2]);
+            task2.tables.Add(new string[2, 2]);
             for (int i = 0; i < 2; i++)
             {
-                task2.tables[task2.tables.Count - 1][i, 0] = y[i];
-                task2.tables[task2.tables.Count - 1][i, 1] = Math.Round(py[i] * 10) /10;
+                task2.tables[task2.tables.Count - 1][i, 0] = y[i] + "";
+                task2.tables[task2.tables.Count - 1][i, 1] = (Math.Round(py[i] * 10) /10) + "";
             }
-
+            
 
 
             task2.condition = "Независимые случайные величины X и Y заданы таблицами распределений. \n" +
@@ -797,11 +797,11 @@ namespace TaskGenerator
                 pz1[j + 1] = px[i] * py[1];
             }
 
-            task2.tables.Add(new double[6, 2]);
+            task2.tables.Add(new string[6, 2]);
             for (int i = 0; i < 6; i++)
             {
-                task2.tables[task2.tables.Count - 1][i, 0] = z1[i];
-                task2.tables[task2.tables.Count - 1][i, 1] = Math.Round(pz1[i] * 100) / 100;
+                task2.tables[task2.tables.Count - 1][i, 0] = z1[i] + "";
+                task2.tables[task2.tables.Count - 1][i, 1] = (Math.Round(pz1[i] * 100) / 100) + "";
             }
 
 
@@ -817,11 +817,11 @@ namespace TaskGenerator
                 pz2[j + 1] = px[i] * py[1];
             }
 
-            task2.tables.Add(new double[6, 2]);
+            task2.tables.Add(new string[6, 2]);
             for (int i = 0; i < 6; i++)
             {
-                task2.tables[task2.tables.Count - 1][i, 0] = z2[i];
-                task2.tables[task2.tables.Count - 1][i, 1] = Math.Round(pz2[i] * 100) / 100;
+                task2.tables[task2.tables.Count - 1][i, 0] = z2[i] + "";
+                task2.tables[task2.tables.Count - 1][i, 1] = (Math.Round(pz2[i] * 100) / 100) + "";
             }
 
 
