@@ -6,7 +6,11 @@ using Xceed;
 using Xceed.Words.NET;
 using Xceed.Document.NET;
 using System.Drawing;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.WindowsAPICodePack.Dialogs;
 namespace TaskGenerator
 {
     public partial class MainWindow : Window
@@ -106,9 +110,24 @@ namespace TaskGenerator
 
         private void exportBtn_Click(object sender, RoutedEventArgs e)
         {
+            CommonOpenFileDialog dlg = new CommonOpenFileDialog();
+            dlg.Title = "Выбор папки для сохранения файла";
+            dlg.IsFolderPicker = true;
+            dlg.AddToMostRecentlyUsedList = false;
+            dlg.AllowNonFileSystemItems = false;
+            dlg.EnsureFileExists = true;
+            dlg.EnsurePathExists = true;
+            dlg.EnsureReadOnly = false;
+            dlg.EnsureValidNames = true;
+            dlg.Multiselect = false;
+            dlg.ShowPlacesList = true;
 
+            if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                
+            }
             //var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
-            //var pizdec = Export.ExportStudents(variantList);
+            //var pizdec = Export.ExportVariants(variantList);
             //pizdec.Item1.Save();
             //pizdec.Item2.Save();
         }
