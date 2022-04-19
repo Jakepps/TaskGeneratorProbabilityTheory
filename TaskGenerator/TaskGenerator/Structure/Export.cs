@@ -7,13 +7,13 @@ namespace TaskGenerator
 {
     public class Export
     {
-        public static (DocX, DocX) ExportVariants(List<Variant> variantList, string pathVariants, string pathAnswers)
+        public static (DocX, DocX) ExportVariants(List<Variant> variantList, string path)
         {
             //string pathdoc = @"test.docx";
             //string pathdocot = @"testotvet.docx";
             //Title  
-            var doc = DocX.Create(pathVariants);
-            var docotvet = DocX.Create(pathAnswers);
+            var doc = DocX.Create(path + "\\Variants.docx");
+            var docotvet = DocX.Create(path + "\\VariantsAnswers.docx");
             for (int i = 0; i < variantList.Count; i++)
             {
                 string title = variantList[i].student;

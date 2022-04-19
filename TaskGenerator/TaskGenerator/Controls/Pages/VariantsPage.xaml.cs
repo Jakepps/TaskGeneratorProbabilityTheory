@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TaskGenerator;
-
+using Microsoft.WindowsAPICodePack.Dialogs;
 namespace TaskGenerator.Controls.Pages
 {
 	/// <summary>
@@ -46,12 +46,36 @@ namespace TaskGenerator.Controls.Pages
 
 		private void onExport(object sender, RoutedEventArgs e)
         {
-			Console.WriteLine("test");
-			var variantList = ((MainWindow)(Application.Current.MainWindow)).variantList;
+			CommonOpenFileDialog dlg = new CommonOpenFileDialog();
+			dlg.Title = "Выбор папки для сохранения файла";
+			dlg.IsFolderPicker = true;
+			dlg.AddToMostRecentlyUsedList = false;
+			dlg.AllowNonFileSystemItems = false;
+			dlg.EnsureFileExists = true;
+			dlg.EnsurePathExists = true;
+			dlg.EnsureReadOnly = false;
+			dlg.EnsureValidNames = true;
+			dlg.Multiselect = false;
+			dlg.ShowPlacesList = true;
+
+			if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+			{
+				Console.WriteLine(dlg.FileName);
+				var variantList = ((MainWindow)(Application.Current.MainWindow)).variantList;
+				var pizdec = Export.ExportVariants(variantList, dlg.FileName);
+				pizdec.Item1.Save();
+				pizdec.Item2.Save();
+			}
 			//var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
-			var pizdec = Export.ExportStudents(variantList);
-			pizdec.Item1.Save();
-			pizdec.Item2.Save();
+			//var pizdec = Export.ExportVariants(variantList);
+			//pizdec.Item1.Save();
+			//pizdec.Item2.Save();
+
+
+
+			////var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
+
+
 		}
 
 		public void presentVariants(List<Variant> vars)
