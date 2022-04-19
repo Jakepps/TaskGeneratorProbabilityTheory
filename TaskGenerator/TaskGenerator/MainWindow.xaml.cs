@@ -18,7 +18,9 @@ namespace TaskGenerator
             public Students(string path) : base(Import.ImportStudents(path))
             {
                 for (int i = 0; i < this.Count; i++)
+                {
                     Console.WriteLine(this[i]);
+                }
             }
 
             public Students()
@@ -79,6 +81,7 @@ namespace TaskGenerator
 
         public void changeVariant(int v) {
             selectedVariant = v;
+ 
             tasks.setVariant(variantList[v], v);
         }
 
@@ -104,8 +107,9 @@ namespace TaskGenerator
         private void exportBtn_Click(object sender, RoutedEventArgs e)
         {
             //var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
-            var pizdec = Export.ExportStudents("Хурстам Рахук", 69, "Задания", "ответ ");
-            pizdec.Save();
+            var pizdec = Export.ExportStudents(variantList);
+            pizdec.Item1.Save();
+            pizdec.Item2.Save();
         }
     }
 
