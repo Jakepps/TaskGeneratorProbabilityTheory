@@ -48,11 +48,12 @@ namespace TaskGenerator.Controls.Pages
 				mainWindow.students = new MainWindow.Students(openFileDialog.FileName);
 				int studentsCount = mainWindow.students.Count;
 				countField.Text = studentsCount.ToString();
+				countField.Foreground = new SolidColorBrush(Color.FromArgb(255, 160, 160, 160));
+				countField.IsReadOnly = true;
+				countField.Focusable = false;
 			}
 			
-			countField.Foreground = new SolidColorBrush(Color.FromArgb(255, 160, 160, 160));
-			countField.IsReadOnly = true;
-			countField.Focusable = false;
+			
 			//countField.IsEnabled = false;
 		}
 

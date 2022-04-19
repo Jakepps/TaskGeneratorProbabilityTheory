@@ -37,12 +37,7 @@ namespace TaskGenerator
 
         public int selectedVariant = 0;
 
-        List<Variant> variantList = new List<Variant>{
-            new Variant(1,new List<int> { 1,1 }),
-            new Variant(1,new List<int> { 1 }),
-            new Variant(1,new List<int> { 1 }),
-            new Variant(1,new List<int> { 2,2,2,2 })
-        };
+        public List<Variant> variantList = new List<Variant>{};
 
         public MainWindow()
         {
@@ -51,20 +46,15 @@ namespace TaskGenerator
             generator.generateBtn.Click += onClick;
             variants.variantChange += changeVariant;
             tasks.parentWindow = this;
-
-            exportBtn.IsEnabled = true;
         }
 
         public void onClick(object sender, RoutedEventArgs e) {
-            //string pathdoc = (@"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\test.docx");
-            //var doc = DocX.Create(pathdoc);
             var count = 0;
             var tasksList = new List<int>(); 
             try {
                 count = Convert.ToInt32(generator.countField.Text);
                 tasksList = Import.GetTaskTypesFromString(generator.tasksField.Text);
                 if (tasksList.FindAll(x => x <= 0 || x > 21).Count != 0) throw new FormatException();
-                exportBtn.IsEnabled = true;
             }
             catch {
                 MessageBox.Show("Введены некорректные данные", "Ошибка");

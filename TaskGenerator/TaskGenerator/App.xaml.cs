@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Navigation;
 
 namespace TaskGenerator
@@ -64,8 +65,9 @@ namespace TaskGenerator
 
         private void InvalidedMainWindow()
         {
+           // Resources.MergedDictionaries[0].Source = new Uri($"/Styles/ColorsDark.xaml", UriKind.Relative);
             App.Current.MainWindow.UpdateLayout();
-            ((MainWindow)(App.Current.MainWindow)).generator.UpdateLayout();
+            ((MainWindow)(App.Current.MainWindow)).generator.Background = Application.Current.Resources["BackgroundBrush"] as SolidColorBrush;
         }
 
     }
