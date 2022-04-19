@@ -691,7 +691,7 @@ namespace TaskGenerator
 
                     var a = count * 0.001;
 
-                    task1.answers.Add(String.Format("Pn(m) = (({0:0.0})^m) / (m!) * e^({0:0.0})", a));
+                    task1.answers.Add(String.Format("Pn(m) = (({0:0.0})^m) / (m!) * e^(-{0:0.0})", a));
                     task1.answers.Add(String.Format("M(X) = {0:0.0}", a));
 
                     return task1;
@@ -704,7 +704,7 @@ namespace TaskGenerator
                     task2.questions.Add("Составить ряд распределения числа лампочек, поврежденных в пути.");
                     task2.questions.Add("Найти M(X) этой случайной величины.");
                     task2.answers.Add(string.Format("Pn(m) = {0:0}^m/m! * e^(-{0:0})", lampAmount * probDamage));
-                    task2.answers.Add(string.Format("M(X) = ∑(i=1, " + lampAmount + ") i*{0:0}^i/i! * e^(-{0:0})", lampAmount * probDamage));
+                    task2.answers.Add(string.Format("M(X) = {0:0.0}", lampAmount * probDamage));
                     return task2;
             }
             throw new ArgumentException();
@@ -955,7 +955,7 @@ namespace TaskGenerator
 
 
                     task1.answers.Add("a = " + String.Format("{0:0.00}", aa));
-                    task1.answers.Add("F(X) = " + String.Format("{0:0.00}x^3 - {1:0.00}x^2 + {2:0.00}x",
+                    task1.answers.Add("F(X) = " + String.Format("{0:0.00}x³ - {1:0.00}x² + {2:0.00}x",
                         aa / 3.0,
                         3 * aa,
                         8 * aa

@@ -33,12 +33,7 @@ namespace TaskGenerator
 
         public int selectedVariant = 0;
 
-        List<Variant> variantList = new List<Variant>{
-            new Variant(1,new List<int> { 1,1 }),
-            new Variant(1,new List<int> { 1 }),
-            new Variant(1,new List<int> { 1 }),
-            new Variant(1,new List<int> { 2,2,2,2 })
-        };
+        List<Variant> variantList = new List<Variant>{};
 
         public MainWindow()
         {
@@ -52,8 +47,6 @@ namespace TaskGenerator
         }
 
         public void onClick(object sender, RoutedEventArgs e) {
-            //string pathdoc = (@"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\test.docx");
-            //var doc = DocX.Create(pathdoc);
             var count = 0;
             var tasksList = new List<int>(); 
             try {
