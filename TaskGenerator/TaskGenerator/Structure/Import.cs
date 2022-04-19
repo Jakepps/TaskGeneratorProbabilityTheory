@@ -2,30 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Office.Interop.Word;
-using System.IO;
+//using Microsoft.Office.Interop.Word;
+using Xceed.Document.NET;
+using Xceed.Words.NET;
 
 namespace TaskGenerator
 {
-  
+
     public static class Import
     {
         
         public static List<string> ImportStudents(string path)
         {
             List<string> students = new List<string>();
-
-            Application application = new Application();
-            Document document = application.Documents.Open(path, null, true);
+            var document = DocX.Load(path);
             
             StringBuilder fullString = new StringBuilder();
-            for (int i = 1; i <= document.Words.Count; i++)
+            for (int i = 0; i < document.Paragraphs.Count; i++) 
             {
-                fullString.Append(document.Words[i].Text);
+                fullString.Append(document.Paragraphs[i].Text + '\r');
             }
-            document.Close();
-
             StringBuilder clearedString = new StringBuilder();
             char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ')', '(', '*', '-', '{', '}', '[', ']', '?', '=', '+', '-', '_', ',', '.' };
             for (int i = 0; i < fullString.Length; i++)
@@ -33,9 +29,9 @@ namespace TaskGenerator
                 if (!chars.Contains(fullString[i]))
                     clearedString.Append(fullString[i]);
             }
-
-            students = clearedString.ToString().Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
+            
+            students = clearedString.ToString().Split(new char[] { '\r','\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                       
             //for(int i = 0; i < students.Count; i++)
             //    Console.WriteLine(students[i]);
            
