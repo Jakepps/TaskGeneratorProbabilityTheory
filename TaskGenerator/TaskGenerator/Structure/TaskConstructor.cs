@@ -1017,8 +1017,8 @@ namespace TaskGenerator
                     task1.answers.Add("Условие выполняется.");
                     task1.answers.Add("F(X) =\n" +
                         "    ⎧ 0, x ≤ 0\n" +
-                        "    ⎨ (x^2)/2, 0 < x ≤ 1 \n" +
-                        "    ⎨ -(x^2)/2 + 2x, 1 < x ≤ 2\n" +
+                        "    ⎨ (x²)/2, 0 < x ≤ 1 \n" +
+                        "    ⎨ -(x²)/2 + 2x, 1 < x ≤ 2\n" +
                         "    ⎩ 1, x > 2");
 
                     
@@ -1113,7 +1113,15 @@ namespace TaskGenerator
                     Task task1 = new Task(21, 1);
                     return task1;
                 case 2:
+                    var rand = new Random();
                     Task task2 = new Task(21, 2);
+
+                    var gamma = rand.Next(8) * 5 + 15;
+                    var error = rand.Next(8) * 5 + 15;
+
+                    task2.condition = "Случайные ошибки измерения подчинены нормальному закону со средним квадратическим отклонением " + gamma + " мм и математическим ожиданием, равным нулю.Найти вероятность того, что измерение будет произведено с ошибкой, не превосходящей по абсолютной величине " + error + " мм.";
+
+                    task2.answers.Add(String.Format("2Ф({0:0.0000})", Convert.ToDouble(error) / Convert.ToDouble(gamma)));
 
                     return task2;
             }
