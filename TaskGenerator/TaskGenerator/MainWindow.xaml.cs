@@ -33,7 +33,7 @@ namespace TaskGenerator
 
         public int selectedVariant = 0;
 
-        List<Variant> variantList = new List<Variant>{};
+        public List<Variant> variantList = new List<Variant>{};
 
         public MainWindow()
         {
@@ -42,8 +42,6 @@ namespace TaskGenerator
             generator.generateBtn.Click += onClick;
             variants.variantChange += changeVariant;
             tasks.parentWindow = this;
-
-            exportBtn.IsEnabled = true;
         }
 
         public void onClick(object sender, RoutedEventArgs e) {
@@ -53,7 +51,6 @@ namespace TaskGenerator
                 count = Convert.ToInt32(generator.countField.Text);
                 tasksList = Import.GetTaskTypesFromString(generator.tasksField.Text);
                 if (tasksList.FindAll(x => x <= 0 || x > 21).Count != 0) throw new FormatException();
-                exportBtn.IsEnabled = true;
             }
             catch {
                 MessageBox.Show("Введены некорректные данные", "Ошибка");
@@ -95,14 +92,6 @@ namespace TaskGenerator
             var win = new AboutWindow();
             win.Show();
 
-        }
-
-        private void exportBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
-            var pizdec = Export.ExportStudents(variantList);
-            pizdec.Item1.Save();
-            pizdec.Item2.Save();
         }
     }
 

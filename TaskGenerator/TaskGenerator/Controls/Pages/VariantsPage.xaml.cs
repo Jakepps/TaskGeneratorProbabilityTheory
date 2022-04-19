@@ -44,7 +44,15 @@ namespace TaskGenerator.Controls.Pages
 			variantChange(index);
 		}
 
-
+		private void onExport(object sender, RoutedEventArgs e)
+        {
+			Console.WriteLine("test");
+			var variantList = ((MainWindow)(Application.Current.MainWindow)).variantList;
+			//var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
+			var pizdec = Export.ExportStudents(variantList);
+			pizdec.Item1.Save();
+			pizdec.Item2.Save();
+		}
 
 		public void presentVariants(List<Variant> vars)
 		{
@@ -67,6 +75,10 @@ namespace TaskGenerator.Controls.Pages
 				panel.Children.Add(card);
 				card.setName(vars[i]);
 			}
+
+			bg.Background = Application.Current.Resources["BackgroundBrush"] as SolidColorBrush;
+			exportBtn.Visibility = Visibility.Visible;
+
 		}
 	}
 }
