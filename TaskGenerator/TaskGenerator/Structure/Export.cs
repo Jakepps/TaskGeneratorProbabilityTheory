@@ -71,6 +71,15 @@ namespace TaskGenerator
                     //paragraphTitle.Alignment = Alignment.center;
                     //paragraphTitle2.Alignment = Alignment.right;
                     //Insert text  
+                    if (j + 1 == 15)
+                    {
+                        var t = doc.AddTable(5, 2);
+                        t.Alignment = Alignment.left;
+                        t.Rows[0].Cells[0].Paragraphs[0].Append("x:");
+                        t.Rows[1].Cells[0].Paragraphs[0].Append("p:");
+
+                    }
+                    
                     doc.InsertParagraph(textParagraph, false, textParagraphFormat);
 
                     //doc.InsertParagraph(otvet, false, textParagraphFormat);
