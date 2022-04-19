@@ -736,7 +736,6 @@ namespace TaskGenerator
             }
             task2.tables[task2.tables.Count - 1][2, 1] = "p";
 
-
             int[] y = new int[2];
             double[] py = new double[2];
             y[0] = random.Next(-2, 0);
@@ -751,8 +750,6 @@ namespace TaskGenerator
                 task2.tables[task2.tables.Count - 1][i, 0] = y[i] + "";
                 task2.tables[task2.tables.Count - 1][i, 1] = (Math.Round(py[i] * 10) /10) + "";
             }
-            
-
 
             task2.condition = "Независимые случайные величины X и Y заданы таблицами распределений. \n" +
                 "x: " + x[0] + ", " + x[1] + ", " + x[2] + ". \n" +
@@ -894,7 +891,7 @@ namespace TaskGenerator
                     task1.questions.Add("Построить графики F(x) и f(x).");
                     task1.questions.Add("Найти P(α < X < β) для данных α,β.");
 
-                    task1.answers.Add("\nf(x) = \n    ⎧ 0, x <= 0\n    ⎨ sin(x) / 2, 0 < x <= π\n    ⎩ 0, x > π");
+                    task1.answers.Add("\nf(x) = \n    ⎧ 0, x ≤ 0\n    ⎨ sin(x) / 2, 0 < x ≤ π\n    ⎩ 0, x > π");
                     task1.answers.Add("");
                     task1.answers.Add(String.Format("P(α < X < β) = {0:0.0000}", ((1.0/2.0) * (1 - Math.Cos(betaF))) - ((1.0/2.0) * (1 - Math.Cos(alphaF)))));
                     return task1;
@@ -916,7 +913,7 @@ namespace TaskGenerator
                     task2.questions.Add("Построить графики F(x) и f(x).");
                     task2.questions.Add("Найти P(α < X < β) для данных α,β.");
 
-                    task2.answers.Add("\nf(x) = \n    ⎧ 0, x <= 0\n    ⎨ x/50, 0 < x <= 10\n    ⎩ 0, x > 10");
+                    task2.answers.Add("\nf(x) = \n    ⎧ 0, x ≤ 0\n    ⎨ x/50, 0 < x ≤ 10\n    ⎩ 0, x > 10");
                     task2.answers.Add("");
                     task2.answers.Add(String.Format("P(α < X < β) = {0:0.0000}", (beta2 * beta2/100.0) - (alpha2* alpha2/100.0)));
                     return task2;
@@ -968,9 +965,9 @@ namespace TaskGenerator
                     var a=random.Next(1, b-1);
                     Task task2 = new Task(17, 2);
                     task2.condition = "Дана функция распределения F(x) непрерывной случайной величины X:\nf(x)=\n"+
-                                     "        ⎧0, x<" + a + '\n' +
-                                     "        ⎨a(4x+3), " + a + "≤x≤" + b + '\n' +
-                                     "        ⎩0, x>" + b;
+                                     "        ⎧ 0, x<" + a + '\n' +
+                                     "        ⎨ a(4x+3), " + a + "≤x≤" + b + '\n' +
+                                     "        ⎩ 0, x>" + b;
                     task2.questions.Add("найти параметр a;");
                     task2.questions.Add("найти функцию распределения F(x);");
                     task2.questions.Add("построить графики f(x) и F(x)");
@@ -1040,10 +1037,10 @@ namespace TaskGenerator
                     var b = random.Next(1, 10);
                     
                     task2.condition = "Дана плотность вероятности f(x) непрерывной случайной величины X:\nf(x)=\n" +
-                                     "        ⎧0, x≤0" + '\n' +
-                                     "        ⎨2x/3, 0≤x≤1"+'\n' +
-                                     "        ⎨3-x/3, 1≤x≤3" + '\n'+
-                                     "        ⎩0, x>3"+'\n'+
+                                     "        ⎧ 0, x≤0" + '\n' +
+                                     "        ⎨ 2x/3, 0≤x≤1"+'\n' +
+                                     "        ⎨ 3-x/3, 1≤x≤3" + '\n'+
+                                     "        ⎩ 0, x>3"+'\n'+
                                      "α="+a+",β="+b;
 
                     
@@ -1054,10 +1051,10 @@ namespace TaskGenerator
                     task2.questions.Add("построить график f(x)");
                     task2.answers.Add("1/3+2/3=1 =>Условие выполнено");
                     task2.answers.Add("f(x)="+'\n' +
-                                      "     ⎧0, x≤0" + '\n' +
-                                      "     ⎨x²/3, 0≤x≤1" + '\n' +
-                                      "     ⎨(-3-x²)/6+x, 1≤x≤3" + '\n' +
-                                      "     ⎩1, x>3");
+                                      "     ⎧ 0, x≤0" + '\n' +
+                                      "     ⎨ x²/3, 0≤x≤1" + '\n' +
+                                      "     ⎨ (-3-x²)/6+x, 1≤x≤3" + '\n' +
+                                      "     ⎩ 1, x>3");
 
                     double ot3 = 3 * (double)b * (double)b * (double)b - 3 * a * a * a - 9 * (double)b * (double)b + 9 * a * a + 9 * a + 9 * (double)b;
                     task2.answers.Add(String.Format("{0:0.000}",ot3));
@@ -1075,6 +1072,20 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(19, 1);
+
+                    var rand = new Random();
+
+                    var lambda = rand.Next(6) + 5; 
+
+                    task1.condition = "Срок службы прибора — случайная величина X, распределенная по экспоненциальному закону с параметром λ = " + lambda + ". Необходимо:";
+                    task1.questions.Add("Указать плотность вероятности f(x) и числовые характеристики этой случайной величины.");
+                    task1.questions.Add("Построить кривую распределения.");
+
+                    task1.answers.Add("f(x)=\n" +
+                        "    ⎧ " + lambda + " * exp(-" + lambda + "x), x >= 0\n" +
+                        "    ⎩ 0, x < 0\n\n" +
+                        String.Format("M(X) = {0:0.0000}; D(X) = {1:0.0000}", (1.0 / lambda), (1.0 / (lambda * lambda))));
+                        
                     return task1;
                 case 2:
                     Task task2 = new Task(19, 2);
@@ -1084,7 +1095,7 @@ namespace TaskGenerator
                     task2.condition = "Интервал движения теплоходов «Москва» на реке Иртыш составляет "+ hours + " ч. " +
                         "Дачники подходят к пристани в некоторый момент, не зная расписания. Какова вероятность того, " +
                         "что они опоздали на очередной теплоход не более чем на "+ minutes +" мин?";
-                    task2.answers.Add(string.Format(minutes + "/" + (hours*60) + "≈ {0:0.000}", minutes/(hours * 60.0)));
+                    task2.answers.Add(string.Format(minutes + "/" + (hours*60) + " ≈ {0:0.000}", minutes/(hours * 60.0)));
                     return task2;
             }
             throw new ArgumentException();
