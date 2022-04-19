@@ -61,7 +61,7 @@
       Margin="12,8,12,12"
                            Foreground="{StaticResource TextBrush}"
 
-      Text="1-18"
+      Text="1-21"
       FontSize="16"
       FontWeight="SemiBold"
       Style="{StaticResource TextFieldStyle}"
