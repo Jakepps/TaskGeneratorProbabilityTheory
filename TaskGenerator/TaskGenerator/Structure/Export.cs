@@ -9,13 +9,12 @@ namespace TaskGenerator
     {
         public static void ExportVariants(List<Variant> variantList, string path)
         {
-<<<<<<< Updated upstream
             //string pathdoc = @"test.docx";
             //string pathdocot = @"testotvet.docx";
-=======
-            string pathdoc = @"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\test.docx";
-            string pathdocot = @"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\testotvet.docx";
->>>>>>> Stashed changes
+
+            //string pathdoc = @"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\test.docx";
+            //string pathdocot = @"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\testotvet.docx";
+
             //Title  
             var doc = DocX.Create(path + "\\Variants.docx");
             var docotvet = DocX.Create(path + "\\VariantsAnswers.docx");
@@ -44,6 +43,8 @@ namespace TaskGenerator
                     textParagraphFormat.Spacing = 1;
                     doc.InsertParagraph(textParagraph, false, textParagraphFormat);
                 }
+                if (i != variantList.Count-1)
+                    doc.InsertParagraph("").InsertPageBreakAfterSelf();
             }
             for (int i = 0; i < variantList.Count; i++)
             {
