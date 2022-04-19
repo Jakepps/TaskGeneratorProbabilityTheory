@@ -8,14 +8,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="540" d:DesignWidth="330.626">
 
-    <ScrollViewer Grid.Row="1" 
+    <Grid
+        x:Name="bg"
+        Background="{StaticResource HighlightBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="72"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" 
      x:Name="source"
      VerticalScrollBarVisibility="Visible">
-        <ScrollViewer.Background>
-			<SolidColorBrush Color="{StaticResource Background}" Opacity="0"/>
-		</ScrollViewer.Background>
-		<StackPanel x:Name="panel">
-			<Label x:Name="label" 
+            <ScrollViewer.Background>
+                <SolidColorBrush Color="{StaticResource Background}" Opacity="0"/>
+            </ScrollViewer.Background>
+            <StackPanel x:Name="panel">
+                <Label x:Name="label" 
 		      Grid.Row="0"
           Content=""
           FontFamily="{StaticResource Inter}"
@@ -25,6 +33,18 @@
           Margin="12,12,12,12"
           />
 
-		</StackPanel>
-	</ScrollViewer>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Button 
+            Click="onExport"
+            x:Name="exportBtn"
+            Grid.Row="1"
+            Background="{StaticResource AccentBrush}"
+            Margin="12,0,12,0"
+            Height="48"
+            Visibility="Hidden"
+            Content="Экспортировать"
+            />
+    </Grid>
 </UserControl>

@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TaskGenerator;
-
+using Microsoft.WindowsAPICodePack.Dialogs;
 namespace TaskGenerator.Controls.Pages
 {
 	/// <summary>
@@ -44,7 +44,38 @@ namespace TaskGenerator.Controls.Pages
 			variantChange(index);
 		}
 
+		private void onExport(object sender, RoutedEventArgs e)
+        {
+			CommonOpenFileDialog dlg = new CommonOpenFileDialog();
+			dlg.Title = "Выбор папки для сохранения файла";
+			dlg.IsFolderPicker = true;
+			dlg.AddToMostRecentlyUsedList = false;
+			dlg.AllowNonFileSystemItems = false;
+			dlg.EnsureFileExists = true;
+			dlg.EnsurePathExists = true;
+			dlg.EnsureReadOnly = false;
+			dlg.EnsureValidNames = true;
+			dlg.Multiselect = false;
+			dlg.ShowPlacesList = true;
 
+			if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+			{
+				Console.WriteLine(dlg.FileName);
+				var variantList = ((MainWindow)(Application.Current.MainWindow)).variantList;
+				Export.ExportVariants(variantList, dlg.FileName);
+				
+			}
+			//var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
+			//var pizdec = Export.ExportVariants(variantList);
+			//pizdec.Item1.Save();
+			//pizdec.Item2.Save();
+
+
+
+			////var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
+
+
+		}
 
 		public void presentVariants(List<Variant> vars)
 		{
@@ -67,6 +98,10 @@ namespace TaskGenerator.Controls.Pages
 				panel.Children.Add(card);
 				card.setName(vars[i]);
 			}
+
+			bg.Background = Application.Current.Resources["BackgroundBrush"] as SolidColorBrush;
+			exportBtn.Visibility = Visibility.Visible;
+
 		}
 	}
 }
