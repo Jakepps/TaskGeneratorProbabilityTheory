@@ -106,10 +106,11 @@ namespace TaskGenerator
 
         private void exportBtn_Click(object sender, RoutedEventArgs e)
         {
+
             //var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
-            var pizdec = Export.ExportStudents(variantList);
-            pizdec.Item1.Save();
-            pizdec.Item2.Save();
+            //var pizdec = Export.ExportStudents(variantList);
+            //pizdec.Item1.Save();
+            //pizdec.Item2.Save();
         }
     }
 

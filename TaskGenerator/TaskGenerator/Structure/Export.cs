@@ -7,13 +7,13 @@ namespace TaskGenerator
 {
     public class Export
     {
-        public static (DocX, DocX) ExportStudents(List<Variant> variantList)
+        public static (DocX, DocX) ExportVariants(List<Variant> variantList, string pathVariants, string pathAnswers)
         {
-            string pathdoc = @"C:\Users\Артем\source\repos\git\TaskGeneratorProbabilityTheory\TaskGenerator\test.docx";
-            string pathdocot = @"C:\Users\Артем\source\repos\git\TaskGeneratorProbabilityTheory\TaskGenerator\testotvet.docx";
+            //string pathdoc = @"test.docx";
+            //string pathdocot = @"testotvet.docx";
             //Title  
-            var doc = DocX.Create(pathdoc);
-            var docotvet = DocX.Create(pathdocot);
+            var doc = DocX.Create(pathVariants);
+            var docotvet = DocX.Create(pathAnswers);
             for (int i = 0; i < variantList.Count; i++)
             {
                 string title = variantList[i].student;
@@ -42,7 +42,7 @@ namespace TaskGenerator
                     ////Specify font family  
                     //titleFormat.FontFamily = new Font("Times New Roman");
                     ////Specify font size  
-                    //titleFormat.Size = 18D;
+                    //titleFormat.Size = 18D; 
                     //titleFormat.Position = 40;
                     //titleFormat.FontColor = System.Drawing.Color.Black;
                     ////titleFormat.UnderlineColor = System.Drawing.Color.Black; можно подчеркнуть по рофлу

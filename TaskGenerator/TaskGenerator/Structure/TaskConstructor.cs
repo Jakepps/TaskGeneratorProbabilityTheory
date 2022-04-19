@@ -1114,7 +1114,6 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(21, 2);
-
                     return task2;
             }
             throw new ArgumentException();
