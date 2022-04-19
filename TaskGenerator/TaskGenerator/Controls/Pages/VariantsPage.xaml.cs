@@ -62,9 +62,8 @@ namespace TaskGenerator.Controls.Pages
 			{
 				Console.WriteLine(dlg.FileName);
 				var variantList = ((MainWindow)(Application.Current.MainWindow)).variantList;
-				var pizdec = Export.ExportVariants(variantList, dlg.FileName);
-				pizdec.Item1.Save();
-				pizdec.Item2.Save();
+				Export.ExportVariants(variantList, dlg.FileName);
+				
 			}
 			//var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
 			//var pizdec = Export.ExportVariants(variantList);

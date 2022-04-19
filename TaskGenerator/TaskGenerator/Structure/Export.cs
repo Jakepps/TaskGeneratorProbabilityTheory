@@ -7,7 +7,7 @@ namespace TaskGenerator
 {
     public class Export
     {
-        public static (DocX, DocX) ExportVariants(List<Variant> variantList, string path)
+        public static void ExportVariants(List<Variant> variantList, string path)
         {
             //string pathdoc = @"test.docx";
             //string pathdocot = @"testotvet.docx";
@@ -90,7 +90,7 @@ namespace TaskGenerator
             }
             doc.Save();
             docotvet.Save();
-            return (doc, docotvet);
+            
         }
     }
 }
