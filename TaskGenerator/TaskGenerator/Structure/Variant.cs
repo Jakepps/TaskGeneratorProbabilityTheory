@@ -45,9 +45,10 @@ namespace TaskGenerator
         {
             this.number = number;
             tasks = new List<Task>();
+            Random random = new Random(Environment.TickCount ^ number);
             for (int i = 0; i < taskTypes.Count; i++)
             {
-                tasks.Add(TaskConstructor.CreateTask(taskTypes[i]));
+                tasks.Add(TaskConstructor.CreateTask(ref random, taskTypes[i]));
             }
             
         }
