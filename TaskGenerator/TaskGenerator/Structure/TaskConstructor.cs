@@ -1126,7 +1126,15 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(20, 2);
+                    var mou = Convert.ToDouble(random.Next(13, 20));
 
+                    task2.condition = " Время T безотказной работы тягового электродвигателя распределено по экспоненциальному закону с математическим ожиданием " +
+                        (int)mou + " месяцев. Какова вероятность того, что данный двигатель откажет:";
+                    task2.questions.Add("менее чем через месяц после ремонта;");
+                    task2.questions.Add("не менее чем через год после ремонта ?");
+                    double ly = 1 / mou;
+                    task2.answers.Add(String.Format("1-{0:0.000}*e^(-{1:0})", ly, ly * mou));
+                    task2.answers.Add(String.Format("1-{0:0.000}*e^(-{1:0.000})", ly, ly * 12));
                     return task2;
             }
             throw new ArgumentException();
@@ -1138,6 +1146,8 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(21, 1);
+                    
+
                     return task1;
                 case 2:
                     
