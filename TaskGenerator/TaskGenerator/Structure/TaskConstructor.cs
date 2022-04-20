@@ -898,9 +898,9 @@ namespace TaskGenerator
 
                     task1.condition = "Дана функция распределения F(x) непрерывной случайной величины X:\n" + 
                         "F(x) =\n" +
-                        "    ⎧ 0, x ≤ 0\n" +
-                        "    ⎨ (1/2) * (1 - cos x), 0 < x ≤ π\n" +
-                        "    ⎩ 1, x > π\n" +
+                        "     ⎧ 0, x ≤ 0\n" +
+                        "     ⎨ (1/2) * (1 - cos x), 0 < x ≤ π\n" +
+                        "     ⎩ 1, x > π\n" +
                         "α = " + alpha + ", β = " + beta + "\n" + 
                         "Требуется:";
                     task1.questions.Add("Hайти плотность вероятности f(x).");
@@ -920,9 +920,9 @@ namespace TaskGenerator
 
                     task2.condition = "Дана функция распределения F(x) непрерывной случайной величины X:\n" +
                         "F(x) =\n" +
-                        "    ⎧ 0, x ≤ 0\n" +
-                        "    ⎨ x²/100, 0 < x ≤ 10\n" +
-                        "    ⎩ 1, x > 10\n" +
+                        "     ⎧ 0, x ≤ 0\n" +
+                        "     ⎨ x²/100, 0 < x ≤ 10\n" +
+                        "     ⎩ 1, x > 10\n" +
                         "α = " + alpha2 + ", β = " + beta2 + "\n" +
                         "Требуется:";
                     task2.questions.Add("Hайти плотность вероятности f(x).");
@@ -954,9 +954,9 @@ namespace TaskGenerator
                     var end = variant == 1 ? 4 : variant == 2 ? 3 : 4;
 
                     task1.condition = "Дана плотность вероятности f(X) непрерывной случайной величины X:\nf(x)=\n" +
-                        "    ⎧ 0, x < " + start + "\n" +
-                        "    ⎨ a(x-2)(x-4), " + start + " ≤ x < " + end + "\n" +
-                        "    ⎩ 0, x > " + end;
+                        "     ⎧ 0, x < " + start + "\n" +
+                        "     ⎨ a(x-2)(x-4), " + start + " ≤ x < " + end + "\n" +
+                        "     ⎩ 0, x > " + end;
                     task1.questions.Add("Найти параметр a.");
                     task1.questions.Add("Построить функцию распределения F(X)");
                     task1.questions.Add("Построить графики f(X) и F(X)");
@@ -981,9 +981,9 @@ namespace TaskGenerator
                     var a=random.Next(1, b-1);
                     Task task2 = new Task(17, 2);
                     task2.condition = "Дана функция распределения F(x) непрерывной случайной величины X:\nf(x)=\n"+
-                                     "        ⎧ 0, x<" + a + '\n' +
-                                     "        ⎨ a(4x+3), " + a + "≤x≤" + b + '\n' +
-                                     "        ⎩ 0, x>" + b;
+                                     "     ⎧ 0, x<" + a + '\n' +
+                                     "     ⎨ a(4x+3), " + a + "≤x≤" + b + '\n' +
+                                     "     ⎩ 0, x>" + b;
                     task2.questions.Add("найти параметр a;");
                     task2.questions.Add("найти функцию распределения F(x);");
                     task2.questions.Add("построить графики f(x) и F(x)");
@@ -1015,10 +1015,10 @@ namespace TaskGenerator
                     var bb = random.Next(0,3) * 0.5 + 1;
                     
                     task1.condition = "Дана плотность вероятности f(x) непрерывной случайной величины X, имеющая две ненулевые составляющие формулы:\nf(x)=\n" +
-                        "    ⎧ 0, x ≤ 0\n" +
-                        "    ⎨ x, 0 < x ≤ 1 \n" +
-                        "    ⎨ -x + 2, 1 < x ≤ 2\n" +
-                        "    ⎩ 0, x > 2\n" +
+                        "     ⎧ 0, x ≤ 0\n" +
+                        "     ⎨ x, 0 < x ≤ 1 \n" +
+                        "     ⎨ -x + 2, 1 < x ≤ 2\n" +
+                        "     ⎩ 0, x > 2\n" +
                         "α=" + aa + " ,β=" + bb + "\n" +
                         "Требуется:";
                     task1.questions.Add("проверить свойство -∞∫∞(f(x)dx)=1");
@@ -1029,10 +1029,10 @@ namespace TaskGenerator
 
                     task1.answers.Add("Условие выполняется.");
                     task1.answers.Add("F(X) =\n" +
-                        "    ⎧ 0, x ≤ 0\n" +
-                        "    ⎨ (x²)/2, 0 < x ≤ 1 \n" +
-                        "    ⎨ -(x²)/2 + 2x, 1 < x ≤ 2\n" +
-                        "    ⎩ 1, x > 2");
+                        "     ⎧ 0, x ≤ 0\n" +
+                        "     ⎨ (x²)/2, 0 < x ≤ 1 \n" +
+                        "     ⎨ -(x²)/2 + 2x, 1 < x ≤ 2\n" +
+                        "     ⎩ 1, x > 2");
 
                     
 
@@ -1053,10 +1053,10 @@ namespace TaskGenerator
                     var b = random.Next(1, 10);
                     
                     task2.condition = "Дана плотность вероятности f(x) непрерывной случайной величины X:\nf(x)=\n" +
-                                     "        ⎧ 0, x≤0" + '\n' +
-                                     "        ⎨ 2x/3, 0≤x≤1"+'\n' +
-                                     "        ⎨ 3-x/3, 1≤x≤3" + '\n'+
-                                     "        ⎩ 0, x>3"+'\n'+
+                                     "     ⎧ 0, x≤0" + '\n' +
+                                     "     ⎨ 2x/3, 0≤x≤1" + '\n' +
+                                     "     ⎨ 3-x/3, 1≤x≤3" + '\n'+
+                                     "     ⎩ 0, x>3" + '\n'+
                                      "α="+a+",β="+b;
 
                     
@@ -1098,8 +1098,8 @@ namespace TaskGenerator
                     task1.questions.Add("Построить кривую распределения.");
 
                     task1.answers.Add("f(x)=\n" +
-                        "    ⎧ " + lambda + " * exp(-" + lambda + "x), x >= 0\n" +
-                        "    ⎩ 0, x < 0\n\n" +
+                        "     ⎧ " + lambda + " * exp(-" + lambda + "x), x >= 0\n" +
+                        "     ⎩ 0, x < 0\n\n" +
                         String.Format("M(X) = {0:0.0000}; D(X) = {1:0.0000}", (1.0 / lambda), (1.0 / (lambda * lambda))));
                         
                     return task1;
@@ -1123,10 +1123,17 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(20, 1);
+                    double σ = random.Next(10, 21) / 10.0;
+                    double val = random.Next(5, (int)(σ * 10)) / 10.0;
+                    task1.condition = "Производится взвешивание стандартных узлов. Систематические ошибки " +
+                        "взвешивания отсутют, а случайные — подчинены нормальному закону " +
+                        "с  σ = " + σ + " кг. С какой вероятностью ошибка очередного взвешивания не превысит " +
+                        "по абсолютной величине " + val + " кг?";
+                    task1.answers.Add(String.Format("P(|X| < " + val + ") = 2Ф({0:0.00})", val / σ));
                     return task1;
                 case 2:
                     Task task2 = new Task(20, 2);
-
+                    
                     return task2;
             }
             throw new ArgumentException();
