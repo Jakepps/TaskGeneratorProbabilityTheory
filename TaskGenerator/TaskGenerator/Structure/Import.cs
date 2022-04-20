@@ -14,12 +14,13 @@ namespace TaskGenerator
         public static List<string> ImportStudents(string path)
         {
             List<string> students = new List<string>();
+            List<string> newstudents = new List<string>();
             var document = DocX.Load(path);
             
             StringBuilder fullString = new StringBuilder();
             for (int i = 0; i < document.Paragraphs.Count; i++) 
             {
-                fullString.Append(document.Paragraphs[i].Text + '\r');
+                fullString.Append(document.Paragraphs[i].Text + '\n');
             }
             StringBuilder clearedString = new StringBuilder();
             char[] chars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ')', '(', '*', '-', '{', '}', '[', ']', '?', '=', '+', '-', '_', ',', '.' };
@@ -30,10 +31,10 @@ namespace TaskGenerator
             }
             
             students = clearedString.ToString().Split(new char[] { '\r','\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                       
-            //for(int i = 0; i < students.Count; i++)
-            //    Console.WriteLine(students[i]);
-           
+
+            for (int i = 0; i < students.Count; i++)
+                students[i] = students[i].Trim(' ');
+            
             return students;
         }
 
