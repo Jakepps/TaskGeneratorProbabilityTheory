@@ -18,28 +18,29 @@ namespace TaskGenerator
             var doc = DocX.Create(path + "\\Variants.docx");
             var docotvet = DocX.Create(path + "\\VariantsAnswers.docx");
             for (int i = 0; i < variantList.Count; i++)
-            {
-                string title = variantList[i].student;
-                string titlevar = "Вариант " + (i + 1);
+            {   string space = '\n' + "";
+                string title = variantList[i].student.Trim('\n','\r');
+                string titlevar = "Вариант " + (i + 1) + '\r';
                 Formatting titleFormat = new Formatting();
                 titleFormat.FontFamily = new Font("Times New Roman");
                 titleFormat.Size = 18D;
-                titleFormat.Position = 40;
+                titleFormat.Position = 1;
                 titleFormat.FontColor = System.Drawing.Color.Black;
+                
                 Paragraph paragraphTitle = doc.InsertParagraph(title, false, titleFormat);
                 Paragraph paragraphTitle2 = doc.InsertParagraph(titlevar, false, titleFormat);
-                paragraphTitle.Alignment = Alignment.center;
+                paragraphTitle.Alignment = Alignment.both;
                 paragraphTitle2.Alignment = Alignment.right;
                 for (int j = 0; j < variantList[i].tasks.Count; j++)
                 {
                     titleFormat.FontFamily = new Font("Times New Roman");
-                    titleFormat.Size = 15D;
+                    titleFormat.Size = 13D;
                     titleFormat.Position = 40;
                     titleFormat.FontColor = System.Drawing.Color.Black;
                     Formatting textParagraphFormat = new Formatting();
                     textParagraphFormat.FontFamily = new Font("Arial");
                     textParagraphFormat.Spacing = 1;
-                    if (j==14) 
+                    if (variantList[i].tasks[j].type==15) 
                     {   
                         var columnWidths1 = new float[] { 40f, 40f, 40f ,40f};
                         var t = doc.AddTable(2, columnWidths1.Length);
@@ -65,11 +66,11 @@ namespace TaskGenerator
                         t2.Rows[1].Cells[1].Paragraphs[0].Append(variantList[i].tasks[j].tables[1][0, 1]);
                         t2.Rows[1].Cells[2].Paragraphs[0].Append(variantList[i].tasks[j].tables[1][1, 1]);
                         string textParagraph = (j + 1) + ". " + "Независимые случайные величины X и Y заданы таблицами распределений.";
-                        string nay = "Найти:";
+                        string nay = ""+'\r'+"Найти:";
                         var d = doc.InsertParagraph(textParagraph, false, textParagraphFormat);
                         d.SpacingAfter(15d);
                         d.InsertTableAfterSelf(t2);
-                        string space = '\r'+ "";
+                       // string space = '\r'+ "";
                         d.InsertParagraphAfterSelf(space);
                         d.InsertTableAfterSelf(t);
                         doc.InsertParagraph(nay,false,textParagraphFormat);
