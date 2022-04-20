@@ -8,6 +8,7 @@
 	
     <LangVersion>8.0</LangVersion>
     <Nullable>disable</Nullable>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
 	  
   </PropertyGroup>
   <ItemGroup>
@@ -26,6 +27,7 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<Content Include="AppIcon.ico" />
 		<Content Include="Fonts/Inter.ttf">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -59,6 +61,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Costura.Fody" Version="5.7.0">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
 	  <PackageReference Include="DocX" Version="2.1.0" />
 	  <PackageReference Include="System.Management" Version="6.0.0" />
 	  <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
