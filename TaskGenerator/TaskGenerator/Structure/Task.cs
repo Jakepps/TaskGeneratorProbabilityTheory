@@ -55,14 +55,16 @@ namespace TaskGenerator
         }
 
         public void RegenerateTaskSubtype()
-        {
+        {   
             int newSubtype = this.subtype == 1 ? 2 : 1;
-            TaskReplace(TaskConstructor.CreateTask(this.type, newSubtype));
+            Random random = new Random();
+            TaskReplace(TaskConstructor.CreateTask(ref random, this.type, newSubtype));
         }
 
         public void RegenerateTaskValues()
         {
-            TaskReplace(TaskConstructor.CreateTask(this.type, this.subtype));
+            Random random = new Random();
+            TaskReplace(TaskConstructor.CreateTask(ref random, this.type, this.subtype));
         }
 
         

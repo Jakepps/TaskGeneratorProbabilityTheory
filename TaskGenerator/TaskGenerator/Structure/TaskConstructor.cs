@@ -2,86 +2,87 @@
 using System.Collections.Generic;
 namespace TaskGenerator
 {
+   
     public static class TaskConstructor
     {
         //subtype 1 - задача из 2-го варианта, subtype 2 - эта же задача из 3-го варианта.
-        public static Task CreateTask(int type, int subtype = 0)
+        public static Task CreateTask(ref Random random, int type, int subtype = 0)
         {
-		
-// 	———————————No normal random?———————————
-// 	⠀⣞⢽⢪⢣⢣⢣⢫⡺⡵⣝⡮⣗⢷⢽⢽⢽⣮⡷⡽⣜⣜⢮⢺⣜⢷⢽⢝⡽⣝
-// 	⠸⡸⠜⠕⠕⠁⢁⢇⢏⢽⢺⣪⡳⡝⣎⣏⢯⢞⡿⣟⣷⣳⢯⡷⣽⢽⢯⣳⣫⠇
-// 	⠀⠀⢀⢀⢄⢬⢪⡪⡎⣆⡈⠚⠜⠕⠇⠗⠝⢕⢯⢫⣞⣯⣿⣻⡽⣏⢗⣗⠏⠀
-// 	⠀⠪⡪⡪⣪⢪⢺⢸⢢⢓⢆⢤⢀⠀⠀⠀⠀⠈⢊⢞⡾⣿⡯⣏⢮⠷⠁⠀⠀
-// 	⠀⠀⠀⠈⠊⠆⡃⠕⢕⢇⢇⢇⢇⢇⢏⢎⢎⢆⢄⠀⢑⣽⣿⢝⠲⠉⠀⠀⠀⠀
-// 	⠀⠀⠀⠀⠀⡿⠂⠠⠀⡇⢇⠕⢈⣀⠀⠁⠡⠣⡣⡫⣂⣿⠯⢪⠰⠂⠀⠀⠀⠀
-// 	⠀⠀⠀⠀⡦⡙⡂⢀⢤⢣⠣⡈⣾⡃⠠⠄⠀⡄⢱⣌⣶⢏⢊⠂⠀⠀⠀⠀⠀⠀
-// 	⠀⠀⠀⠀⢝⡲⣜⡮⡏⢎⢌⢂⠙⠢⠐⢀⢘⢵⣽⣿⡿⠁⠁⠀⠀⠀⠀⠀⠀⠀
-// 	⠀⠀⠀⠀⠨⣺⡺⡕⡕⡱⡑⡆⡕⡅⡕⡜⡼⢽⡻⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-// 	⠀⠀⠀⠀⣼⣳⣫⣾⣵⣗⡵⡱⡡⢣⢑⢕⢜⢕⡝⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-// 	⠀⠀⠀⣴⣿⣾⣿⣿⣿⡿⡽⡑⢌⠪⡢⡣⣣⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-// 	⠀⠀⠀⡟⡾⣿⢿⢿⢵⣽⣾⣼⣘⢸⢸⣞⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-// 	⠀⠀⠀⠀⠁⠇⠡⠩⡫⢿⣝⡻⡮⣒⢽⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-// 	——————————————————————————————————————
-            int randomSubtype = new Random().Next(1, 3);
+          /*⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+            ⣿⣿⣿⣿⣿⣿⢿⢯⣛⣺⣯⣿⣿⣿⣿⣿⣿⣿⢱⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+            ⣿⣿⣿⡿⣿⣿⢡⣿⣉⣿⡿⠿⠿⠿⡿⠿⠻⣿⡇⠸⣻⠾⣿⣿⣿⣿⣿⣿⣿⣿
+            ⣿⣿⡿⠛⠉⠁⠹⡰⣹⣟⣧⣤⡤⠄⠄⠠⣡⣼⣷⠄⢉⢻⣿⣿⣿⣿⣿⣿⣿⣿
+            ⣿⠟⠄⠄⠄⡀⢸⣾⣿⣯⣯⡃⠄⠄⠄⠄⠐⠙⣿⣧⡀⠩⣧⠙⣿⣿⣿⣿⣿⣿
+            ⣿⠄⠄⠄⠈⠈⣾⣿⣿⣿⣿⣆⡀⠄⠄⠄⠄⠄⣸⣿⣿⣿⣧⠄⣼⣿⣿⣿⣿⣿
+            ⣿⠇⠄⠄⠄⠄⠙⠛⠛⠿⠿⢿⣿⣶⣀⣶⣾⣿⣿⣿⣿⢾⣷⣇⣤⣿⣿⣿⣿⣿
+            ⣿⣻⠄⠄⠄⠄⠄⠄⠄⠄⠠⠤⣤⣤⣌⠉⠉⠉⠁⢈⠁⠤⠛⣼⣿⣿⣿⣿⠿⠿
+            ⠈⠈⠄⠄⠄⠄⣀⣴⡦⠴⠠⢠⣴⣶⣶⣶⣿⣿⡶⠛⠠⠄⠄⣿⣿⡿⠟⠁⠺⠿
+            ⣀⣤⣤⣦⣤⣼⣿⡿⣣⣿⡷⣿⣿⣿⣿⣿⣿⡿⣿⡄⠄⠄⠄⢟⡁⠚⠦⠴⠤⣤
+            ⠿⠉⠛⠟⣻⣿⠋⢁⣿⢿⣵⣭⣞⢿⣯⣽⣿⣿⣿⣿⡆⠄⠄⠄⠉⠄⠄⠄⠄⠄
+            ⠄⠄⠄⠄⠈⠁⠄⢯⣷⣿⣿⣯⡿⣽⣾⣿⣿⠿⢿⣿⣧⡄⠄⠄⠄⠄⠄⠄⠄⠄
+            ⠄⠄⠄⠄⠄⠄⡴⢇⠉⢹⣀⣿⣿⣿⢿⡟⣿⣧⣼⡀⡩⠻⣦⠄⠄⠄⠄⠄⠄⠄
+            ⠄⠄⠄⠄⠰⠄⠣⣸⣶⠛⠛⠻⣿⡿⠿⢱⡟⠉⠉⠻⣿⡲⠃⠄⠄⠄⠄⠄⠄⠄
+            ⠄⠄⠄⠄⠄⠒⠄⠈⠿⠄⠄⠄⡿⠃⠄⠘⠄⠄⢀⡠⠏⠄⠄⠄⠄⠄⠄⠄⠄⠄*/
+
+            int randomSubtype = random.Next(1, 3);
 
             switch (type)
             {
                 case 1:
-                    return CreateTaskType1(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType1(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 2:
-                    return CreateTaskType2(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType2(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 3:
-                    return CreateTaskType3(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType3(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 4:
-                    return CreateTaskType4(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType4(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 5:
-                    return CreateTaskType5(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType5(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 6:
-                    return CreateTaskType6(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType6(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 7:
-                    return CreateTaskType7(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType7(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 8:
-                    return CreateTaskType8(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType8(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 9:
-                    return CreateTaskType9(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType9(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 10:
-                    return CreateTaskType10(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType10(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 11:
-                    return CreateTaskType11(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType11(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 12:
-                    return CreateTaskType12(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType12(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 13:
-                    return CreateTaskType13(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType13(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 14:
-                    return CreateTaskType14(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType14(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 15:
-                    return CreateTaskType15(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType15(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 16:
-                    return CreateTaskType16(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType16(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 17:
-                    return CreateTaskType17(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType17(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 18:
-                    return CreateTaskType18(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType18(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 19:
-                    return CreateTaskType19(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType19(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 20:
-                    return CreateTaskType20(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType20(ref random, subtype == 0 ? randomSubtype : subtype);
                 case 21:
-                    return CreateTaskType21(subtype == 0 ? randomSubtype : subtype);
+                    return CreateTaskType21(ref random, subtype == 0 ? randomSubtype : subtype);
             }
             throw new NotImplementedException();
         }
 
-        private static Task CreateTaskType1(int subtype)
+        private static Task CreateTaskType1(ref Random random, int subtype)
 		{
             switch (subtype)
             {
                 case 1:
-                    var rand = new Random();
+                    
 
                     Task task1 = new Task(1, 1);
-                    var numCount = 4 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 3));
+                    var numCount = 4 + Convert.ToInt32(Math.Floor(random.NextDouble() * 3));
                     var sndNum = 1;
                     for (int i = 0; i < numCount; i++)
                     {
@@ -96,7 +97,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(1, 2);
-                    Random random = new Random();
+                    
                     int numCount2 = 3 + random.Next(0, 4);
 
                     string numString2 = (numCount2 == 3) ? "3 диска" : (numCount2 == 4) ? "4 диска" : numCount2 == 5 ? "5 дисков" : "6 дисков";
@@ -117,18 +118,18 @@ namespace TaskGenerator
             throw new ArgumentException();
 		}
 
-        private static Task CreateTaskType2(int subtype)
+        private static Task CreateTaskType2(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
-                    var rand = new Random();
+                    
 
-                    var loteryCount = 6 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 5));
-                    var loteryWinCount = 2 + Convert.ToInt32(Math.Floor(rand.NextDouble() * 4));
-                    var loteryPickedCount = 2 + Convert.ToInt32(Math.Floor(rand.NextDouble() * (loteryCount - loteryWinCount - 1)));
+                    var loteryCount = 6 + Convert.ToInt32(Math.Floor(random.NextDouble() * 5));
+                    var loteryWinCount = 2 + Convert.ToInt32(Math.Floor(random.NextDouble() * 4));
+                    var loteryPickedCount = 2 + Convert.ToInt32(Math.Floor(random.NextDouble() * (loteryCount - loteryWinCount - 1)));
 
-                    var loteryWinPickedCount = 1 + Convert.ToInt32(Math.Floor(rand.NextDouble() * loteryWinCount));
+                    var loteryWinPickedCount = 1 + Convert.ToInt32(Math.Floor(random.NextDouble() * loteryWinCount));
 
                     var task1 = new Task(2, 1);
                     task1.condition = "Имеется " + loteryCount + " лотерейных билетов, среди которых " + loteryWinCount + " выйгрышных. Найдите вероятность того, что среди " + loteryPickedCount + " наудачу купленных билетов:";
@@ -144,7 +145,7 @@ namespace TaskGenerator
 
                 case 2:
                     Task task2 = new Task(2, 2);
-                    Random random = new Random();
+                    
                     int whiteCount = random.Next(15, 30);
                     int blueCount = random.Next(10, 20);
                     int manCount = random.Next(5, whiteCount);
@@ -168,7 +169,7 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType3(int subtype)
+        private static Task CreateTaskType3(ref Random random, int subtype)
         {
             switch (subtype)
             {
@@ -197,15 +198,15 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType4(int subtype)
+        private static Task CreateTaskType4(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
-                    var rand = new Random();
+                    
 
-                    var prob1 = (rand.Next(1,10)) / 10.0;
-                    var prob2 = (rand.Next(1,10)) / 10.0;
+                    var prob1 = (random.Next(1,10)) / 10.0;
+                    var prob2 = (random.Next(1,10)) / 10.0;
 
                     Task task1 = new Task(4, 1);
                     task1.condition = "Два поэта-песенника предложили по одной песне исполнителю. Известно, что песни первого поэта эстрадный певец включает в свой репертуар с вероятностью " + prob1 + ", второго - с вероятностью " + prob2 + ". Какова вероятность того, что певец возьмет:";
@@ -218,7 +219,7 @@ namespace TaskGenerator
 
                     return task1;
                 case 2:
-                    var random = new Random();
+                    
                     var ver1 = (random.Next(1, 10)) / 10.0;
                     var ver2 = (random.Next(1, 10)) / 10.0;
                     Task task2 = new Task(4, 2);
@@ -235,14 +236,14 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType5(int subtype)
+        private static Task CreateTaskType5(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
-                    var rand = new Random();
-                    var prob1 = Convert.ToDouble(rand.Next(1, 8));
-                    var prob2 = Convert.ToDouble(rand.Next(1, 10 - Convert.ToInt32(prob1) - 1));
+                    
+                    var prob1 = Convert.ToDouble(random.Next(1, 8));
+                    var prob2 = Convert.ToDouble(random.Next(1, 10 - Convert.ToInt32(prob1) - 1));
                     var prob3 = Convert.ToDouble(10 - prob1 - prob2);
 
                     prob1 /= 10; prob2 /= 10; prob3 /= 10;
@@ -253,7 +254,7 @@ namespace TaskGenerator
                     task1.answers.Add(string.Format("{0:0.0000}", (prob1 * prob1 + prob1 * prob3 + prob3 * prob1)));
                     return task1;
                 case 2:
-                    var random=new Random();
+                    
                     var ver1 = random.Next(1, 10) / 10.0;
                     var ver2 = random.Next(1, 15) / 15.0;
 
@@ -267,13 +268,13 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType6(int subtype)
+        private static Task CreateTaskType6(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
-                    var rand = new Random();
-                    var brockenCount = rand.Next(1, 5) * 5;
+                    
+                    var brockenCount = random.Next(1, 5) * 5;
 
                     Task task1 = new Task(6, 1);
 
@@ -285,7 +286,7 @@ namespace TaskGenerator
 
                     return task1;
                 case 2:
-                    var random = new Random();
+                    
                     var ver1=random.Next(2,10);
                     var ver2=random.Next(1,ver1-1);
 
@@ -308,15 +309,15 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType7(int subtype)
+        private static Task CreateTaskType7(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
-                    var rand = new Random();
-                    var prob1 = Convert.ToDouble(rand.Next(1, 10));
-                    var prob2 = Convert.ToDouble(rand.Next(1, 10));
-                    var prob3 = Convert.ToDouble(rand.Next(1, 10));
+                    
+                    var prob1 = Convert.ToDouble(random.Next(1, 10));
+                    var prob2 = Convert.ToDouble(random.Next(1, 10));
+                    var prob3 = Convert.ToDouble(random.Next(1, 10));
 
                     prob1 /= 10; prob2 /= 10; prob3 /= 10;
 
@@ -328,7 +329,7 @@ namespace TaskGenerator
                     return task1;
 
                 case 2:
-                    var random = new Random();
+                    
                     var ver1 = Convert.ToDouble(random.Next(1, 8));
                     var ver2 = Convert.ToDouble(random.Next(1, 10 - Convert.ToInt32(ver1) - 1));
                     var ver3 = Convert.ToDouble(10 - ver1 - ver2);
@@ -346,16 +347,16 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType8(int subtype)
+        private static Task CreateTaskType8(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
-                    var rand = new Random();
+                    
 
-                    var prob1 = Convert.ToDouble(rand.Next(1, 20));
-                    var prob2 = Convert.ToDouble(rand.Next(1, 20));
-                    var prob3 = Convert.ToDouble(rand.Next(1, 20));
+                    var prob1 = Convert.ToDouble(random.Next(1, 20));
+                    var prob2 = Convert.ToDouble(random.Next(1, 20));
+                    var prob3 = Convert.ToDouble(random.Next(1, 20));
 
                     prob1 /= 20; prob2 /= 20; prob3 /= 20;
 
@@ -372,7 +373,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(8, 2);
-                    Random random = new Random();
+                    
 
                     int[] percentWork = new int[3];
 
@@ -411,14 +412,14 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType9(int subtype)
+        private static Task CreateTaskType9(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
-                    var rand = new Random();
-                    var prob1 = rand.Next(1, 4);
-                    var prob2 = rand.Next(1, 8);
+                    
+                    var prob1 = random.Next(1, 4);
+                    var prob2 = random.Next(1, 8);
 
                     Task task1 = new Task(9, 1);
                     task1.condition = "В скольких партиях с равным по силе противником выигрыш более вероятен: в " + prob1 + " партиях из 4 или в " + prob2 + " из 8?";
@@ -426,7 +427,7 @@ namespace TaskGenerator
 
                     return task1;
                 case 2:
-                    var random = new Random();
+                    
                     var ver1 = Convert.ToDouble(random.Next(1, 10))/10;
                     var ver2=0.0;
                     do
@@ -451,20 +452,20 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType10(int subtype)
+        private static Task CreateTaskType10(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
                     Task task1 = new Task(10, 1);
-                    Random rand = new Random();
+                    
 
-                    var testCount = rand.Next(7,10) * 100;
-                    var prob = rand.Next(5, 15) / 20.0;
-                    var equalCount = rand.Next(5,10) * 50;
+                    var testCount = random.Next(7,10) * 100;
+                    var prob = random.Next(5, 15) / 20.0;
+                    var equalCount = random.Next(5,10) * 50;
 
-                    var startCount = rand.Next(2, 6) * 50;
-                    var endCount = rand.Next(6, 11) * 50;
+                    var startCount = random.Next(2, 6) * 50;
+                    var endCount = random.Next(6, 11) * 50;
 
                     task1.condition = "В каждом из " + testCount + " независимых испытаний событие А происходит с постоянной вероятностью " + prob + ". Найти вероятность того, что событие А происходит:";
                     task1.questions.Add("меньше чем " + endCount + " и больше чем " + startCount + " раз.");
@@ -481,7 +482,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(10, 2);
-                    Random random = new Random();
+                    
 
                     double probFailure = random.Next(1, 7 + 1) * 5 / 100.0;
                     int amount = random.Next(1, 10)*5;
@@ -504,14 +505,14 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType11(int subtype)
+        private static Task CreateTaskType11(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
                     Task task1 = new Task(11, 1);
-                    var rand = new Random();
-                    var count = rand.Next(1, 4);
+                    
+                    var count = random.Next(1, 4);
                     count = count == 1 ? 120 : count == 2 ? 180 : 240;
 
                     task1.condition = "Среднее число вызовов, поступающих на АТС в минуту, равно " + count + ".Найти вероятность того, что за две секунды на АТС поступит менее двух вызовов.";
@@ -525,7 +526,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(11, 2);
-                    Random random = new Random();
+                    
                     int allStudentsAmount = random.Next(1, 9 + 1) * 100;
                     int studentsAmount = random.Next(2, 5 + 1);
                     task2.condition = "На факультете обучается " + allStudentsAmount + " студентов. Какова вероятность того, что " +
@@ -537,15 +538,15 @@ namespace TaskGenerator
             }
             throw new ArgumentException();
         }
-        private static Task CreateTaskType12(int subtype)
+        private static Task CreateTaskType12(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
                     Task task1 = new Task(12, 1);
-                    var rand = new Random();
+                    
 
-                    var prob =  rand.Next(3, 7) / 10.0;
+                    var prob =  random.Next(3, 7) / 10.0;
 
                     task1.condition = "Вероятность поражения цели при одном выстреле равна " + prob + ".";
                     task1.questions.Add("Составить ряд распределения числа выстрелов, производимых до первого поражения цели, если у стрелка четыре патрона.");
@@ -583,7 +584,7 @@ namespace TaskGenerator
                   
                 case 2:
                     Task task2 = new Task(12, 2);
-                    Random random = new Random();
+                    
                     double probDefective = random.Next(1,10)*5/100.0;
                     task2.condition = string.Format("Вероятность изготовления нестандартной детали равна {0:0.00}. Из партии контролер проверяет не более четырех деталей. " +
                         "Если деталь оказывается нестандартной, испытания прекращаются, а партия задерживается. Если деталь оказывается стандартной, " +
@@ -621,14 +622,14 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType13(int subtype)
+        private static Task CreateTaskType13(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
                     Task task1 = new Task(13, 1);
-                    var rand = new Random();
-                    var count = rand.Next(3, 5);
+                    
+                    var count = random.Next(3, 5);
 
                     task1.condition = "Игральная кость брошена " + count + " раза.";
                     task1.questions.Add("Составить ряд распределения числа выпадений шестерки.");
@@ -662,7 +663,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(13, 2);
-                    Random random = new Random();
+                    
                     int childAmount = random.Next(3, 6 + 1);
                     task2.condition = "Предполагая одинаковой вероятность рождения мальчика и девочки, составить ряд распределения случайной величины X, " +
                         "которая выражает число мальчиков в семье, имеющей " + childAmount + " детей. Найти M(X) и D(X) этой случайной величины.";
@@ -692,14 +693,14 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType14(int subtype)
+        private static Task CreateTaskType14(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
                     Task task1 = new Task(14, 1);
-                    var rand = new Random();
-                    var count = rand.Next(2,5) * 500;
+                    
+                    var count = random.Next(2,5) * 500;
 
                     task1.condition = "Устройство содержит " + count + " ламп.Вероятность выхода из строя одной лампы в течение одного часа работы устройства равна 0,001.";
                     task1.questions.Add("Составить ряд распределения числа ламп, вышедших из строя в течение одного часа работы устройства.");
@@ -713,7 +714,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(14, 2);
-                    Random random = new Random();
+                    
                     int lampAmount = random.Next(10, 30) * 100;
                     double probDamage = random.Next(1, 10) * 10 / 1000.0;
                     task2.condition = "Торговая база получила " + lampAmount + " электрических лампочек. Вероятность повреждения электролампочки в пути равна " + probDamage + ". ";
@@ -726,10 +727,10 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType15(int subtype)
+        private static Task CreateTaskType15(ref Random random, int subtype)
         {
             Task task2 = new Task(15, 2);
-            Random random = new Random();
+            
 
             task2.tables = new List<string[,]>();
 
@@ -878,16 +879,16 @@ namespace TaskGenerator
             return task2;
         }
 
-        private static Task CreateTaskType16(int subtype)
+        private static Task CreateTaskType16(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
                     Task task1 = new Task(16, 1);
-                    var rand = new Random();
+                    
 
-                    var a = rand.Next(0,3);
-                    var b = rand.Next(3, 6);
+                    var a = random.Next(0,3);
+                    var b = random.Next(3, 6);
 
                     var alpha = a == 0 ? "0" : a == 1 ? "π/6" : "π/4";
                     var beta = b == 3 ? "π/3" : b == 4 ? "π/2" : "π";
@@ -912,7 +913,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(16, 2);
-                    var random = new Random();
+                    
 
                     var alpha2 = random.Next(1, 5);
                     var beta2 = random.Next(6, 11);
@@ -940,15 +941,15 @@ namespace TaskGenerator
         {
             return x * x * x / 3.0 - 3 * x * x + 8 * x;
         }
-        private static Task CreateTaskType17(int subtype)
+        private static Task CreateTaskType17(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
                     Task task1 = new Task(17, 1);
-                    var rand = new Random();
+                    
 
-                    var variant = rand.Next(1, 4);
+                    var variant = random.Next(1, 4);
                     var start = variant == 1 ? 2 : variant == 2 ? 2 : 3;
                     var end = variant == 1 ? 4 : variant == 2 ? 3 : 4;
 
@@ -975,7 +976,7 @@ namespace TaskGenerator
 
                     return task1;
                 case 2:
-                    Random random = new Random();
+                    
                     var b=random.Next(2, 10);
                     var a=random.Next(1, b-1);
                     Task task2 = new Task(17, 2);
@@ -1002,16 +1003,16 @@ namespace TaskGenerator
             return -(x * x) / 2.0 + 2 * x;
         }
 
-        private static Task CreateTaskType18(int subtype)
+        private static Task CreateTaskType18(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
                     Task task1 = new Task(18, 1);
-                    var rand = new Random();
+                    
 
-                    var aa = rand.Next(0,11) / -10.0;
-                    var bb = rand.Next(0,3) * 0.5 + 1;
+                    var aa = random.Next(0,11) / -10.0;
+                    var bb = random.Next(0,3) * 0.5 + 1;
                     
                     task1.condition = "Дана плотность вероятности f(x) непрерывной случайной величины X, имеющая две ненулевые составляющие формулы:\nf(x)=\n" +
                         "    ⎧ 0, x ≤ 0\n" +
@@ -1047,7 +1048,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(18, 2);
-                    Random random = new Random();
+                    
                     var a = Math.Round(random.NextDouble() * 20.0 + 1.0)/10;
                     var b = random.Next(1, 10);
                     
@@ -1081,16 +1082,16 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType19(int subtype)
+        private static Task CreateTaskType19(ref Random random, int subtype)
         {
             switch (subtype)
             {
                 case 1:
                     Task task1 = new Task(19, 1);
 
-                    var rand = new Random();
+                    
 
-                    var lambda = rand.Next(6) + 5; 
+                    var lambda = random.Next(6) + 5; 
 
                     task1.condition = "Срок службы прибора — случайная величина X, распределенная по экспоненциальному закону с параметром λ = " + lambda + ". Необходимо:";
                     task1.questions.Add("Указать плотность вероятности f(x) и числовые характеристики этой случайной величины.");
@@ -1104,7 +1105,7 @@ namespace TaskGenerator
                     return task1;
                 case 2:
                     Task task2 = new Task(19, 2);
-                    Random random = new Random();
+                    
                     int hours = random.Next(1, 6 + 1);
                     int minutes = random.Next(1, 20 + 1);
                     task2.condition = "Интервал движения теплоходов «Москва» на реке Иртыш составляет "+ hours + " ч. " +
@@ -1116,7 +1117,7 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType20(int subtype)
+        private static Task CreateTaskType20(ref Random random, int subtype)
         {
             switch (subtype)
             {
@@ -1131,7 +1132,7 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static Task CreateTaskType21(int subtype)
+        private static Task CreateTaskType21(ref Random random, int subtype)
         {
             switch (subtype)
             {
@@ -1139,11 +1140,11 @@ namespace TaskGenerator
                     Task task1 = new Task(21, 1);
                     return task1;
                 case 2:
-                    var rand = new Random();
+                    
                     Task task2 = new Task(21, 2);
 
-                    var gamma = rand.Next(8) * 5 + 15;
-                    var error = rand.Next(8) * 5 + 15;
+                    var gamma = random.Next(8) * 5 + 15;
+                    var error = random.Next(8) * 5 + 15;
 
                     task2.condition = "Случайные ошибки измерения подчинены нормальному закону со средним квадратическим отклонением " + gamma + " мм и математическим ожиданием, равным нулю.Найти вероятность того, что измерение будет произведено с ошибкой, не превосходящей по абсолютной величине " + error + " мм.";
 
