@@ -19,7 +19,7 @@ namespace TaskGenerator
             var docotvet = DocX.Create(path + "\\VariantsAnswers.docx");
             for (int i = 0; i < variantList.Count; i++)
             {   string space = '\n' + "";
-                string title = variantList[i].student.Trim('\n','\r');
+                string title = variantList[i].student ?? "";
                 string titlevar = "Вариант " + (i + 1) + '\r';
                 Formatting titleFormat = new Formatting();
                 titleFormat.FontFamily = new Font("Times New Roman");
@@ -27,7 +27,7 @@ namespace TaskGenerator
                 titleFormat.Position = 1;
                 titleFormat.FontColor = System.Drawing.Color.Black;
                 
-                Paragraph paragraphTitle = doc.InsertParagraph(title, false, titleFormat);
+                Paragraph paragraphTitle = doc.InsertParagraph(title.Trim('\n', '\r'), false, titleFormat);
                 Paragraph paragraphTitle2 = doc.InsertParagraph(titlevar, false, titleFormat);
                 paragraphTitle.Alignment = Alignment.both;
                 paragraphTitle2.Alignment = Alignment.right;
