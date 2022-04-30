@@ -10,9 +10,7 @@ using System.Drawing;
 namespace TaskGenerator
 {
     public partial class MainWindow : Window
-
     {
-        //Чёт кринж, ну ладно
         public class Students : List<string>
         {
             public Students(string path) : base(Import.ImportStudents(path))

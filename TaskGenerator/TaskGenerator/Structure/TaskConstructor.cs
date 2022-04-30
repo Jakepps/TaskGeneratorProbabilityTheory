@@ -712,28 +712,40 @@ namespace TaskGenerator
             {
                 case 1:
                     Task task1 = new Task(14, 1);
-                    
-                    var count = random.Next(2,5) * 500;
 
-                    task1.condition = "Устройство содержит " + count + " ламп. Вероятность выхода из строя одной лампы в течение одного часа работы устройства равна 0,001.";
+                    double prob = random.Next(1, 2 + 1) * 10 / 10000.0;
+                    if (random.Next(0, 1 + 1) == 0)
+                    {
+                        prob = random.Next(4, 5 + 1) * 10 / 10000.0;
+                    }
+                    int count = random.Next(1, 5 + 1) * 1000 / (int)(prob * 1000);
+
+                    //var count = random.Next(2,5) * 500;
+
+                    task1.condition = "Устройство содержит " + count + " ламп. Вероятность выхода из строя одной лампы в течение одного часа работы устройства равна " + prob + ".";
                     task1.questions.Add("Составить ряд распределения числа ламп, вышедших из строя в течение одного часа работы устройства.");
                     task1.questions.Add("Найти M(X) этой случайной величины.");
 
-                    var a = count * 0.001;
+                    var a = count * prob;
 
-                    task1.answers.Add(String.Format("Pn(m) = (({0:0.0})^m) / (m!) * e^(-{0:0.0})", a));
+                    task1.answers.Add(String.Format("Pn(m) = {0:0.0}^m * 1/m! * e^(-{0:0.0})", a));
                     task1.answers.Add(String.Format("M(X) = {0:0.0}", a));
 
                     return task1;
                 case 2:
                     Task task2 = new Task(14, 2);
-                    
-                    int lampAmount = random.Next(10, 30) * 100;
-                    double probDamage = random.Next(1, 10) * 10 / 1000.0;
+
+                    double probDamage = random.Next(1, 2 + 1) * 10 / 10000.0;
+                    if(random.Next(0, 1 +1) == 0)
+                    {
+                        probDamage = random.Next(4, 5 + 1) * 10 / 10000.0;
+                    }
+                    int lampAmount = random.Next(1, 5 + 1) * 1000 / (int)(probDamage * 1000);
+                    //double probDamage = random.Next(1, 3 + 1) * 10 / 10000.0;
                     task2.condition = "Торговая база получила " + lampAmount + " электрических лампочек. Вероятность повреждения электролампочки в пути равна " + probDamage + ". ";
                     task2.questions.Add("Составить ряд распределения числа лампочек, поврежденных в пути.");
                     task2.questions.Add("Найти M(X) этой случайной величины.");
-                    task2.answers.Add(string.Format("Pn(m) = {0:0}^m/m! * e^(-{0:0})", lampAmount * probDamage));
+                    task2.answers.Add(string.Format("Pn(m) = {0:0.0}^m * 1/m! * e^(-{0:0.0})", lampAmount * probDamage));
                     task2.answers.Add(string.Format("M(X) = {0:0.0}", lampAmount * probDamage));
                     return task2;
             }
