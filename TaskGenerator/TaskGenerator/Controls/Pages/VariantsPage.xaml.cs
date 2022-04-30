@@ -1,21 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TaskGenerator;
-using Microsoft.WindowsAPICodePack.Dialogs;
+
 namespace TaskGenerator.Controls.Pages
 {
 	/// <summary>
@@ -46,25 +33,33 @@ namespace TaskGenerator.Controls.Pages
 
 		private void onExport(object sender, RoutedEventArgs e)
         {
-			CommonOpenFileDialog dlg = new CommonOpenFileDialog();
-			dlg.Title = "Выбор папки для сохранения файла";
-			dlg.IsFolderPicker = true;
-			dlg.AddToMostRecentlyUsedList = false;
-			dlg.AllowNonFileSystemItems = false;
-			dlg.EnsureFileExists = true;
-			dlg.EnsurePathExists = true;
-			dlg.EnsureReadOnly = false;
-			dlg.EnsureValidNames = true;
-			dlg.Multiselect = false;
-			dlg.ShowPlacesList = true;
+			Export.ExportDialog();
+			//SaveFileDialog dlg = new SaveFileDialog();
+			//if (dlg.ShowDialog() == true)
+   //         {
+			//	var variantList = ((MainWindow)(Application.Current.MainWindow)).variantList;
+			//	Export.ExportVariants(variantList, dlg.FileName);
+			//}
 
-			if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
-			{
-				Console.WriteLine(dlg.FileName);
-				var variantList = ((MainWindow)(Application.Current.MainWindow)).variantList;
-				Export.ExportVariants(variantList, dlg.FileName);
-				
-			}
+			//CommonOpenFileDialog dlg = new CommonOpenFileDialog();
+			//dlg.Title = "Выбор папки для сохранения файла";
+			//dlg.IsFolderPicker = true;
+			//dlg.AddToMostRecentlyUsedList = false;
+			//dlg.AllowNonFileSystemItems = false;
+			//dlg.EnsureFileExists = true;
+			//dlg.EnsurePathExists = true;
+			//dlg.EnsureReadOnly = false;
+			//dlg.EnsureValidNames = true;
+			//dlg.Multiselect = false;
+			//dlg.ShowPlacesList = true;
+
+			//if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+			//{
+			//	Console.WriteLine(dlg.FileName);
+			//	var variantList = ((MainWindow)(Application.Current.MainWindow)).variantList;
+			//	Export.ExportVariants(variantList, dlg.FileName);
+
+			//}
 			//var pizdec = Export.ExportStudents(students, selectedVariant, variantList, "ааа");
 			//var pizdec = Export.ExportVariants(variantList);
 			//pizdec.Item1.Save();

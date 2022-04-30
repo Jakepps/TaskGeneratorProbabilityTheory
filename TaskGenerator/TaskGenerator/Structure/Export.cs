@@ -2,6 +2,8 @@
 using Xceed.Words.NET;
 using Xceed.Document.NET;
 //using System.Drawing;
+using Microsoft.Win32;
+using System.Windows;
 
 namespace TaskGenerator
 {
@@ -15,8 +17,8 @@ namespace TaskGenerator
             //string pathdoc = @"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\test.docx";
             //string pathdocot = @"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\testotvet.docx";
 
-            var doc = DocX.Create(path + "\\Variants.docx");
-            var docotvet = DocX.Create(path + "\\VariantsAnswers.docx");
+            var doc = DocX.Create(path);
+            var docotvet = DocX.Create(path.Substring(0, path.IndexOf('.')) + "Answers.docx");
             for (int i = 0; i < variantList.Count; i++)
             {   string space = '\n' + "";
                 string title = variantList[i].student ?? "";
@@ -26,7 +28,7 @@ namespace TaskGenerator
                 titleFormat.Size = 18D;
                 titleFormat.Position = 1;
                 titleFormat.FontColor = System.Drawing.Color.Black;
-                
+               
                 Paragraph paragraphTitle = doc.InsertParagraph(title.Trim('\n', '\r'), false, titleFormat);
                 Paragraph paragraphTitle2 = doc.InsertParagraph(titlevar, false, titleFormat);
                 paragraphTitle.Alignment = Alignment.both;
@@ -40,6 +42,7 @@ namespace TaskGenerator
                     Formatting textParagraphFormat = new Formatting();
                     textParagraphFormat.FontFamily = new Font("Arial");
                     textParagraphFormat.Spacing = 1;
+
                     if (variantList[i].tasks[j].type==15) 
                     {   
                         var columnWidths1 = new float[] { 40f, 40f, 40f ,40f};
@@ -79,6 +82,7 @@ namespace TaskGenerator
                             string textQ = (q + 1) + ") " + variantList[i].tasks[j].questions[q];
                             doc.InsertParagraph(textQ, false, textParagraphFormat);
                         }
+                        doc.InsertParagraph();
                     }
                     else
                     {
@@ -108,6 +112,18 @@ namespace TaskGenerator
             doc.Save();
             docotvet.Save();
             
+        }
+
+        public static void ExportDialog()
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Word file(*.docx)| *.docx";
+            dlg.DefaultExt = ".docx";
+            if (dlg.ShowDialog() == true)
+            {
+                var variantList = ((MainWindow)(Application.Current.MainWindow)).variantList;
+                Export.ExportVariants(variantList, dlg.FileName);
+            }
         }
     }
 }

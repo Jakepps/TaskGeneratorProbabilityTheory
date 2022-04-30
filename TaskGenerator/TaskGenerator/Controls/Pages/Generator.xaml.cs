@@ -39,7 +39,7 @@ namespace TaskGenerator.Controls.Pages
         {
 			OpenFileDialog openFileDialog = new OpenFileDialog();
 			//Console.WriteLine("OpenFileDialog");
-			openFileDialog.Filter = "Text files (*.doc; *docx; *.txt)|*.doc; *.docx; *.txt";
+			openFileDialog.Filter = "Text files (*.doc; *.docx)|*.doc; *.docx";
 
 			if (openFileDialog.ShowDialog() == true)
             {
