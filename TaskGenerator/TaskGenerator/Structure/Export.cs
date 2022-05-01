@@ -11,12 +11,6 @@ namespace TaskGenerator
     {
         public static void ExportVariants(List<Variant> variantList, string path)
         {
-            //string pathdoc = @"test.docx";
-            //string pathdocot = @"testotvet.docx";
-
-            //string pathdoc = @"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\test.docx";
-            //string pathdocot = @"C:\Users\artem\source\repos\Jakepps\TaskGeneratorProbabilityTheory\TaskGenerator\testotvet.docx";
-
             var doc = DocX.Create(path);
             var docotvet = DocX.Create(path.Substring(0, path.IndexOf('.')) + "Answers.docx");
             for (int i = 0; i < variantList.Count; i++)
@@ -73,7 +67,6 @@ namespace TaskGenerator
                         var d = doc.InsertParagraph(textParagraph, false, textParagraphFormat);
                         d.SpacingAfter(15d);
                         d.InsertTableAfterSelf(t2);
-                       // string space = '\r'+ "";
                         d.InsertParagraphAfterSelf(space);
                         d.InsertTableAfterSelf(t);
                         doc.InsertParagraph(nay,false,textParagraphFormat);
