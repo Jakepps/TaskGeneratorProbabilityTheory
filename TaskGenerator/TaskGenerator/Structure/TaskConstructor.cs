@@ -1041,7 +1041,12 @@ namespace TaskGenerator
 
         static double fun2(double x)
         {
-            return -(x * x) / 2.0 + 2 * x;
+            return (x * x) / 2.0;
+        }
+
+        static double fun3(double x)
+        {
+            return -(x * x) / 2.0 + 2 * x - 1;
         }
 
         private static Task CreateTaskType18(ref Random random, int subtype)
@@ -1052,7 +1057,7 @@ namespace TaskGenerator
                     Task task1 = new Task(18, 1);
                     
 
-                    var aa = random.Next(0,11) / -10.0;
+                    var aa = random.Next(0,11) / -10.0 + 0.5;
                     var bb = random.Next(0,3) * 0.5 + 1;
                     
                     task1.condition = "Дана плотность вероятности f(x) непрерывной случайной величины X, имеющая две ненулевые составляющие формулы:\nf(x)=\n" +
@@ -1072,12 +1077,13 @@ namespace TaskGenerator
                     task1.answers.Add("F(X) =\n" +
                         "     ⎧ 0, x ≤ 0\n" +
                         "     ⎨ (x²)/2, 0 < x ≤ 1 \n" +
-                        "     ⎨ -(x²)/2 + 2x, 1 < x ≤ 2\n" +
+                        "     ⎨ -(x²)/2 + 2x - 1, 1 < x ≤ 2\n" +
                         "     ⎩ 1, x > 2");
 
-                    
+                    var realA = aa < 0 ? 0 : aa;
+                    var realB = bb > 2 ? 2 : bb;
 
-                    var ans = 1 / 2.0 + fun2(bb) - fun2(1);
+                    var ans = fun3(realB) - fun2(realA);
                     task1.answers.Add("P(α≤x≤β) = " + String.Format("{0:0.0000}", ans));
 
                     var mx = 1;
@@ -1094,24 +1100,23 @@ namespace TaskGenerator
                     var b = random.Next(1, 10);
                     
                     task2.condition = "Дана плотность вероятности f(x) непрерывной случайной величины X:\nf(x)=\n" +
-                                     "     ⎧ 0, x≤0" + '\n' +
-                                     "     ⎨ 2x/3, 0≤x≤1" + '\n' +
-                                     "     ⎨ 3-x/3, 1≤x≤3" + '\n'+
-                                     "     ⎩ 0, x>3" + '\n'+
+                                     "     ⎧ 0, x ≤ 0" + '\n' +
+                                     "     ⎨ 2x/3, 0 ≤ x ≤ 1" + '\n' +
+                                     "     ⎨ 3-x/3, 1 ≤ x ≤ 3" + '\n'+
+                                     "     ⎩ 0, x > 3" + '\n'+
                                      "α="+a+",β="+b;
 
-                    
                     task2.questions.Add("Проверить свойство -∞∫∞(f(x)dx)=1.");
                     task2.questions.Add("Найти функцию распределения F(x).");
                     task2.questions.Add("Найти P(α≤x≤β) для данных α,β.");
                     task2.questions.Add("Найти M(X),D(x),σ(X).");
                     task2.questions.Add("Построить график f(x).");
                     task2.answers.Add("1/3+2/3=1 => Условие выполнено");
-                    task2.answers.Add("f(x)="+'\n' +
-                                      "     ⎧ 0, x≤0" + '\n' +
-                                      "     ⎨ x²/3, 0≤x≤1" + '\n' +
-                                      "     ⎨ (-3-x²)/6+x, 1≤x≤3" + '\n' +
-                                      "     ⎩ 1, x>3");
+                    task2.answers.Add("F(x)="+'\n' +
+                                      "     ⎧ 0, x ≤ 0" + '\n' +
+                                      "     ⎨ x²/3, 0 ≤ x ≤ 1" + '\n' +
+                                      "     ⎨ (-3-x²)/6+x, 1 ≤ x ≤ 3" + '\n' +
+                                      "     ⎩ 1, x > 3");
 
                     double ot3 = 3 * (double)b * (double)b * (double)b - 3 * a * a * a - 9 * (double)b * (double)b + 9 * a * a + 9 * a + 9 * (double)b;
                     task2.answers.Add(String.Format("{0:0.000}",ot3));
