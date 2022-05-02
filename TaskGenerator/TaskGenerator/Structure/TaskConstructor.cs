@@ -992,18 +992,22 @@ namespace TaskGenerator
                     task1.questions.Add("Построить функцию распределения F(X).");
                     task1.questions.Add("Построить графики f(X) и F(X).");
 
-                    //var fun = (double x) => x * x * x / 3.0 - 3 * x * x + 8 * x;
                     var aa = 1 / (fun(end) - fun(start));
 
-                    
-
-
+                    var offset = aa / 3.0 * start * start * start - 3 * aa * start * start + 8 * aa * start;
                     task1.answers.Add("a = " + String.Format("{0:0.00}", aa));
-                    task1.answers.Add("F(X) = " + String.Format("{0:0.00}x³ - {1:0.00}x² + {2:0.00}x",
+
+                    task1.answers.Add(
+                        "F(x)=\n" +
+                        "     ⎧ 0, x < " + start + "\n" +
+                        "     ⎨ " + String.Format("{0:0.00}x³ + {1:0.00}x² - {2:0.00}x + {3:0.0000}",
                         aa / 3.0,
-                        3 * aa,
-                        8 * aa
-                        ));
+                        Math.Abs(3 * aa),
+                        Math.Abs(8 * aa),
+                        Math.Abs(offset)
+                        ) + ", " + start + " ≤ x < " + end + "\n" +
+                        "     ⎩ 1, x > " + end
+                    );
 
                     return task1;
                 case 2:
@@ -1012,9 +1016,9 @@ namespace TaskGenerator
                     var a=random.Next(1, b-1);
                     Task task2 = new Task(17, 2);
                     task2.condition = "Дана функция распределения F(x) непрерывной случайной величины X:\nf(x)=\n"+
-                                     "     ⎧ 0, x<" + a + '\n' +
-                                     "     ⎨ a(4x+3), " + a + "≤x≤" + b + '\n' +
-                                     "     ⎩ 0, x>" + b;
+                                     "     ⎧ 0, x < " + a + '\n' +
+                                     "     ⎨ a(4x+3), " + a + " ≤ x ≤ " + b + '\n' +
+                                     "     ⎩ 0, x > " + b;
                     task2.questions.Add("Найти параметр a.");
                     task2.questions.Add("Найти функцию распределения F(x).");
                     task2.questions.Add("Построить графики f(x) и F(x).");
@@ -1023,7 +1027,13 @@ namespace TaskGenerator
                     double f1 = ot * 2;
                     double f2 = ot * 3;
                     double f3 = 2 * a * a * ot + 3 * a * ot;
-                    task2.answers.Add(string.Format("{0:0.000}x²+3{1:0.000}x-{2:0.000}", f1, f2, f3));
+
+                    task2.answers.Add(
+                        "F(x)=\n" +
+                                     "     ⎧ 0, x < " + a + '\n' +
+                                     "     ⎨ " + string.Format("{0:0.000}x²+{1:0.000}x-{2:0.000}", f1, f2, f3) + ", " + a + " ≤ x ≤ " + b + '\n' +
+                                     "     ⎩ 1, x > " + b
+                        );
                     return task2;
             }
             throw new ArgumentException();
