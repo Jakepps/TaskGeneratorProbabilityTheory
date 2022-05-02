@@ -576,11 +576,10 @@ namespace TaskGenerator
                     var k2 = (1 - prob) * prob;
                     var k3 = (1 - prob) * (1 - prob) * prob;
                     var k4 = (1 - prob) * (1 - prob) * (1 - prob) * prob;
+                    var k5 = (1 - prob) * (1 - prob) * (1 - prob) * (1 - prob);
 
                     var MX = 1 * k1 + 2 * k2 + 3 * k3 + 4 * k4;
                     var DX = 1 * k1 + 4 * k2 + 9 * k3 + 16 * k4 - Math.Pow(MX, 2);
-
-                    //Console.WriteLine(String.Format("{0:0.0000} {1:0.0000} {2:0.0000} {3:0.0000}", k1, k2, k3, k4));
 
                     task1.answers.Add( "\n" + 
                         "P(x = 1) = " + String.Format("{0:0.0000}",k1) + "\n" +
@@ -593,11 +592,12 @@ namespace TaskGenerator
                         "D(X) = " + String.Format("{0:0.0000}", DX) + "\n" +
                         "σ(X) = " + String.Format("{0:0.0000}", Math.Sqrt(DX)) + "\n" +
                         "F(X) = \n" +
-                        "    | 0, x = 0\n" +
-                        "    | " + String.Format("{0:0.0000}", k1) + ", x = 1\n" +
-                        "    | " + String.Format("{0:0.0000}", k1 + k2) + ", x = 2\n" +
-                        "    | " + String.Format("{0:0.0000}", k1 + k2 + k3) + ", x = 3\n" +
-                        "    | " + String.Format("{0:0.0000}", k1 + k2 + k3 + k4) + ", x = 4"
+                        "    ⎧ 0, x ≤ 0\n" +
+                        "    ⎨ " + String.Format("{0:0.0000}", k1) + ", 0 < x ≤ 1\n" +
+                        "    ⎨ " + String.Format("{0:0.0000}", k1 + k2) + ", 1 < x ≤ 2\n" +
+                        "    ⎨ " + String.Format("{0:0.0000}", k1 + k2 + k3) + ", 2 < x ≤ 3\n" +
+                        "    ⎨ " + String.Format("{0:0.0000}", k1 + k2 + k3 + k4) + ", 3 < x ≤ 4\n" +
+                        "    ⎩ " + String.Format("{0:0.0000}", k1 + k2 + k3 + k4 + k5) + ", 4 < x"
                     );
                     return task1;
                   
@@ -634,7 +634,7 @@ namespace TaskGenerator
                     fx[0] = p[0];
                     for (int i = 1; i < 4; i++)
                         fx[i] = fx[i - 1] + p[i];
-                    task2.answers.Add(string.Format("\nM(X)={0:0.000} \nD(X)={1:0.000} \nσ(X)={2:0.000} \nF(X) = \n{3:0.000}, x = 1; \n{4:0.000}, x = 2; \n{5:0.000}, x = 3; \n{6:0.000}, x = 4;",
+                    task2.answers.Add(string.Format("\nM(X)={0:0.000} \nD(X)={1:0.000} \nσ(X)={2:0.000} \nF(X) = \n    ⎧ 0, x ≤ 0\n    ⎨ {3:0.000}, 0 < x ≤ 1\n    ⎨ {4:0.000}, 1 < x ≤ 2\n    ⎨ {5:0.000}, 2 < x ≤ 3\n    ⎨ {6:0.000}, 3 < x ≤ 4\n    ⎩ 1, 4 < x",
                         mx, dx, Math.Sqrt(dx), fx[0], fx[1], fx[2], fx[3]));
                     return task2;
             }
