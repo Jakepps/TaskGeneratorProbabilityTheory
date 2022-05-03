@@ -9,7 +9,7 @@ namespace TaskGenerator
         public static Task CreateTask(ref Random random, int type, int subtype = 0)
         {
             /*-normal random?...
-              -no.
+              -йез.
               ⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
               ⣿⣿⣿⣿⣿⣿⢿⢯⣛⣺⣯⣿⣿⣿⣿⣿⣿⣿⢱⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
               ⣿⣿⣿⡿⣿⣿⢡⣿⣉⣿⡿⠿⠿⠿⡿⠿⠻⣿⡇⠸⣻⠾⣿⣿⣿⣿⣿⣿⣿⣿
@@ -94,8 +94,8 @@ namespace TaskGenerator
                     task1.condition = "Наугад выбирается автомобиль с " + numString + " номером. Найти вероятность того, что: ";
                     task1.questions.Add("Это автомобиль Ф. Киркорова");
                     task1.questions.Add("Номер не содержит одинаковых цифр.");
-                    task1.answers.Add(String.Format("1/{0:0} -> {1:0.00000}", Math.Pow(10, numCount), 1 / Math.Pow(10, numCount)));
-                    task1.answers.Add(String.Format("{0:0}/{1:0} -> {2:0.00000}", sndNum, Math.Pow(10, numCount), sndNum / Math.Pow(10, numCount)));
+                    task1.answers.Add(String.Format("1/{0:0} ≈ {1:0.000000}", Math.Pow(10, numCount), 1 / Math.Pow(10, numCount)));
+                    task1.answers.Add(String.Format("{0:0}/{1:0} ≈ {2:0.000000}", sndNum, Math.Pow(10, numCount), sndNum / Math.Pow(10, numCount)));
                     return task1;
                 case 2:
                     Task task2 = new Task(1, 2);
@@ -108,13 +108,13 @@ namespace TaskGenerator
                     task2.questions.Add("Неизвестна.");
                     task2.questions.Add("Не содержит одинаковых цифр.");
                     int ans1 = (int)Math.Pow(10, numCount2);
-                    task2.answers.Add(String.Format("1/{0:0} -> {1:0.000000}", ans1, 1 / (double)ans1));
+                    task2.answers.Add(String.Format("1/{0:0} ≈ {1:0.000000}", ans1, 1 / (double)ans1));
                     int ans2 = 1;
                     for(int i = 0, x = 10; i < numCount2; i++, x--)
                     {
                         ans2 *= x;
                     }
-                    task2.answers.Add(String.Format("1/{0:0} -> {1:0.000000}", ans2, (1 / (double)ans2)));
+                    task2.answers.Add(String.Format("1/{0:0} ≈ {1:0.000000}", ans2, (1 / (double)ans2)));
                     return task2;
             }
             throw new ArgumentException();
@@ -141,16 +141,16 @@ namespace TaskGenerator
                     var result1 = (C(loteryWinCount, loteryWinPickedCount) * C(loteryCount - loteryWinCount, loteryPickedCount - loteryWinPickedCount)) / (C(loteryCount, loteryPickedCount));
                     var result2 = (C(loteryWinCount, 0) * C(loteryCount - loteryWinCount, loteryPickedCount)) / C(loteryCount, loteryPickedCount);
 
-                    task1.answers.Add(string.Format("{0:0.000000}", result1));
-                    task1.answers.Add(string.Format("{0:0.000000}", result2));
+                    task1.answers.Add(string.Format("{0:0.0000}", result1));
+                    task1.answers.Add(string.Format("{0:0.0000}", result2));
                     return task1;
 
                 case 2:
                     Task task2 = new Task(2, 2);
                    
-                    int whiteCount = random.Next(15, 23);
-                    int blueCount = random.Next(10, 18);
-                    int manCount = random.Next(5, whiteCount);
+                    int whiteCount = random.Next(9, 15);
+                    int blueCount = random.Next(3, 5);
+                    int manCount = random.Next(5, whiteCount-2);
                     
                     int whiteTake = random.Next(1, Math.Min(whiteCount, manCount - 1));
                     
@@ -165,11 +165,11 @@ namespace TaskGenerator
                     task2.questions.Add(whiteTake + " белых и " + blueTake + " синих кресел.");
                     task2.questions.Add("Хотя бы одно синее кресло.");
                     var res1= (C(whiteCount, whiteTake) * C(blueCount, blueTake)) / C((whiteCount + blueCount), manCount);
-                    var res2= 1 - C(whiteCount, manCount) / C((whiteCount + blueCount), manCount);
+                    var res2= 1 - (C(whiteCount, manCount) / C((whiteCount + blueCount), manCount));
                     //task2.answers.Add("C(" + whiteCount + "," + whiteTake + ")*C(" + blueCount + ", " + blueTake + ")/C(" + (whiteCount + blueCount) + ", " + manCount + " ) = " + (C(whiteCount, whiteTake) * C(blueCount, blueTake)) / C((whiteCount + blueCount), manCount));
-                    task2.answers.Add(String.Format("C({0:0},{1:0})*C({2:0},{3:0})/C({4:0},{5:0}) -> {6:0.000000}", whiteCount, whiteTake, blueCount, blueTake, whiteCount + blueCount, manCount, res1));
+                    task2.answers.Add(String.Format("C({0:0},{1:0})*C({2:0},{3:0})/C({4:0},{5:0}) ≈ {6:0.0000}", whiteCount, whiteTake, blueCount, blueTake, whiteCount + blueCount, manCount, res1));
                     //task2.answers.Add("1 - C(" + whiteCount + "," + manCount + ")/C(" + (whiteCount + blueCount) + "," + manCount + ") = " + (1 - C(whiteCount, manCount) / C((whiteCount + blueCount), manCount)));
-                    task2.answers.Add(String.Format("1-C({0:0},{1:0})/C({2:0},{3:0}) -> {4:0.000000}", whiteCount, manCount, whiteCount + blueCount, manCount, res2));
+                    task2.answers.Add(String.Format("1-C({0:0},{1:0})/C({2:0},{3:0}) ≈ {4:0.0000}", whiteCount, manCount, whiteCount + blueCount, manCount, res2));
                     return task2;
             }
             throw new ArgumentException();
@@ -1247,11 +1247,11 @@ namespace TaskGenerator
             throw new ArgumentException();
         }
 
-        private static int Factorial(int n) {
+        private static double Factorial(double n) {
             if (n <= 0) return 1;
             return n * Factorial(n - 1);
 		}
-        private static double C(int p, int q) {
+        private static double C(double p, double q) {
             return Convert.ToDouble(Factorial(p)) / Convert.ToDouble((Factorial(q) * Factorial(p - q)));
 		}
     }
