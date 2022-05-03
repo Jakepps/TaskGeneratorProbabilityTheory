@@ -1048,7 +1048,15 @@ namespace TaskGenerator
         {
             return -(x * x) / 2.0 + 2 * x - 1;
         }
-
+        
+        static double fun4(double x)
+        {
+            return (1.0 / 3.0) * x * x;
+        }
+        static double fun5(double x)
+        {
+            return x - (x * x) / 6.0;
+        }
         private static Task CreateTaskType18(ref Random random, int subtype)
         {
             switch (subtype)
@@ -1091,38 +1099,43 @@ namespace TaskGenerator
                     var delta = Math.Sqrt(dx);
                     task1.answers.Add(String.Format("M(X)={0:0.0000}; D(X)={1:0.0000}; σ(X)={2:0.0000}", mx, dx, delta));
 
-
                     return task1;
+                    
                 case 2:
                     Task task2 = new Task(18, 2);
-                    
-                    var a = Math.Round(random.NextDouble() * 20.0 + 1.0)/10;
-                    var b = random.Next(1, 10);
-                    
-                    task2.condition = "Дана плотность вероятности f(x) непрерывной случайной величины X:\nf(x)=\n" +
+
+                    var aa2 = random.Next(0, 11) / -10.0 + 0.5;
+                    var bb2 = random.Next(0, 3) * 0.5 + 1;
+
+                    task2.condition = "Дана плотность вероятности f(x) непрерывной случайной величины X, имеющая две ненулевые составляющие формулы:\nf(x)=\n" +
                                      "     ⎧ 0, x ≤ 0" + '\n' +
                                      "     ⎨ 2x/3, 0 ≤ x ≤ 1" + '\n' +
-                                     "     ⎨ 3-x/3, 1 ≤ x ≤ 3" + '\n'+
-                                     "     ⎩ 0, x > 3" + '\n'+
-                                     "α="+a+",β="+b;
+                                     "     ⎨ (3-x)/3, 1 ≤ x ≤ 3" + '\n' +
+                                     "     ⎩ 0, x > 3" + '\n' +
+                                     "α=" + aa2 + ",β=" + bb2 + '\n' +
+                                     "Требуется:";
 
                     task2.questions.Add("Проверить свойство -∞∫∞(f(x)dx)=1.");
                     task2.questions.Add("Найти функцию распределения F(x).");
                     task2.questions.Add("Найти P(α≤x≤β) для данных α,β.");
                     task2.questions.Add("Найти M(X),D(x),σ(X).");
                     task2.questions.Add("Построить график f(x).");
-                    task2.answers.Add("1/3+2/3=1 => Условие выполнено");
+
+                    task2.answers.Add("Условие выполняется.");
                     task2.answers.Add("F(x)="+'\n' +
                                       "     ⎧ 0, x ≤ 0" + '\n' +
                                       "     ⎨ x²/3, 0 ≤ x ≤ 1" + '\n' +
                                       "     ⎨ (-3-x²)/6+x, 1 ≤ x ≤ 3" + '\n' +
                                       "     ⎩ 1, x > 3");
 
-                    double ot3 = 3 * (double)b * (double)b * (double)b - 3 * a * a * a - 9 * (double)b * (double)b + 9 * a * a + 9 * a + 9 * (double)b;
-                    task2.answers.Add(String.Format("{0:0.000}",ot3));
+                    var realA2 = aa2 < 0 ? 0 : aa2;
+                    var realB2 = bb2 > 3 ? 3 : bb2;
+
+                    double ot3 = fun5(realB2) - fun4(realA2);
+                    task2.answers.Add("P(α≤x≤β) = " + String.Format("{0:0.000}", ot3));
 
                     double x1 = 4.0 / 3.0, x2 = 7.0 / 18.0, x3 = Math.Sqrt(7.0 / 18.0);
-                    task2.answers.Add(string.Format("M(X)={0:0.000},\nD(X)={1:0.000},\nσ(X)={2:0.000}", x1, x2, x3));
+                    task2.answers.Add(string.Format("M(X)={0:0.000}, D(X)={1:0.000}, σ(X)={2:0.000}", x1, x2, x3));
                     return task2;
             }
             throw new ArgumentException();
