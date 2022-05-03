@@ -581,11 +581,12 @@ namespace TaskGenerator
                     var MX = 1 * k1 + 2 * k2 + 3 * k3 + 4 * k4;
                     var DX = 1 * k1 + 4 * k2 + 9 * k3 + 16 * k4 - Math.Pow(MX, 2);
 
-                    task1.answers.Add( "\n" + 
-                        "P(x = 1) = " + String.Format("{0:0.0000}",k1) + "\n" +
-                        "P(x = 2) = " + String.Format("{0:0.0000}", k2) + "\n" +
-                        "P(x = 3) = " + String.Format("{0:0.0000}", k3) + "\n" +
-                        "P(x = 4) = " + String.Format("{0:0.0000}", k4)
+                    task1.answers.Add( "\n" +
+                        "P(x = 0) = " + String.Format("{0:0.0000}", k1) + "\n" +
+                        "P(x = 1) = " + String.Format("{0:0.0000}",k2) + "\n" +
+                        "P(x = 2) = " + String.Format("{0:0.0000}", k3) + "\n" +
+                        "P(x = 3) = " + String.Format("{0:0.0000}", k4) + "\n" +
+                        "P(x = 4) = " + String.Format("{0:0.0000}", k5)
                     );
                     task1.answers.Add( "\n" + 
                         "M(X) = " + String.Format("{0:0.0000}", MX) + "\n" +
@@ -611,15 +612,18 @@ namespace TaskGenerator
                     task2.questions.Add("Составить ряд распределения числа проверенных деталей.");
                     task2.questions.Add("Найти М(Х), D(X), σ(X), F(X).");
 
-                    double[] p = new double[4];
+                    double[] p = new double[5];
                     for(int i = 0; i < 4; i++)
                     {
                         p[i] = Math.Pow(1 - probDefective, i) * probDefective;
                     }
-                    task2.answers.Add(string.Format("\nP(x=1)={0:0.00} \n" +
-                        "P(x=2)={1:0.00}*{0:0.00}={2:0.000} \n" +
-                        "P(x=3)={1:0.00}*{1:0.00}*{0:0.00}={3:0.000} \n" +
-                        "P(x=4)={1:0.00}*{1:0.00}*{1:0.00}*{0:0.00}={4:0.000}", probDefective, 1- probDefective, p[1], p[2], p[3]));
+                    p[4] = Math.Pow(1 - probDefective, 4);
+                    task2.answers.Add(string.Format("\n" + 
+                        "P(x=0)={0:0.00} \n" +
+                        "P(x=1)={1:0.00}*{0:0.00}={2:0.000} \n" +
+                        "P(x=2)={1:0.00}*{1:0.00}*{0:0.00}={3:0.000} \n" +
+                        "P(x=3)={1:0.00}*{1:0.00}*{1:0.00}*{0:0.00}={4:0.000} \n" +
+                        "P(x=4)={1:0.00}*{1:0.00}*{1:0.00}*{1:0.00}={5:0.000}", probDefective, 1- probDefective, p[1], p[2], p[3], p[4]));
 
                     double mx = 0;
                     for (int i = 1; i <= 4; i++)
