@@ -1051,11 +1051,11 @@ namespace TaskGenerator
         
         static double fun4(double x)
         {
-            return (1.0 / 3.0) * x * x;
+            return x * x * (1.0 / 3.0);
         }
         static double fun5(double x)
         {
-            return x - (x * x) / 6.0;
+            return ((-(x * x) - 5) / 6.0 + x + 1.0 / 3.0);
         }
         private static Task CreateTaskType18(ref Random random, int subtype)
         {
@@ -1125,7 +1125,7 @@ namespace TaskGenerator
                     task2.answers.Add("F(x)="+'\n' +
                                       "     ⎧ 0, x ≤ 0" + '\n' +
                                       "     ⎨ x²/3, 0 ≤ x ≤ 1" + '\n' +
-                                      "     ⎨ (-3-x²)/6+x, 1 ≤ x ≤ 3" + '\n' +
+                                      "     ⎨ (-x²-5)/6+x+1/3, 1 ≤ x ≤ 3" + '\n' +
                                       "     ⎩ 1, x > 3");
 
                     var realA2 = aa2 < 0 ? 0 : aa2;
