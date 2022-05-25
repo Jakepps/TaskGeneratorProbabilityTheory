@@ -496,8 +496,9 @@ namespace TaskGenerator
                     var x22 = (endCount - testCount * prob) / Math.Sqrt(testCount * prob * (1 - prob));
 
                     task1.answers.Add("Ф(" + String.Format("{0:0.0000}", x22) + ") - Ф(" + String.Format("{0:0.0000}", x11) + ")");
-                    task1.answers.Add("Φ(" + String.Format("{0:0.0000}",x) + ")");
-
+                    //task1.answers.Add("Φ(" + String.Format("{0:0.0000}",x) + ")");
+                    double k11 = 1.0 / Math.Sqrt(100 * prob * (1 - prob));
+                    task1.answers.Add(string.Format("{0:0.00} * φ({1:0.00})", k11, x));
                     return task1;
                 case 2:
                     Task task2 = new Task(10, 2);
@@ -550,9 +551,12 @@ namespace TaskGenerator
                     int studentsAmount = random.Next(2, 5 + 1);
                     task2.condition = "На факультете обучается " + allStudentsAmount + " студентов. Какова вероятность того, что " +
                         "31 декабря является днем рождения одновременно " + studentsAmount + " студентов данного факультета?";
-                    double x = (studentsAmount - allStudentsAmount * (1 / 365.0)) / Math.Sqrt(allStudentsAmount * (1 / 365.0) * (1 - 1 / 365.0));
-                    double k = 1 / Math.Sqrt(allStudentsAmount * (1 / 365.0) * (1 - 1 / 365.0));
-                    task2.answers.Add(string.Format("1/√("+ allStudentsAmount + "*(1/365)*(1-1/365)) * φ({0:0.00}) ≈ {1:0.00} * φ({0:0.00})", x, k));
+                    //double x = (studentsAmount - allStudentsAmount * (1 / 365.0)) / Math.Sqrt(allStudentsAmount * (1 / 365.0) * (1 - 1 / 365.0));
+                    //double k = 1 / Math.Sqrt(allStudentsAmount * (1 / 365.0) * (1 - 1 / 365.0));
+                    // task2.answers.Add(string.Format("1/√("+ allStudentsAmount + "*(1/365)*(1-1/365)) * φ({0:0.00}) ≈ {1:0.00} * φ({0:0.00})", x, k));
+                    var l = (double)allStudentsAmount / 365.00;
+                    var ot = (Math.Pow(l, studentsAmount) / Factorial(studentsAmount)) * Math.Exp(-l);
+                    task2.answers.Add(string.Format("(({0:0.000}^{1:0})/{2:0}!) * e^(-{3:0.000}) ≈ {4:0.000}", l, studentsAmount, studentsAmount, l, ot));
                     return task2;
             }
             throw new ArgumentException();
